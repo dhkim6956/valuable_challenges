@@ -25,6 +25,8 @@ for i in 1 ... 5 {
     colGem()
 }
 
+### fork - pull
+
 
 ### 유형/올바른 포털 설정하기
 
