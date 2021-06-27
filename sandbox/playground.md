@@ -12,6 +12,8 @@ while !isBlocked{
         turnRight()
     }
 }
+### wang
+var gemCounter = 0
 
 ### lee
 var gemCounter = 0
@@ -51,4 +53,5 @@ while gemStone < 4 {
     turnLeft()
     turnLeft()
 }
+
 
