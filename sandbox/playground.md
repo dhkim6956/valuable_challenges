@@ -12,6 +12,8 @@ while !isBlocked{
         turnRight()
     }
 }
+### wang
+var gemCounter = 0
 
 ### lee
 var gemCounter = 0
@@ -54,6 +56,7 @@ while gemStone < 4 {
     turnLeft()
     turnLeft()
 }
+
 
 ### 유형/올바른 포털 설정하기 (고진아)
 
