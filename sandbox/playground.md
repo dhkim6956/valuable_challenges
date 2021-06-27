@@ -25,20 +25,9 @@ for i in 1 ... 5 {
     colGem()
 }
 
-### 변수/값 증가 시키기(고진아)
 
-var gemCounter = 0
+### fork - pull
 
-while !isBlocked{
-    moveForward()
-    if isOnGem {
-        collectGem()
-        gemCounter = gemCounter + 1
-    }
-    if isBlocked && isBlockedLeft {
-        turnRight()
-    }
-}
 
 ### 유형/올바른 포털 설정하기
 
