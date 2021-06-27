@@ -13,6 +13,18 @@ while !isBlocked{
     }
 }
 
+### lee
+var gemCounter = 0
+
+func colGem() {
+    moveForward()
+    collectGem()
+    gemCounter += 1
+}
+for i in 1 ... 5 {
+    colGem()
+}
+
 
 ### 유형/올바른 포털 설정하기
 
