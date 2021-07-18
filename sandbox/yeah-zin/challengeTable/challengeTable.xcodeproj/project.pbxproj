@@ -15,6 +15,7 @@
 		470F361A26A40736004CF5E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470F361826A40736004CF5E6 /* LaunchScreen.storyboard */; };
 		470F362426A407E8004CF5E6 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F362326A407E8004CF5E6 /* MainTableViewController.swift */; };
 		470F362626A40865004CF5E6 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F362526A40865004CF5E6 /* ChallengeModel.swift */; };
+		470F362826A41C57004CF5E6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F362726A41C57004CF5E6 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		470F361B26A40736004CF5E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		470F362326A407E8004CF5E6 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		470F362526A40865004CF5E6 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		470F362726A41C57004CF5E6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				470F361B26A40736004CF5E6 /* Info.plist */,
 				470F362326A407E8004CF5E6 /* MainTableViewController.swift */,
 				470F362526A40865004CF5E6 /* ChallengeModel.swift */,
+				470F362726A41C57004CF5E6 /* DetailViewController.swift */,
 			);
 			path = challengeTable;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				470F362426A407E8004CF5E6 /* MainTableViewController.swift in Sources */,
 				470F361226A40735004CF5E6 /* ViewController.swift in Sources */,
 				470F360E26A40735004CF5E6 /* AppDelegate.swift in Sources */,
+				470F362826A41C57004CF5E6 /* DetailViewController.swift in Sources */,
 				470F361026A40735004CF5E6 /* SceneDelegate.swift in Sources */,
 				470F362626A40865004CF5E6 /* ChallengeModel.swift in Sources */,
 			);
