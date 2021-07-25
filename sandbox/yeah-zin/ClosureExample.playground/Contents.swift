@@ -1,97 +1,60 @@
-import UIKit
+let array = [1,2,3,4,5]
 
-// (Int, Double) -> Int
-
-func intDouble(_ arg1: Int, _ arg2: Double) -> Int {
-    return arg1
+// 3보다 큰 원소
+let fn: (Int) -> Bool = { (item:Int) -> Bool in
+    if item > 3{
+        return true
+    } else {
+        return false
+    }
 }
-
-let func1 = intDouble
-func1(3, 3.14)
-
-// ([String]) -> Int
-
-func arrayString(_ arg:[String]) -> Int {
-    return arg.count
-}
-
-let func2 = arrayString
-func2(["Hi", "Hello"])
-
-// (String, Int) -> [String: Int]
-
-func stringInt(_ arg1:String, _ arg2:Int) -> [String: Int] {
-    return [arg1: arg2]
-}
-
-let func3 = stringInt
-func3("hello", 3)
-
-func addTwoNum(_ arg1: Int, _ arg2:Int) -> Int {
-    return 0
-}
-
-
-let addTwoclosure = {(arg1: Int, arg2: Int) -> Int in
-    return arg1 + arg2
-}
-
-let addTwoclosure2 = {(arg1, arg2) -> Int in
-    return arg1 + arg2
-}
-
-let addTwoclosure3 = {(arg1, arg2) -> Int in
-    arg1 + arg2
-}
-
-let addTwoclosure4: (Int, Int) -> Int = {
-    $0 + $1
-}
-
-
-// (Int, Double) -> Int
-
-let intDoubleClosure :(Int, Double) -> Int = {(i, di) -> Int in
-    return i
-}
-
-// ([String]) -> Int
-
-let arrayStringClosure: ([String]) -> Int = {(arrayString) -> Int in
-    arrayString.count
-}
-
-// (String, Int) -> [String: Int]
-
-let stringIntClosure: (String, Int) -> [String: Int] = {(txt, num) -> [String: Int] in
-    return [txt:num]
-}
-
-
-// 함수 타입을 파라미터로 하는 Closure
-
-
-func sayHi() -> String {
-    return "Hi"
-}
-
-let ret = sayHi()
-
-func sayHi2(handler: (String) -> Void) {
-    handler("hi")
-}
-
-let fn: (String) -> Void = {(arg:String) -> Void in
-    print(arg)
-}
-
-sayHi2(handler: fn)
-
-sayHi2(handler: {(arg: String) -> Void in
-    print(arg)
+array.filter({ (item:Int) -> Bool in
+    if item > 3{
+        return true
+    } else {
+        return false
+    }
 })
 
-sayHi2 { (arg: String) in
-    print(arg)
-    
+let retFilter = array.filter {item in
+    return item > 3
 }
+
+// map -2
+let fn2: (Int) -> String = {(item) -> String in
+    return "item \(item)"
+}
+
+array.map {(item) -> String in
+    return "item \(item)"
+}
+
+let retReduce = array.reduce("") {(prevRet: String, item: Int) -> String in
+    return prevRet + "\(item)"
+}
+
+array.filter {item in
+    item % 2 == 1
+}.reduce("") {(prevRet, item) in
+    prevRet + "\(item)"
+}
+
+
+
+let retArray2 = array.filter({(item:Int) -> Bool in
+                if item % 3 == 0 {
+                    return true
+                } else {
+                    return false
+                }
+}).map {(item) -> Int in
+    return item + 1
+}
+
+print(retArray2)
+
+let ret = retArray2.reduce(0) {(preInt, item) -> Int in
+    return preInt + item
+}
+
+print(ret)
