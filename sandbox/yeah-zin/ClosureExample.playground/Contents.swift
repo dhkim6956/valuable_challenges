@@ -66,3 +66,32 @@ let arrayStringClosure: ([String]) -> Int = {(arrayString) -> Int in
 let stringIntClosure: (String, Int) -> [String: Int] = {(txt, num) -> [String: Int] in
     return [txt:num]
 }
+
+
+// 함수 타입을 파라미터로 하는 Closure
+
+
+func sayHi() -> String {
+    return "Hi"
+}
+
+let ret = sayHi()
+
+func sayHi2(handler: (String) -> Void) {
+    handler("hi")
+}
+
+let fn: (String) -> Void = {(arg:String) -> Void in
+    print(arg)
+}
+
+sayHi2(handler: fn)
+
+sayHi2(handler: {(arg: String) -> Void in
+    print(arg)
+})
+
+sayHi2 { (arg: String) in
+    print(arg)
+    
+}
