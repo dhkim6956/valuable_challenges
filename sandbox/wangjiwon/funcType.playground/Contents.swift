@@ -7,10 +7,20 @@ func addNum (_ arg1: Int, _ arg2: Double) -> Int {
     return 0
 }
 
+//클로저 타입 추가
+
+let addNumClosure: (Int, Double) -> Int = {(_ arg1: Int, _ arg2: Double) -> Int in
+    return 0
+
+}
 
 let fn1: (Int, Double) -> Int = addNum
 
 func addText (_ arg1: [String]) -> Int {
+    return 0
+}
+    
+let addTextClosure: ([String]) -> Int = {(_ arg1: [String]) -> Int in
     return 0
 }
 
@@ -20,6 +30,10 @@ func addTextAndNum (_ arg1: String, _ arg2: Int) -> [String: Int] {
     
     return ["Hello": 0]
 }
+let addTextAndNumClosure: (String, Int) -> [String: Int] = { (_ arg1: String, _ arg2: Int) -> [String: Int] in
+    return ["String1" :  1]
+}
+
 
 let fn3: (String, Int) -> [String: Int] = addTextAndNum
 
