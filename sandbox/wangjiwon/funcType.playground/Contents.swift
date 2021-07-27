@@ -8,7 +8,6 @@ func addNum (_ arg1: Int, _ arg2: Double) -> Int {
 }
 
 //클로저 타입 추가
-
 let addNumClosure: (Int, Double) -> Int = {(_ arg1: Int, _ arg2: Double) -> Int in
     return 0
 
@@ -65,4 +64,54 @@ let addTwoNumClosure3: (Int, Int) -> Int = { (arg1, arg2) in
 
 
 
+func sayHi() -> String {
+    return "Hi"
+}
 
+let ret = sayHi()
+
+func sayHi2( handler: (String) -> Void) {
+    handler("Hi")
+}
+
+
+//sayHi2 코드 호출하는 법 (1)
+let fn: (String) -> Void = { (arg: String) -> Void in
+    print(arg)
+}
+
+sayHi2(handler: fn)
+
+//sayHi2 코드 호출하는 법 (2)
+sayHi2(handler: { (arg: String) -> Void in
+    print(arg)
+})
+
+
+//sayHi2 코드 호출하는 법 (3)
+sayHi2 { (arg: String)  in
+    print(arg)
+}
+
+
+//연습
+func sayHello( handler: (String) -> Void) {
+    handler ("Hello")
+}
+
+//1번방법
+let fn123: (String) -> Void = { (arg: String) -> Void in
+    print(arg)
+}
+
+sayHello(handler: fn123)
+
+//2번방법
+sayHello(handler: { (erg: String) -> Void in
+    print(erg)
+})
+
+//3번방법
+sayHello{ (erg: String) in
+    print(erg)
+}
