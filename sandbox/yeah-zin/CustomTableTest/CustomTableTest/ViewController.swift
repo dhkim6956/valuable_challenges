@@ -9,11 +9,38 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var customTableView: UITableView!
+    @IBOutlet weak var levelProgressView: CircularProgressView!
+    @IBOutlet var objectImageViews: [UIImageView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customTableView.delegate = self
         customTableView.dataSource = self
+        
+        levelProgressView.trackColor = UIColor(displayP3Red: 222/255, green: 234/255, blue: 224/255, alpha: 1)
+        levelProgressView.progressColor = UIColor.systemBlue
+        levelProgressView.setProgressWithAnimation(duration: 1.0, value: 0.3)
+        
+        func animateProgress() {
+            let cP = self.view.viewWithTag(101) as! CircularProgressView
+            cP.setProgressWithAnimation(duration: 1.0, value: 0.7)
+
+        }
+        func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+        }
+        
+        let modelCount = challengeModel.arrayList.count
+        
+        for i in 0...modelCount-1 {
+            if challengeModel.arrayList[i].certification == .yes {
+                objectImageViews[i].image = UIImage(systemName: "hexagon.fill")
+            } else {
+                objectImageViews[i].image = UIImage(systemName: "hexagon")
+            }
+        }
+        
+        
 
     }
     
