@@ -16,22 +16,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-bU-vrO" customClass="CircularProgressView" customModule="CircleProgressBar" customModuleProvider="target">
-                                <rect key="frame" x="87" y="225" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-bU-vrO" customClass="CircularProgressView" customModule="CircleProgressBar" customModuleProvider="target">
+                                <rect key="frame" x="177" y="418" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="SwV-Zn-exk"/>
+                                    <constraint firstAttribute="height" constant="60" id="seI-gk-uv6"/>
+                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8g-jw-JdI">
+                                <rect key="frame" x="191" y="440.5" width="32" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="P8g-jw-JdI" firstAttribute="centerX" secondItem="k9Z-bU-vrO" secondAttribute="centerX" id="Xi9-3l-37S"/>
+                            <constraint firstItem="P8g-jw-JdI" firstAttribute="centerY" secondItem="k9Z-bU-vrO" secondAttribute="centerY" id="fZr-Vq-sHO"/>
+                            <constraint firstItem="k9Z-bU-vrO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wQV-e7-PBR"/>
+                            <constraint firstItem="k9Z-bU-vrO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xea-JV-hq5"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="CircularProgress" destination="k9Z-bU-vrO" id="zOh-cg-NCf"/>
+                        <outlet property="progressPercentageLabel" destination="P8g-jw-JdI" id="R11-x4-aS7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="110"/>
+            <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </scene>
     </scenes>
     <resources>
