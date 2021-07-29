@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOl-Az-ipX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--도전 생성-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="SearchOrAddScreen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xiF-uZ-zjd">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-fY-Edf">
+                                <rect key="frame" x="20" y="159" width="374" height="454"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoG-yb-Z7c">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="120"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="서바이벌 도전 리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zd1-fc-vVD">
+                                                <rect key="frame" x="8" y="8" width="288" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="포인트를 걸고 도전에 참가합니다. 도전 완수시 대량의 포인트를 받습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-L4-zvR">
+                                                <rect key="frame" x="64.5" y="64" width="301.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="4tK-L4-zvR" secondAttribute="trailing" constant="8" id="4fa-r1-uA1"/>
+                                            <constraint firstAttribute="bottom" secondItem="4tK-L4-zvR" secondAttribute="bottom" constant="8" id="COl-AY-kpZ"/>
+                                            <constraint firstAttribute="height" constant="120" id="o7q-Bg-tkN"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-5u-Q8y">
+                                        <rect key="frame" x="0.0" y="167" width="374" height="120"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="일반 도전 리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaC-3D-Z4B">
+                                                <rect key="frame" x="8" y="8" width="228" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="포인트를 걸고 도전에 참가합니다. 도전 완수시 대량의 포인트를 받습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oes-mK-CkY">
+                                                <rect key="frame" x="64.5" y="64" width="301.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="oes-mK-CkY" secondAttribute="trailing" constant="8" id="cIb-SL-GT6"/>
+                                            <constraint firstAttribute="bottom" secondItem="oes-mK-CkY" secondAttribute="bottom" constant="8" id="mdH-zf-EgX"/>
+                                            <constraint firstAttribute="height" constant="120" id="rF8-I9-140"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vnl-og-TDx">
+                                        <rect key="frame" x="0.0" y="334" width="374" height="120"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직접 만든 도전에 참가합니다. 도전 완수시 소량의 포인트를 받습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-8p-bDm">
+                                                <rect key="frame" x="64.5" y="64" width="301.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나만의 도전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcX-nR-TMw">
+                                                <rect key="frame" x="8" y="8" width="159" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="1RE-8p-bDm" secondAttribute="trailing" constant="8" id="aCQ-w6-m2h"/>
+                                            <constraint firstAttribute="height" constant="120" id="iTg-J3-Ge0"/>
+                                            <constraint firstAttribute="bottom" secondItem="1RE-8p-bDm" secondAttribute="bottom" constant="8" id="iuV-ZY-tpG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bOM-fY-Edf" firstAttribute="top" secondItem="xiF-uZ-zjd" secondAttribute="bottom" constant="20" id="9HA-Fg-mUA"/>
+                            <constraint firstItem="xiF-uZ-zjd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EUZ-8h-5Zl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bOM-fY-Edf" secondAttribute="trailing" constant="20" id="R94-8v-9ci"/>
+                            <constraint firstItem="bOM-fY-Edf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Z9K-Ph-gpt"/>
+                            <constraint firstItem="xiF-uZ-zjd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mln-WL-oBX"/>
+                            <constraint firstItem="xiF-uZ-zjd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yO9-JF-blR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="도전 생성" id="1Gr-WV-0Ud"/>
+                    <connections>
+                        <outlet property="searchBar" destination="xiF-uZ-zjd" id="pvq-M2-1YC"/>
+                        <segue destination="Jhu-sx-F5t" kind="show" identifier="SearchClicked" id="cJr-s4-g1X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973.913043478261" y="173.4375"/>
+        </scene>
+        <!--검색 목록-->
+        <scene sceneID="hdJ-rQ-W6V">
+            <objects>
+                <tableViewController id="Jhu-sx-F5t" customClass="SearchTableViewController" customModule="SearchOrAddScreen" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eP7-jr-glH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cw8-MA-v24">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cw8-MA-v24" id="erY-SM-Uzq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jhu-sx-F5t" id="Gt9-4b-nEa"/>
+                            <outlet property="delegate" destination="Jhu-sx-F5t" id="GFH-hy-JpO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="검색 목록" id="UGU-2L-fba"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ooj-cm-0I2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2991" y="173"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="00J-ux-eD6">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="UOl-Az-ipX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gdV-Uk-KM4">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="iWU-f8-8l6" kind="relationship" relationship="viewControllers" id="5Sl-dE-FLp"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dm-Vm-xJy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153.62318840579712" y="173.4375"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="nKk-g4-ScL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iWU-f8-8l6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="plus" catalog="system" id="p7b-g2-jbk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rSB-Or-LGu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JMA-Hz-nzO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQq-9U-WXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063.768115942029" y="173.4375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
