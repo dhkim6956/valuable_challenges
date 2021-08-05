@@ -82,7 +82,7 @@ class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollect
         //프로그레스 바
             cell.progressView.progress = 1
             cell.progressView.progressViewStyle = .default
-            cell.progressView.progressTintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+            cell.progressView.progressTintColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
             
         
@@ -113,14 +113,8 @@ class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        
-        
         return CGSize(width: 50, height: 70)
     }
-    
-    
-    
-    
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
