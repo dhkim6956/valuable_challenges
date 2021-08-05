@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 
     }
     
-    let challengeModel = ChallengesModel()
+    let challengeModel = HomeChallengesModel()
 
 
 }
