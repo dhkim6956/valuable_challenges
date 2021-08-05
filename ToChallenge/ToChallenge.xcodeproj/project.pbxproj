@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12E808B626BC274400176A73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E808B526BC274400176A73 /* Home.storyboard */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
 		474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F42ED26ADA4E200AC29EE /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12E808B526BC274400176A73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		474F42EA26ADA4E200AC29EE /* ToChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12E808B426BC25A200176A73 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4788B62926BA283100A554AB /* HomeModel.swift */,
+				474F42F126ADA4E200AC29EE /* HomeViewController.swift */,
+				12E808B526BC274400176A73 /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		474F42E126ADA4E200AC29EE = {
 			isa = PBXGroup;
 			children = (
@@ -78,9 +90,9 @@
 		474F42EC26ADA4E200AC29EE /* ToChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				12E808B426BC25A200176A73 /* Home */,
 				474F42ED26ADA4E200AC29EE /* AppDelegate.swift */,
 				474F42EF26ADA4E200AC29EE /* SceneDelegate.swift */,
-				474F42F126ADA4E200AC29EE /* HomeViewController.swift */,
 				474F42F326ADA4E200AC29EE /* Main.storyboard */,
 				4734127226BBEEE00077197B /* MainTableViewCell.swift */,
 				474F42F626ADA4E300AC29EE /* Assets.xcassets */,
@@ -94,7 +106,6 @@
 				A57DD2EB26B0728600637494 /* MyChallengeHeaderView.swift */,
 				A57DD2E926B06AAB00637494 /* MyChallengeCell.swift */,
 				A57DD2E726B0699200637494 /* ChallengeModel.swift */,
-				4788B62926BA283100A554AB /* HomeModel.swift */,
 				4734127026BBE0450077197B /* CircularProgressView.swift */,
 			);
 			path = ToChallenge;
@@ -160,6 +171,7 @@
 				474F42FA26ADA4E300AC29EE /* LaunchScreen.storyboard in Resources */,
 				474F42F726ADA4E300AC29EE /* Assets.xcassets in Resources */,
 				474F42F526ADA4E200AC29EE /* Main.storyboard in Resources */,
+				12E808B626BC274400176A73 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
