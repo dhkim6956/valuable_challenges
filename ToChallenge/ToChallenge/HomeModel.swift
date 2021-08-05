@@ -1,8 +1,8 @@
 //
-//  Model.swift
-//  CustomTableTest
+//  HomeModel.swift
+//  ToChallenge
 //
-//  Created by Yejin Lee on 2021/07/28.
+//  Created by Yejin Lee on 2021/08/04.
 //
 
 import Foundation
