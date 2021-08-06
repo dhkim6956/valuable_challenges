@@ -1,13 +1,13 @@
 //
-//  FeedViewController.swift
+//  SearchViewController.swift
 //  ToChallenge
 //
-//  Created by Yejin Lee on 2021/07/25.
+//  Created by Yejin Lee on 2021/08/06.
 //
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -2,7 +2,7 @@
 //  HistoryViewController.swift
 //  ToChallenge
 //
-//  Created by Yejin Lee on 2021/07/25.
+//  Created by Yejin Lee on 2021/08/06.
 //
 
 import UIKit

@@ -16,15 +16,16 @@
 		474F42F526ADA4E200AC29EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F326ADA4E200AC29EE /* Main.storyboard */; };
 		474F42F726ADA4E300AC29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F626ADA4E300AC29EE /* Assets.xcassets */; };
 		474F42FA26ADA4E300AC29EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F826ADA4E300AC29EE /* LaunchScreen.storyboard */; };
-		474F430226ADA8D600AC29EE /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F430126ADA8D600AC29EE /* HistoryViewController.swift */; };
-		474F430426ADA8FF00AC29EE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F430326ADA8FF00AC29EE /* SearchViewController.swift */; };
-		474F430626ADA91E00AC29EE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F430526ADA91E00AC29EE /* MyPageViewController.swift */; };
-		474F430826ADA94A00AC29EE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F430726ADA94A00AC29EE /* FeedViewController.swift */; };
-		474F430A26ADAA8F00AC29EE /* MyChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F430926ADAA8F00AC29EE /* MyChallengesViewController.swift */; };
-		4788B62A26BA283100A554AB /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4788B62926BA283100A554AB /* HomeModel.swift */; };
+		47889A6026BCCCB1005903C4 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A5F26BCCCB1005903C4 /* History.storyboard */; };
+		47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A6126BCCD8B005903C4 /* HistoryViewController.swift */; };
+		47889A6526BCCE09005903C4 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6426BCCE09005903C4 /* Search.storyboard */; };
+		47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A6626BCCE5B005903C4 /* SearchViewController.swift */; };
+		47889A6A26BCD06B005903C4 /* Achievements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6926BCD06B005903C4 /* Achievements.storyboard */; };
+		47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A6B26BCD082005903C4 /* AchievementsViewController.swift */; };
+		47889A6F26BCD119005903C4 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6E26BCD119005903C4 /* MyPage.storyboard */; };
+		47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A7026BCD12F005903C4 /* MyPageViewController.swift */; };
+		4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4788B62926BA283100A554AB /* UsersChallengesModel.swift */; };
 		A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2E726B0699200637494 /* ChallengeModel.swift */; };
-		A57DD2EA26B06AAB00637494 /* MyChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2E926B06AAB00637494 /* MyChallengeCell.swift */; };
-		A57DD2EC26B0728600637494 /* MyChallengeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2EB26B0728600637494 /* MyChallengeHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,15 +40,16 @@
 		474F42F626ADA4E300AC29EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		474F42F926ADA4E300AC29EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		474F42FB26ADA4E300AC29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		474F430126ADA8D600AC29EE /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		474F430326ADA8FF00AC29EE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		474F430526ADA91E00AC29EE /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		474F430726ADA94A00AC29EE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		474F430926ADAA8F00AC29EE /* MyChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengesViewController.swift; sourceTree = "<group>"; };
-		4788B62926BA283100A554AB /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		47889A5F26BCCCB1005903C4 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		47889A6126BCCD8B005903C4 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		47889A6426BCCE09005903C4 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		47889A6626BCCE5B005903C4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		47889A6926BCD06B005903C4 /* Achievements.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Achievements.storyboard; sourceTree = "<group>"; };
+		47889A6B26BCD082005903C4 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
+		47889A6E26BCD119005903C4 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		47889A7026BCD12F005903C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4788B62926BA283100A554AB /* UsersChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChallengesModel.swift; sourceTree = "<group>"; };
 		A57DD2E726B0699200637494 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
-		A57DD2E926B06AAB00637494 /* MyChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeCell.swift; sourceTree = "<group>"; };
-		A57DD2EB26B0728600637494 /* MyChallengeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 		12E808B426BC25A200176A73 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4788B62926BA283100A554AB /* HomeModel.swift */,
+				4734127226BBEEE00077197B /* MainTableViewCell.swift */,
 				474F42F126ADA4E200AC29EE /* HomeViewController.swift */,
 				12E808B526BC274400176A73 /* Home.storyboard */,
 			);
@@ -90,25 +92,74 @@
 		474F42EC26ADA4E200AC29EE /* ToChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				47889A7226BCD19A005903C4 /* Models */,
+				47889A6D26BCD109005903C4 /* MyPage */,
+				47889A6826BCD05F005903C4 /* Achievements */,
+				47889A6326BCCDA4005903C4 /* Search */,
+				47889A5E26BCCC99005903C4 /* History */,
+				47889A5D26BCCC13005903C4 /* etc */,
 				12E808B426BC25A200176A73 /* Home */,
 				474F42ED26ADA4E200AC29EE /* AppDelegate.swift */,
 				474F42EF26ADA4E200AC29EE /* SceneDelegate.swift */,
 				474F42F326ADA4E200AC29EE /* Main.storyboard */,
-				4734127226BBEEE00077197B /* MainTableViewCell.swift */,
 				474F42F626ADA4E300AC29EE /* Assets.xcassets */,
 				474F42F826ADA4E300AC29EE /* LaunchScreen.storyboard */,
 				474F42FB26ADA4E300AC29EE /* Info.plist */,
-				474F430126ADA8D600AC29EE /* HistoryViewController.swift */,
-				474F430326ADA8FF00AC29EE /* SearchViewController.swift */,
-				474F430526ADA91E00AC29EE /* MyPageViewController.swift */,
-				474F430726ADA94A00AC29EE /* FeedViewController.swift */,
-				474F430926ADAA8F00AC29EE /* MyChallengesViewController.swift */,
-				A57DD2EB26B0728600637494 /* MyChallengeHeaderView.swift */,
-				A57DD2E926B06AAB00637494 /* MyChallengeCell.swift */,
-				A57DD2E726B0699200637494 /* ChallengeModel.swift */,
-				4734127026BBE0450077197B /* CircularProgressView.swift */,
 			);
 			path = ToChallenge;
+			sourceTree = "<group>";
+		};
+		47889A5D26BCCC13005903C4 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				4734127026BBE0450077197B /* CircularProgressView.swift */,
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
+		47889A5E26BCCC99005903C4 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				47889A5F26BCCCB1005903C4 /* History.storyboard */,
+				47889A6126BCCD8B005903C4 /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		47889A6326BCCDA4005903C4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				47889A6426BCCE09005903C4 /* Search.storyboard */,
+				47889A6626BCCE5B005903C4 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		47889A6826BCD05F005903C4 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				47889A6926BCD06B005903C4 /* Achievements.storyboard */,
+				47889A6B26BCD082005903C4 /* AchievementsViewController.swift */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		47889A6D26BCD109005903C4 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				47889A6E26BCD119005903C4 /* MyPage.storyboard */,
+				47889A7026BCD12F005903C4 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		47889A7226BCD19A005903C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4788B62926BA283100A554AB /* UsersChallengesModel.swift */,
+				A57DD2E726B0699200637494 /* ChallengeModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +222,11 @@
 				474F42FA26ADA4E300AC29EE /* LaunchScreen.storyboard in Resources */,
 				474F42F726ADA4E300AC29EE /* Assets.xcassets in Resources */,
 				474F42F526ADA4E200AC29EE /* Main.storyboard in Resources */,
+				47889A6F26BCD119005903C4 /* MyPage.storyboard in Resources */,
+				47889A6026BCCCB1005903C4 /* History.storyboard in Resources */,
+				47889A6526BCCE09005903C4 /* Search.storyboard in Resources */,
 				12E808B626BC274400176A73 /* Home.storyboard in Resources */,
+				47889A6A26BCD06B005903C4 /* Achievements.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,20 +237,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				474F430426ADA8FF00AC29EE /* SearchViewController.swift in Sources */,
-				474F430626ADA91E00AC29EE /* MyPageViewController.swift in Sources */,
 				474F42F226ADA4E200AC29EE /* HomeViewController.swift in Sources */,
 				A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */,
 				474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */,
-				474F430A26ADAA8F00AC29EE /* MyChallengesViewController.swift in Sources */,
+				47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */,
+				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
-				474F430226ADA8D600AC29EE /* HistoryViewController.swift in Sources */,
-				4788B62A26BA283100A554AB /* HomeModel.swift in Sources */,
-				474F430826ADA94A00AC29EE /* FeedViewController.swift in Sources */,
+				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
+				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
-				A57DD2EC26B0728600637494 /* MyChallengeHeaderView.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
-				A57DD2EA26B06AAB00637494 /* MyChallengeCell.swift in Sources */,
+				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
