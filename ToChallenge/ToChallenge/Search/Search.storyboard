@@ -16,16 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
                                 <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.97248452900000004" green="0.97259706260000001" blue="0.97243398430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VNi-le-RWx"/>
+                    <navigationItem key="navigationItem" title="도전 찾기" id="VNi-le-RWx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="QPd-B5-eiG" id="uUe-T9-HuV"/>
@@ -36,7 +37,7 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="89.732142857142847"/>
         </scene>
-        <!--Search List Table View Controller-->
+        <!--검색된 도전-->
         <scene sceneID="8q5-JI-UOe">
             <objects>
                 <tableViewController id="SlE-69-UXA" customClass="searchListTableViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,7 +60,7 @@
                             <outlet property="delegate" destination="SlE-69-UXA" id="Y9j-We-Jdv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XH9-hI-BH2"/>
+                    <navigationItem key="navigationItem" title="검색된 도전" id="XH9-hI-BH2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySg-xG-FAY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
