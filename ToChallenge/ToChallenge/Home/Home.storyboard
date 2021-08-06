@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="387" width="374" height="387"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="s16-c4-Drd">
-                                            <rect key="frame" x="0.0" y="160.00000034679067" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="160.00000034679067" width="374" height="70"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>
@@ -159,6 +159,7 @@
                                                 <connections>
                                                     <outlet property="mainCellButtonLabel" destination="WU9-M0-icL" id="war-qe-UqW"/>
                                                     <outlet property="mainCellTitleLabel" destination="tnF-V7-I3z" id="FJb-3o-5Z3"/>
+                                                    <outlet property="progressLabel" destination="CVt-Pq-4Pg" id="eYg-Fx-DVW"/>
                                                     <outlet property="progressView" destination="sHd-8T-7lJ" id="cD6-Hc-IDp"/>
                                                 </connections>
                                             </tableViewCell>
@@ -189,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="84"/>
+            <point key="canvasLocation" x="113.04347826086958" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
