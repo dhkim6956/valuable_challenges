@@ -34,9 +34,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         if searchText == "" {
             filteredData = data
         } else {
-            for fruit in data {
-                if fruit.lowercased().contains(searchText.lowercased()) {
-                    filteredData.append(fruit)
+            for title in data {
+                if title.lowercased().contains(searchText.lowercased()) {
+                    filteredData.append(title)
                 }
             }
         }
@@ -52,7 +52,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let nextViewController = segue.destination as? searchListTableViewController else { return }
+        guard let nextViewController = segue.destination as? searchListViewController else { return }
         
         nextViewController.receivedData = self.filteredData
     }

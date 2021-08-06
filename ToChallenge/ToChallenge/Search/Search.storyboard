@@ -30,7 +30,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="QPd-B5-eiG" id="uUe-T9-HuV"/>
-                        <segue destination="SlE-69-UXA" kind="show" identifier="searchButtonClicked" destinationCreationSelector="searchButtonClicked:" id="wX5-aU-WDu"/>
+                        <segue destination="2s3-Cd-JRx" kind="show" identifier="searchButtonClicked" id="blO-5b-Ahq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -38,33 +38,133 @@
             <point key="canvasLocation" x="1042.0289855072465" y="89.732142857142847"/>
         </scene>
         <!--검색된 도전-->
-        <scene sceneID="8q5-JI-UOe">
+        <scene sceneID="3Mc-Lk-dg1">
             <objects>
-                <tableViewController id="SlE-69-UXA" customClass="searchListTableViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tT1-Qe-8lO">
+                <viewController id="2s3-Cd-JRx" customClass="searchListViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AhN-QR-ifz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="BFo-YM-iuQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <color key="barTintColor" red="0.97248452900000004" green="0.97259706260000001" blue="0.97243398430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9U3-Uh-0Zs">
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeTableCell" rowHeight="130" id="rYp-7w-8VI" customClass="ChallengeTableViewCell" customModule="ToChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rYp-7w-8VI" id="WWM-bF-ZXs">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVd-Hn-JC1">
+                                                    <rect key="frame" x="10" y="10" width="394" height="110"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_certificate" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-wT-Xn9">
+                                                            <rect key="frame" x="5" y="5" width="107" height="100"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="rXG-wT-Xn9" secondAttribute="height" multiplier="1:1" id="lFf-gn-mId"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필기시험 2주 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrE-DY-hE5">
+                                                            <rect key="frame" x="122" y="5" width="267" height="24"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="Vlq-W2-skK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한국사능력검정시험, 컴활 필기 등 단기간에 준비" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuG-Ed-7DB">
+                                                            <rect key="frame" x="122" y="34" width="192" height="71"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79u-EE-CVe">
+                                                            <rect key="frame" x="319" y="84" width="70" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="ISM-ye-VSm"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일반 도전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnN-Qv-JhQ">
+                                                            <rect key="frame" x="319" y="63" width="70" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="M4g-xE-cnF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstItem="XrE-DY-hE5" firstAttribute="top" secondItem="WVd-Hn-JC1" secondAttribute="top" constant="5" id="6RU-CP-8sb"/>
+                                                        <constraint firstItem="XrE-DY-hE5" firstAttribute="leading" secondItem="rXG-wT-Xn9" secondAttribute="trailing" constant="10" id="7gA-4k-0IM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="79u-EE-CVe" secondAttribute="trailing" constant="5" id="7pC-Mz-ZcQ"/>
+                                                        <constraint firstItem="79u-EE-CVe" firstAttribute="leading" secondItem="JuG-Ed-7DB" secondAttribute="trailing" constant="5" id="Dhs-ph-QdF"/>
+                                                        <constraint firstItem="rXG-wT-Xn9" firstAttribute="leading" secondItem="WVd-Hn-JC1" secondAttribute="leading" constant="5" id="MgL-xd-K7j"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JuG-Ed-7DB" secondAttribute="bottom" constant="5" id="Nb8-zx-Rz6"/>
+                                                        <constraint firstItem="rXG-wT-Xn9" firstAttribute="width" secondItem="XrE-DY-hE5" secondAttribute="width" multiplier="2:5" id="ORL-rw-CVc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="LnN-Qv-JhQ" secondAttribute="trailing" constant="5" id="Y70-FL-SMp"/>
+                                                        <constraint firstAttribute="bottom" secondItem="79u-EE-CVe" secondAttribute="bottom" constant="5" id="YQl-2e-TFb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XrE-DY-hE5" secondAttribute="trailing" constant="5" id="a0w-AT-bED"/>
+                                                        <constraint firstItem="JuG-Ed-7DB" firstAttribute="leading" secondItem="rXG-wT-Xn9" secondAttribute="trailing" constant="10" id="a6C-Pu-dpr"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rXG-wT-Xn9" secondAttribute="bottom" constant="5" id="mFY-Na-Asy"/>
+                                                        <constraint firstItem="79u-EE-CVe" firstAttribute="top" secondItem="LnN-Qv-JhQ" secondAttribute="bottom" id="mu3-kG-wOR"/>
+                                                        <constraint firstItem="rXG-wT-Xn9" firstAttribute="top" secondItem="WVd-Hn-JC1" secondAttribute="top" constant="5" id="nRc-If-nsk"/>
+                                                        <constraint firstItem="JuG-Ed-7DB" firstAttribute="top" secondItem="XrE-DY-hE5" secondAttribute="bottom" constant="5" id="xob-2T-FL3"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WVd-Hn-JC1" firstAttribute="leading" secondItem="WWM-bF-ZXs" secondAttribute="leading" constant="10" id="42c-S2-IQX"/>
+                                                <constraint firstAttribute="bottom" secondItem="WVd-Hn-JC1" secondAttribute="bottom" constant="10" id="9Ue-NA-2ic"/>
+                                                <constraint firstAttribute="trailing" secondItem="WVd-Hn-JC1" secondAttribute="trailing" constant="10" id="ArU-Wz-mo1"/>
+                                                <constraint firstItem="WVd-Hn-JC1" firstAttribute="top" secondItem="WWM-bF-ZXs" secondAttribute="top" constant="10" id="CkS-PI-Vni"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="challengeDescription" destination="JuG-Ed-7DB" id="YIY-u4-wzd"/>
+                                            <outlet property="challengeDuration" destination="79u-EE-CVe" id="5Fl-dP-EfM"/>
+                                            <outlet property="challengeImage" destination="rXG-wT-Xn9" id="V5I-PD-0di"/>
+                                            <outlet property="challengeTitle" destination="XrE-DY-hE5" id="Mry-qk-DdZ"/>
+                                            <outlet property="challengeType" destination="LnN-Qv-JhQ" id="W0J-rS-PFb"/>
+                                            <outlet property="listOutLine" destination="WVd-Hn-JC1" id="i0m-uc-XSF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5Ro-vX-udT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchListCell" id="025-du-juh">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="025-du-juh" id="UwQ-kf-5mx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="SlE-69-UXA" id="JWD-k3-gwp"/>
-                            <outlet property="delegate" destination="SlE-69-UXA" id="Y9j-We-Jdv"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="검색된 도전" id="XH9-hI-BH2"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ySg-xG-FAY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="BFo-YM-iuQ" firstAttribute="top" secondItem="5Ro-vX-udT" secondAttribute="top" id="CVs-Z3-9Ww"/>
+                            <constraint firstItem="BFo-YM-iuQ" firstAttribute="leading" secondItem="5Ro-vX-udT" secondAttribute="leading" id="E51-qP-oB3"/>
+                            <constraint firstItem="5Ro-vX-udT" firstAttribute="trailing" secondItem="9U3-Uh-0Zs" secondAttribute="trailing" id="Ep5-bT-6zN"/>
+                            <constraint firstItem="9U3-Uh-0Zs" firstAttribute="leading" secondItem="5Ro-vX-udT" secondAttribute="leading" id="ZAI-G9-9oq"/>
+                            <constraint firstItem="5Ro-vX-udT" firstAttribute="bottom" secondItem="9U3-Uh-0Zs" secondAttribute="bottom" id="ZJu-j3-ebZ"/>
+                            <constraint firstItem="BFo-YM-iuQ" firstAttribute="trailing" secondItem="5Ro-vX-udT" secondAttribute="trailing" id="m7o-6q-BLp"/>
+                            <constraint firstItem="9U3-Uh-0Zs" firstAttribute="top" secondItem="BFo-YM-iuQ" secondAttribute="bottom" id="pM7-HQ-Tst"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="검색된 도전" id="jMc-fv-6vB"/>
+                    <connections>
+                        <outlet property="challengeTable" destination="9U3-Uh-0Zs" id="y3L-gd-biI"/>
+                        <outlet property="innerSearchBar" destination="BFo-YM-iuQ" id="Ghx-y2-l7b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdS-GS-4ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2003" y="90"/>
+            <point key="canvasLocation" x="1896" y="80"/>
         </scene>
         <!--Search-->
         <scene sceneID="Cl9-zm-owA">
@@ -87,9 +187,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="challenge_certificate" width="640" height="640"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
