@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12E808B626BC274400176A73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E808B526BC274400176A73 /* Home.storyboard */; };
+		397137CB26BD26A6002DE12B /* searchListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* searchListTableViewController.swift */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
 		474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F42ED26ADA4E200AC29EE /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		12E808B526BC274400176A73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		397137CA26BD26A6002DE12B /* searchListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchListTableViewController.swift; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		474F42EA26ADA4E200AC29EE /* ToChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 		47889A6326BCCDA4005903C4 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				397137CA26BD26A6002DE12B /* searchListTableViewController.swift */,
 				47889A6426BCCE09005903C4 /* Search.storyboard */,
 				47889A6626BCCE5B005903C4 /* SearchViewController.swift */,
 			);
@@ -244,6 +247,7 @@
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
+				397137CB26BD26A6002DE12B /* searchListTableViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
