@@ -23,6 +23,7 @@ class searchListViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var innerSearchBar: UISearchBar!
     @IBOutlet weak var challengeTable: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +46,11 @@ class searchListViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.searchTextField.text {
-            reAlign(searchText: searchText)
-        } else {
-            print("찾는 내용이 없습니다.")
+            if searchText == "" {
+                print("찾는 내용이 없습니다.")
+            } else {
+                reAlign(searchText: searchText)
+            }
         }
     }
     

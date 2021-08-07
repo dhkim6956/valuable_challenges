@@ -16,24 +16,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <color key="barTintColor" red="0.97248452900000004" green="0.97259706260000001" blue="0.97243398430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-gZ-CV9">
+                                <rect key="frame" x="10" y="149" width="394" height="370"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRv-zS-v6q">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="110"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서바이벌 도전 리스트" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DF-KP-O64">
+                                                <rect key="frame" x="5" y="5" width="206" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbr-ah-Hn3">
+                                                <rect key="frame" x="131.5" y="64" width="257.5" height="41"/>
+                                                <string key="text">포인트를 걸고 도전에 참가합니다.
+도전 완수시 대량의 포인트를 받습니다.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="6dR-ks-4p0"/>
+                                            <constraint firstAttribute="trailing" secondItem="jbr-ah-Hn3" secondAttribute="trailing" constant="5" id="K7h-QB-Gxf"/>
+                                            <constraint firstAttribute="bottom" secondItem="jbr-ah-Hn3" secondAttribute="bottom" constant="5" id="aqT-eZ-eA4"/>
+                                            <constraint firstItem="9DF-KP-O64" firstAttribute="leading" secondItem="rRv-zS-v6q" secondAttribute="leading" constant="5" id="baJ-qp-SnT"/>
+                                            <constraint firstItem="9DF-KP-O64" firstAttribute="top" secondItem="rRv-zS-v6q" secondAttribute="top" constant="5" id="goe-ab-yuU"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GGt-ch-WR6" appends="YES" id="po1-4N-wWx"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Eo-uC-DWH">
+                                        <rect key="frame" x="0.0" y="130" width="394" height="110"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일반 도전 리스트" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0w-2j-XZe">
+                                                <rect key="frame" x="5" y="5" width="162.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmF-TX-qmH">
+                                                <rect key="frame" x="131.5" y="64" width="257.5" height="41"/>
+                                                <string key="text">포인트를 걸고 도전에 참가합니다.
+도전 완수시 대량의 포인트를 받습니다.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="W0w-2j-XZe" firstAttribute="top" secondItem="7Eo-uC-DWH" secondAttribute="top" constant="5" id="SsK-bh-nGv"/>
+                                            <constraint firstAttribute="height" constant="110" id="dXh-R9-X71"/>
+                                            <constraint firstAttribute="trailing" secondItem="bmF-TX-qmH" secondAttribute="trailing" constant="5" id="fgN-zK-nNF"/>
+                                            <constraint firstAttribute="bottom" secondItem="bmF-TX-qmH" secondAttribute="bottom" constant="5" id="iH8-hS-UhW"/>
+                                            <constraint firstItem="W0w-2j-XZe" firstAttribute="leading" secondItem="7Eo-uC-DWH" secondAttribute="leading" constant="5" id="o5h-Lu-Rtp"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GSF-5d-fXm" appends="YES" id="otC-hz-Gy7"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbc-SR-93Q">
+                                        <rect key="frame" x="0.0" y="260" width="394" height="110"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만의 도전 만들기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgb-j6-wSj">
+                                                <rect key="frame" x="5" y="5" width="184.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTC-LV-0Y9">
+                                                <rect key="frame" x="131.5" y="64" width="257.5" height="41"/>
+                                                <string key="text">직접 만든 도전에 참가합니다.
+도전 완수시 소량의 포인트를 받습니다.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="2hR-56-g3Q"/>
+                                            <constraint firstAttribute="trailing" secondItem="fTC-LV-0Y9" secondAttribute="trailing" constant="5" id="Qt8-3i-KIK"/>
+                                            <constraint firstItem="Zgb-j6-wSj" firstAttribute="top" secondItem="zbc-SR-93Q" secondAttribute="top" constant="5" id="UR2-cI-fQe"/>
+                                            <constraint firstAttribute="bottom" secondItem="fTC-LV-0Y9" secondAttribute="bottom" constant="5" id="Uxi-La-H2x"/>
+                                            <constraint firstItem="Zgb-j6-wSj" firstAttribute="leading" secondItem="zbc-SR-93Q" secondAttribute="leading" constant="5" id="WaR-Vb-IUv"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="cZo-9h-sB8" appends="YES" id="GhA-Vi-5TA"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="J3U-gZ-CV9" firstAttribute="top" secondItem="QPd-B5-eiG" secondAttribute="bottom" constant="10" id="COa-A4-DpT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="J3U-gZ-CV9" secondAttribute="trailing" constant="10" id="P4Q-vk-Eyk"/>
+                            <constraint firstItem="QPd-B5-eiG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Vm0-I8-zPU"/>
+                            <constraint firstItem="QPd-B5-eiG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="iQC-TP-hA5"/>
+                            <constraint firstItem="J3U-gZ-CV9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="t6j-Iw-CNR"/>
+                            <constraint firstItem="QPd-B5-eiG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yF6-Z5-Ps6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="도전 찾기" id="VNi-le-RWx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="QPd-B5-eiG" id="uUe-T9-HuV"/>
+                        <outletCollection property="createChallengeWay" destination="rRv-zS-v6q" collectionClass="NSMutableArray" id="s0Z-09-ipd"/>
+                        <outletCollection property="createChallengeWay" destination="7Eo-uC-DWH" collectionClass="NSMutableArray" id="McU-Vz-kHq"/>
+                        <outletCollection property="createChallengeWay" destination="zbc-SR-93Q" collectionClass="NSMutableArray" id="Smv-0c-xVL"/>
                         <segue destination="2s3-Cd-JRx" kind="show" identifier="searchButtonClicked" id="blO-5b-Ahq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GGt-ch-WR6">
+                    <connections>
+                        <action selector="survivalChallengeTapped:" destination="Y6W-OH-hqX" id="xz9-Zh-Bu7"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="GSF-5d-fXm">
+                    <connections>
+                        <action selector="normalChallengeTapped:" destination="Y6W-OH-hqX" id="j4J-sn-Pcw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="cZo-9h-sB8"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="89.732142857142847"/>
         </scene>
@@ -52,7 +171,7 @@
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9U3-Uh-0Zs">
                                 <rect key="frame" x="0.0" y="139" width="414" height="674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeTableCell" rowHeight="130" id="rYp-7w-8VI" customClass="ChallengeTableViewCell" customModule="ToChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="130"/>
@@ -104,7 +223,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="XrE-DY-hE5" firstAttribute="top" secondItem="WVd-Hn-JC1" secondAttribute="top" constant="5" id="6RU-CP-8sb"/>
@@ -132,6 +251,7 @@
                                                 <constraint firstItem="WVd-Hn-JC1" firstAttribute="top" secondItem="WWM-bF-ZXs" secondAttribute="top" constant="10" id="CkS-PI-Vni"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="challengeDescription" destination="JuG-Ed-7DB" id="YIY-u4-wzd"/>
                                             <outlet property="challengeDuration" destination="79u-EE-CVe" id="5Fl-dP-EfM"/>
@@ -160,6 +280,7 @@
                     <connections>
                         <outlet property="challengeTable" destination="9U3-Uh-0Zs" id="y3L-gd-biI"/>
                         <outlet property="innerSearchBar" destination="BFo-YM-iuQ" id="Ghx-y2-l7b"/>
+                        <outlet property="navigationBar" destination="jMc-fv-6vB" id="Cbr-GU-pIb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdS-GS-4ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -191,9 +312,6 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
