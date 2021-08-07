@@ -11,11 +11,8 @@ import UIKit
 class DetailListCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var finishedPeriodLabel: UILabel!
-    
     @IBOutlet weak var percentLabel: UILabel!
-    
     @IBOutlet weak var finishedPeriodLabelProgress: UILabel!
     @IBOutlet weak var slashLabel: UILabel!
     @IBOutlet weak var ongoingLabel: UILabel!

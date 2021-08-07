@@ -10,7 +10,8 @@ import UIKit
 
 
 class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    @IBOutlet weak var failedChallengeLIstView: UICollectionView!
+    
+    @IBOutlet weak var failedListView: UICollectionView!
     
     var failedChallenge: [FailedChallenge] = [
         FailedChallenge(title: "아침 7시 기상", finishPeriod: 30, ongoingPeriod: 3, category: "자기계발", startDate: "2021.01.01", finishDate: "2021.01.03")
@@ -29,7 +30,6 @@ class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return failedChallenge.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
