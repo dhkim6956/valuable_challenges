@@ -24,6 +24,8 @@ struct CompleteChallenge {
     var title: String
     var finishPeriod: Int
     var category: String
+    var startDate: String
+    var finishDate: String
 }
 
 struct FailedChallenge {

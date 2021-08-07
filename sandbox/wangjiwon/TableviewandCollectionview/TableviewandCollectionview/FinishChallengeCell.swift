@@ -17,5 +17,10 @@ class FinishChallengeCell: UICollectionViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
-
+    @IBOutlet weak var challengePeriodView: UIView!
+    
+    @IBOutlet weak var finishDateLabel: UILabel!
+    @IBOutlet weak var startDateLabel: UILabel!
+    
 }
+
