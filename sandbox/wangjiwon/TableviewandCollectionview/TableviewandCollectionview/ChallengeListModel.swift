@@ -33,6 +33,8 @@ struct FailedChallenge {
     var finishedPeriod: Int
     var ongoingPeriod : Int
     var cetegory: String
+    var startDate: String
+    var finishDate: String
 }
 
 
