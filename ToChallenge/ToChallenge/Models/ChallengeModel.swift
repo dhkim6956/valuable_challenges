@@ -26,7 +26,7 @@ struct CompleteChallenge {
 
 struct FailedChallenge {
     var title: String
-    var finishedPeriod: Int
+    var finishPeriod: Int
     var ongoingPeriod : Int
     var cetegory: String
     var startDate: String

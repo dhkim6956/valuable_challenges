@@ -1,14 +1,15 @@
 //
-//  FinishChallengeCell.swift
+//  FailedChallnegeCell.swift
 //  TableviewandCollectionview
 //
-//  Created by 왕지원 on 2021/08/03.
+//  Created by 왕지원 on 2021/08/08.
 //
 
 import Foundation
 import UIKit
 
-class FinishChallengeCell: UICollectionViewCell {
+class FailedChallengeCell: UICollectionViewCell {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var finishedPeriodProgressLabel: UILabel!
     @IBOutlet weak var finishedPeriodLabel: UILabel!
@@ -22,4 +23,3 @@ class FinishChallengeCell: UICollectionViewCell {
     @IBOutlet weak var startDateLabel: UILabel!
     
 }
-

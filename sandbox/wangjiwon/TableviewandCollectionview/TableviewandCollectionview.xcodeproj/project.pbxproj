@@ -21,6 +21,7 @@
 		A592E22826B7B18C00B2F0AC /* DetailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22726B7B18C00B2F0AC /* DetailListCell.swift */; };
 		A592E22A26B7B25100B2F0AC /* DetailListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22926B7B25100B2F0AC /* DetailListHeader.swift */; };
 		A592E22C26B7B3C500B2F0AC /* DetailListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22B26B7B3C500B2F0AC /* DetailListCollectionView.swift */; };
+		A5CC008526BF0BCF00593B1A /* FailedChallnegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A592E22726B7B18C00B2F0AC /* DetailListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCell.swift; sourceTree = "<group>"; };
 		A592E22926B7B25100B2F0AC /* DetailListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListHeader.swift; sourceTree = "<group>"; };
 		A592E22B26B7B3C500B2F0AC /* DetailListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCollectionView.swift; sourceTree = "<group>"; };
+		A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedChallnegeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				A592E21126B7AAA300B2F0AC /* ViewController.swift */,
 				A592E22126B7ABCC00B2F0AC /* ChallengeList.swift */,
 				A592E21326B7AAA300B2F0AC /* Main.storyboard */,
+				A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */,
 				A520DE1226B98B53002391A1 /* FinishChallengeCell.swift */,
 				A545F62E26B9771700BE3430 /* FinishChallengeList.swift */,
 				A545F63026B9788700BE3430 /* FailedChallengeList.swift */,
@@ -165,6 +168,7 @@
 				A592E22A26B7B25100B2F0AC /* DetailListHeader.swift in Sources */,
 				A592E22226B7ABCC00B2F0AC /* ChallengeList.swift in Sources */,
 				A592E22C26B7B3C500B2F0AC /* DetailListCollectionView.swift in Sources */,
+				A5CC008526BF0BCF00593B1A /* FailedChallnegeCell.swift in Sources */,
 				A592E20E26B7AAA300B2F0AC /* AppDelegate.swift in Sources */,
 				A520DE1326B98B53002391A1 /* FinishChallengeCell.swift in Sources */,
 				A592E22626B7ACA200B2F0AC /* ChallengeListModel.swift in Sources */,

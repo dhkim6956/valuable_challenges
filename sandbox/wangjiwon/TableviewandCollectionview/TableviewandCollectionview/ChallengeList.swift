@@ -75,7 +75,7 @@ class ChallengeList: UITableViewController {
 
            case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
 
-//           case 2: self.performSegue(withIdentifier: "facialAnalysis", sender: nil)
+           case 2: performSegue(withIdentifier: "GoFailedChallnegeLIst", sender: nil)
 
            default:
 

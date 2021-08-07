@@ -13,7 +13,7 @@ class DetailListCollectionView: UIViewController, UICollectionViewDelegate, UICo
     
     
     @IBOutlet weak var detailListView: UICollectionView!
-    @IBOutlet weak var DetailListCell: DetailListCell!
+
     
     
     var ongoingChallenges: [OngoingChallenge] = [

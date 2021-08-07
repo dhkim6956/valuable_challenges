@@ -32,15 +32,8 @@ class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
 
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    
-    }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
