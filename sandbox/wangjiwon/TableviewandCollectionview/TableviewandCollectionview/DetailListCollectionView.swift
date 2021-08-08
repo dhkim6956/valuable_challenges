@@ -85,7 +85,8 @@ class DetailListCollectionView: UIViewController, UICollectionViewDelegate, UICo
         //프로그레스 바
             cell.progressView.progress = Float(Double(ongoingChallenges[indexPath.item].ongoingPeriod) / (Double(ongoingChallenges[indexPath.item].finishPeriod)))
             cell.progressView.progressViewStyle = .default
-            cell.progressView.progressTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+            cell.progressView.progressTintColor = #colorLiteral(red: 0, green: 0.959014833, blue: 0.1501406729, alpha: 1)
+           // cell.progressView.progressTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
         
         return cell

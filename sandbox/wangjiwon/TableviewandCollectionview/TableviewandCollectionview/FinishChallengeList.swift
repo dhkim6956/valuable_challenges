@@ -70,7 +70,7 @@ class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollect
         cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.borderWidth = 0
         //cell색깔
-        cell.contentView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.contentView.layer.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9249887572, blue: 0.9593478133, alpha: 1)
         //셀 테두리
         cell.contentView.layer.borderColor = .none
         //폰 배경화면 색
@@ -87,15 +87,15 @@ class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollect
         //프로그레스 바
             cell.progressView.progress = 1
             cell.progressView.progressViewStyle = .default
-            cell.progressView.progressTintColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            cell.progressView.progressTintColor = #colorLiteral(red: 0.01527210232, green: 0.1787953973, blue: 0.9026312828, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
             
         
-            cell.challengePeriodView.challengePeriodViewTopLine(color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), width: 2.0)
-            cell.challengePeriodView.backgroundColor = #colorLiteral(red: 0.9581941962, green: 0.9524978995, blue: 0.9625726342, alpha: 1)
-            cell.challengePeriodView.clipsToBounds = true
-            cell.challengePeriodView.layer.cornerRadius = 10
-            cell.challengePeriodView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner, .layerMinXMaxYCorner )
+            cell.challengePeriodView.challengePeriodViewTopLine(color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), width: 2.0)
+            cell.challengePeriodView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+//            cell.challengePeriodView.clipsToBounds = true
+//            cell.challengePeriodView.layer.cornerRadius = 10
+//            cell.challengePeriodView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner, .layerMinXMaxYCorner )
 
         
         return cell
