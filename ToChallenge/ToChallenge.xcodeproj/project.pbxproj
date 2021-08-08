@@ -27,7 +27,14 @@
 		47889A6F26BCD119005903C4 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6E26BCD119005903C4 /* MyPage.storyboard */; };
 		47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A7026BCD12F005903C4 /* MyPageViewController.swift */; };
 		4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4788B62926BA283100A554AB /* UsersChallengesModel.swift */; };
+		A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */; };
+		A52B7B0126BFD97200B8D286 /* OngoingChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B7B0026BFD97200B8D286 /* OngoingChallengeList.swift */; };
 		A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2E726B0699200637494 /* ChallengeModel.swift */; };
+		A5EE213F26BFDB71004B464E /* OngoingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE213E26BFDB71004B464E /* OngoingCell.swift */; };
+		A5EE214126BFFA4A004B464E /* FinishedChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214026BFFA4A004B464E /* FinishedChallengeList.swift */; };
+		A5EE214326BFFA5A004B464E /* FinishedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214226BFFA5A004B464E /* FinishedCell.swift */; };
+		A5EE214526BFFE51004B464E /* FailedChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214426BFFE51004B464E /* FailedChallengeList.swift */; };
+		A5EE214726BFFE5A004B464E /* FailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214626BFFE5A004B464E /* FailedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +60,14 @@
 		47889A6E26BCD119005903C4 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		47889A7026BCD12F005903C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		4788B62926BA283100A554AB /* UsersChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChallengesModel.swift; sourceTree = "<group>"; };
+		A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListHeader.swift; sourceTree = "<group>"; };
+		A52B7B0026BFD97200B8D286 /* OngoingChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingChallengeList.swift; sourceTree = "<group>"; };
 		A57DD2E726B0699200637494 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		A5EE213E26BFDB71004B464E /* OngoingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCell.swift; sourceTree = "<group>"; };
+		A5EE214026BFFA4A004B464E /* FinishedChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedChallengeList.swift; sourceTree = "<group>"; };
+		A5EE214226BFFA5A004B464E /* FinishedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedCell.swift; sourceTree = "<group>"; };
+		A5EE214426BFFE51004B464E /* FailedChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedChallengeList.swift; sourceTree = "<group>"; };
+		A5EE214626BFFE5A004B464E /* FailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +140,13 @@
 			children = (
 				47889A5F26BCCCB1005903C4 /* History.storyboard */,
 				47889A6126BCCD8B005903C4 /* HistoryViewController.swift */,
+				A52B7B0026BFD97200B8D286 /* OngoingChallengeList.swift */,
+				A5EE214026BFFA4A004B464E /* FinishedChallengeList.swift */,
+				A5EE214426BFFE51004B464E /* FailedChallengeList.swift */,
+				A5EE213E26BFDB71004B464E /* OngoingCell.swift */,
+				A5EE214226BFFA5A004B464E /* FinishedCell.swift */,
+				A5EE214626BFFE5A004B464E /* FailedCell.swift */,
+				A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -243,18 +264,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EE214526BFFE51004B464E /* FailedChallengeList.swift in Sources */,
 				39D83D1226BD60A400D6575A /* ChallengeTableViewCell.swift in Sources */,
+				A5EE214326BFFA5A004B464E /* FinishedCell.swift in Sources */,
 				474F42F226ADA4E200AC29EE /* HomeViewController.swift in Sources */,
 				A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */,
+				A5EE214126BFFA4A004B464E /* FinishedChallengeList.swift in Sources */,
 				474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */,
 				47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */,
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
+				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
+				A5EE214726BFFE5A004B464E /* FailedCell.swift in Sources */,
 				397137CB26BD26A6002DE12B /* searchListViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
+				A5EE213F26BFDB71004B464E /* OngoingCell.swift in Sources */,
+				A52B7B0126BFD97200B8D286 /* OngoingChallengeList.swift in Sources */,
 				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

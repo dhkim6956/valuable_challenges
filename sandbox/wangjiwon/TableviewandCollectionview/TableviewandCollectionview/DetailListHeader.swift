@@ -8,6 +8,7 @@
 import UIKit
 
 class DetailListHeader: UICollectionReusableView {
+    
     @IBOutlet weak var detailListHeader: UILabel!
     
     
