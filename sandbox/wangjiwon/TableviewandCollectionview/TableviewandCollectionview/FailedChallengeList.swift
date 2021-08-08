@@ -11,7 +11,7 @@ import UIKit
 
 class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var failedListView: UICollectionView!
+   @IBOutlet weak var failedListView: UICollectionView!
     
     var failedChallenge: [FailedChallenge] = [
         FailedChallenge(title: "아침 7시 기상", finishPeriod: 30, ongoingPeriod: 3, category: "자기계발", startDate: "2021.01.01", finishDate: "2021.01.03")
@@ -47,7 +47,7 @@ class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollect
         //cell.ongoingLabel?.text = ongoingChallenges[indexPath.item].ongoingPeriod
         cell.ongoingLabel?.text = "\(failedChallenge[indexPath.item].ongoingPeriod)일"
         cell.slashLabel?.text = .some("/")
-        cell.percentLabel?.text = "\(floor((Float(Float(failedChallenge[indexPath.item].ongoingPeriod) / (Float(failedChallenge[indexPath.item].finishPeriod)))) * 100))%"
+        cell.percentLabel?.text =  "\(floor((Double(Double(failedChallenge[indexPath.item].ongoingPeriod) / (Double(failedChallenge[indexPath.item].finishPeriod)))) * 100))%"
         cell.startDateLabel?.text = failedChallenge[indexPath.item].startDate
         cell.finishDateLabel?.text = failedChallenge[indexPath.item].finishDate
         
@@ -71,7 +71,7 @@ class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollect
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
             
         //프로그레스 바
-            cell.progressView.progress = (Float(Float(failedChallenge[indexPath.item].ongoingPeriod) / (Float(failedChallenge[indexPath.item].finishPeriod))))
+        cell.progressView.progress =  (Float(Float(failedChallenge[indexPath.item].ongoingPeriod) / (Float(failedChallenge[indexPath.item].finishPeriod))))
             cell.progressView.progressViewStyle = .default
             cell.progressView.progressTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
