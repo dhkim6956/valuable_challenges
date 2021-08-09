@@ -16,6 +16,9 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     let firstMenuArray = ["연결 ID"]
     let secondMenuArray = ["관심 분야 설정", "포인트 교환"]
     let thirdMenuArray = ["개인 정보 정책", "이용 약관"]
+    let ongoingChallenge = OngoingChallnegeModel()
+    let finishedChallenge = FinishedChallengeModel()
+    let failedChallenge = FailedChallengeModel()
     
     
     override func viewDidLoad() {
@@ -54,9 +57,9 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.finisedLevel?.text = "Lv 5"
             cell.presentPointLabel?.text = "82pts"
             cell.finishedPointLabel?.text = "500pts"
-            cell.ongoinChallengeCount?.text = "5"
-            cell.finishedChallengeCount?.text = "7"
-            cell.failedChallengeCount?.text = "1"
+            cell.ongoinChallengeCount?.text = "\(ongoingChallenge.arraylist.count)"
+            cell.finishedChallengeCount?.text = "\(finishedChallenge.arraylist.count)"
+            cell.failedChallengeCount?.text = "\(failedChallenge.arraylist.count)"
             cell.pointProgressView?.progress = (Float(Float(82) / Float(500)))
             
             cell.backgroundColor = #colorLiteral(red: 0.9720780253, green: 0.9662989974, blue: 0.9765200019, alpha: 1)

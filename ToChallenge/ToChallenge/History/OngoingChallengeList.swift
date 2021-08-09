@@ -10,20 +10,14 @@ import UIKit
 
 class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-
-    
-    var ongoingChallenges: [OngoingChallenge] = [
-        OngoingChallenge(title: "Front-end 정복", ongoingPeriod: 14, finishPeriod: 30, category: "Coding"),
-        OngoingChallenge(title: "다양한 분야의 도서 읽기", ongoingPeriod: 189, finishPeriod: 365, category: "독서"),
-        OngoingChallenge(title: "매일 영어일기 쓰기", ongoingPeriod: 23, finishPeriod: 100, category: "외국어"),
-        OngoingChallenge(title: "1일 1commit", ongoingPeriod: 58, finishPeriod: 100, category: "Coding"),
-        OngoingChallenge(title: "매일 러닝 30분", ongoingPeriod: 8, finishPeriod: 30, category: "운동")
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
     }
+    
+    let ongoingChallenge = OngoingChallnegeModel()
+
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        return 1
@@ -32,27 +26,22 @@ class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return ongoingChallenges.count
+        return ongoingChallenge.arraylist.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
     let cell:OngoingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "OngoingCell", for: indexPath) as!OngoingCell
         
-        cell.titleLabel?.text = ongoingChallenges[indexPath.item].title
-        cell.categoryLabel?.text = ongoingChallenges[indexPath.item].category
-        //cell.finishedPeriodLabel1?.text = ongoingChallenges[indexPath.item].finishPeriod
-        cell.finishedPeriodLabel.text = "\(ongoingChallenges[indexPath.item].finishPeriod)일"
-
-        //cell.finishedPeriodLabel2?.text = ongoingChallenges[indexPath.item].finishPeriod
-        cell.finishedPeriodLabelProgress.text = "\(ongoingChallenges[indexPath.item].finishPeriod)일"
-
-        //cell.ongoingLabel?.text = ongoingChallenges[indexPath.item].ongoingPeriod
-        cell.ongoingLabel?.text = "\(ongoingChallenges[indexPath.item].ongoingPeriod)일"
+        cell.titleLabel?.text = ongoingChallenge.arraylist[indexPath.item].title
+        cell.categoryLabel?.text = ongoingChallenge.arraylist[indexPath.item].category
+        cell.finishedPeriodLabel.text = "\(ongoingChallenge.arraylist[indexPath.item].finishPeriod)일"
+        cell.finishedPeriodLabelProgress.text = "\(ongoingChallenge.arraylist[indexPath.item].finishPeriod)일"
+        cell.ongoingLabel?.text = "\(ongoingChallenge.arraylist[indexPath.item].ongoingPeriod)일"
             cell.slashLabel?.text = .some("/")
             
         //소수점에 0이 붙음
-        cell.percentLabel?.text = "\(floor((Float(Float(ongoingChallenges[indexPath.item].ongoingPeriod) / (Float(ongoingChallenges[indexPath.item].finishPeriod)))) * 100))%"
+        cell.percentLabel?.text = "\(floor((Float(Float(ongoingChallenge.arraylist[indexPath.item].ongoingPeriod) / (Float(ongoingChallenge.arraylist[indexPath.item].finishPeriod)))) * 100))%"
         
             
         cell.layer.cornerRadius = 20
@@ -74,10 +63,9 @@ class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
             
         //프로그레스 바
-            cell.progressView.progress = Float(Double(ongoingChallenges[indexPath.item].ongoingPeriod) / (Double(ongoingChallenges[indexPath.item].finishPeriod)))
+            cell.progressView.progress = Float(Double(ongoingChallenge.arraylist[indexPath.item].ongoingPeriod) / (Double(ongoingChallenge.arraylist[indexPath.item].finishPeriod)))
             cell.progressView.progressViewStyle = .default
             cell.progressView.progressTintColor = #colorLiteral(red: 0, green: 0.959014833, blue: 0.1501406729, alpha: 1)
-           // cell.progressView.progressTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
         
         return cell
