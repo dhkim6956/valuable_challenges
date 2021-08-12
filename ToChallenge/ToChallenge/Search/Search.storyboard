@@ -138,7 +138,8 @@
                         <outletCollection property="createChallengeWay" destination="rRv-zS-v6q" collectionClass="NSMutableArray" id="s0Z-09-ipd"/>
                         <outletCollection property="createChallengeWay" destination="7Eo-uC-DWH" collectionClass="NSMutableArray" id="McU-Vz-kHq"/>
                         <outletCollection property="createChallengeWay" destination="zbc-SR-93Q" collectionClass="NSMutableArray" id="Smv-0c-xVL"/>
-                        <segue destination="2s3-Cd-JRx" kind="show" identifier="searchButtonClicked" id="blO-5b-Ahq"/>
+                        <segue destination="2s3-Cd-JRx" kind="show" identifier="filterButtonClicked" id="blO-5b-Ahq"/>
+                        <segue destination="K4A-j6-nrN" kind="show" identifier="createButtonClicked" id="38g-sg-CRA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -152,14 +153,18 @@
                         <action selector="normalChallengeTapped:" destination="Y6W-OH-hqX" id="j4J-sn-Pcw"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="cZo-9h-sB8"/>
+                <tapGestureRecognizer id="cZo-9h-sB8">
+                    <connections>
+                        <action selector="createChallengeTapped:" destination="Y6W-OH-hqX" id="yMU-Zw-Wdr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="89.732142857142847"/>
         </scene>
         <!--검색된 도전-->
         <scene sceneID="3Mc-Lk-dg1">
             <objects>
-                <viewController id="2s3-Cd-JRx" customClass="searchListViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2s3-Cd-JRx" customClass="SearchListViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AhN-QR-ifz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,11 +286,162 @@
                         <outlet property="challengeTable" destination="9U3-Uh-0Zs" id="y3L-gd-biI"/>
                         <outlet property="innerSearchBar" destination="BFo-YM-iuQ" id="Ghx-y2-l7b"/>
                         <outlet property="navigationBar" destination="jMc-fv-6vB" id="Cbr-GU-pIb"/>
+                        <outlet property="tableView" destination="9U3-Uh-0Zs" id="ZbQ-6p-noK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdS-GS-4ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896" y="80"/>
+            <point key="canvasLocation" x="1897" y="90"/>
+        </scene>
+        <!--도전 생성-->
+        <scene sceneID="Mf2-zD-5WW">
+            <objects>
+                <tableViewController id="K4A-j6-nrN" customClass="CreateChallengeTableViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lG8-3A-TAu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeTitle" rowHeight="70" id="vsv-hu-4xs" customClass="challengeTitleTableViewCell" customModule="ToChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vsv-hu-4xs" id="3Um-Qu-Acx">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4d3-Cd-6Sr">
+                                            <rect key="frame" x="10" y="10" width="394" height="50"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SCl-SE-Bwb">
+                                                    <rect key="frame" x="30" y="5" width="43.5" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="SCl-SE-Bwb" secondAttribute="height" multiplier="1:1" id="up3-LB-hfz"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-qp-AEw">
+                                                    <rect key="frame" x="103.5" y="5" width="260.5" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="SCl-SE-Bwb" secondAttribute="bottom" constant="5" id="0Qm-a2-HtJ"/>
+                                                <constraint firstItem="SCl-SE-Bwb" firstAttribute="top" secondItem="4d3-Cd-6Sr" secondAttribute="top" constant="5" id="Kn1-Vh-O3Y"/>
+                                                <constraint firstItem="UZ4-qp-AEw" firstAttribute="leading" secondItem="SCl-SE-Bwb" secondAttribute="trailing" constant="30" id="lkW-ND-aiU"/>
+                                                <constraint firstItem="UZ4-qp-AEw" firstAttribute="top" secondItem="4d3-Cd-6Sr" secondAttribute="top" constant="5" id="nR4-bG-x7m"/>
+                                                <constraint firstItem="SCl-SE-Bwb" firstAttribute="leading" secondItem="4d3-Cd-6Sr" secondAttribute="leading" constant="30" id="sNd-cd-Mot"/>
+                                                <constraint firstAttribute="bottom" secondItem="UZ4-qp-AEw" secondAttribute="bottom" constant="5" id="uUf-1o-wPU"/>
+                                                <constraint firstAttribute="trailing" secondItem="UZ4-qp-AEw" secondAttribute="trailing" constant="30" id="w97-4U-cVo"/>
+                                                <constraint firstItem="SCl-SE-Bwb" firstAttribute="width" secondItem="UZ4-qp-AEw" secondAttribute="width" multiplier="1:6" id="zP8-yY-sq6"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4d3-Cd-6Sr" firstAttribute="top" secondItem="3Um-Qu-Acx" secondAttribute="top" constant="10" id="I9h-vB-czN"/>
+                                        <constraint firstAttribute="trailing" secondItem="4d3-Cd-6Sr" secondAttribute="trailing" constant="10" id="b7k-nX-QqH"/>
+                                        <constraint firstAttribute="bottom" secondItem="4d3-Cd-6Sr" secondAttribute="bottom" constant="10" id="j9g-Wq-QaS"/>
+                                        <constraint firstItem="4d3-Cd-6Sr" firstAttribute="leading" secondItem="3Um-Qu-Acx" secondAttribute="leading" constant="10" id="pu4-AG-HNA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="challengeImage" destination="SCl-SE-Bwb" id="RRt-VA-ThG"/>
+                                    <outlet property="challengeTitle" destination="UZ4-qp-AEw" id="3jP-A6-wXA"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeConfig" rowHeight="50" id="ohN-OQ-aSv" customClass="challengeConfigTableViewCell" customModule="ToChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94.5" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ohN-OQ-aSv" id="Imo-PH-bxJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a43-4Y-fyc">
+                                            <rect key="frame" x="10" y="10" width="394" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNS-8b-Ty1">
+                                                    <rect key="frame" x="5" y="5" width="124.5" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuq-B3-M6J">
+                                                    <rect key="frame" x="139.5" y="5" width="249.5" height="20"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="Yuq-B3-M6J" firstAttribute="top" secondItem="a43-4Y-fyc" secondAttribute="top" constant="5" id="0VF-xH-bJA"/>
+                                                <constraint firstItem="Yuq-B3-M6J" firstAttribute="leading" secondItem="QNS-8b-Ty1" secondAttribute="trailing" constant="10" id="LAr-C2-aXW"/>
+                                                <constraint firstAttribute="trailing" secondItem="Yuq-B3-M6J" secondAttribute="trailing" constant="5" id="PzQ-S5-Swr"/>
+                                                <constraint firstItem="QNS-8b-Ty1" firstAttribute="top" secondItem="a43-4Y-fyc" secondAttribute="top" constant="5" id="Zyc-nh-QbP"/>
+                                                <constraint firstItem="QNS-8b-Ty1" firstAttribute="width" secondItem="Yuq-B3-M6J" secondAttribute="width" multiplier="1:2" id="cH2-pd-4KL"/>
+                                                <constraint firstAttribute="bottom" secondItem="Yuq-B3-M6J" secondAttribute="bottom" constant="5" id="gMv-v8-ecG"/>
+                                                <constraint firstItem="QNS-8b-Ty1" firstAttribute="leading" secondItem="a43-4Y-fyc" secondAttribute="leading" constant="5" id="nE3-Jk-gvN"/>
+                                                <constraint firstAttribute="bottom" secondItem="QNS-8b-Ty1" secondAttribute="bottom" constant="5" id="oBJ-rT-r0D"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="a43-4Y-fyc" firstAttribute="top" secondItem="Imo-PH-bxJ" secondAttribute="top" constant="10" id="75k-cd-dWE"/>
+                                        <constraint firstItem="a43-4Y-fyc" firstAttribute="leading" secondItem="Imo-PH-bxJ" secondAttribute="leading" constant="10" id="o8e-Kd-ITH"/>
+                                        <constraint firstAttribute="bottom" secondItem="a43-4Y-fyc" secondAttribute="bottom" constant="10" id="v1Q-vz-hSn"/>
+                                        <constraint firstAttribute="trailing" secondItem="a43-4Y-fyc" secondAttribute="trailing" constant="10" id="wmf-b0-n9E"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="configButton" destination="Yuq-B3-M6J" id="8Pr-op-VqJ"/>
+                                    <outlet property="configLabel" destination="QNS-8b-Ty1" id="xDL-MV-zSO"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeDescription" rowHeight="50" id="iNX-YB-68P" customClass="challengeDescriptionTableViewCell" customModule="ToChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="144.5" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iNX-YB-68P" id="0VU-WY-3bp">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnt-C3-45T">
+                                            <rect key="frame" x="10" y="10" width="394" height="30"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tjj-j2-rkp">
+                                                    <rect key="frame" x="5" y="5" width="384" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="tjj-j2-rkp" firstAttribute="leading" secondItem="nnt-C3-45T" secondAttribute="leading" constant="5" id="3WT-iA-6uT"/>
+                                                <constraint firstItem="tjj-j2-rkp" firstAttribute="top" secondItem="nnt-C3-45T" secondAttribute="top" constant="5" id="57N-Fp-a1O"/>
+                                                <constraint firstAttribute="bottom" secondItem="tjj-j2-rkp" secondAttribute="bottom" constant="5" id="5W2-Jp-1Hv"/>
+                                                <constraint firstAttribute="trailing" secondItem="tjj-j2-rkp" secondAttribute="trailing" constant="5" id="bgw-lZ-YAt"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nnt-C3-45T" firstAttribute="leading" secondItem="0VU-WY-3bp" secondAttribute="leading" constant="10" id="2gH-E3-vAN"/>
+                                        <constraint firstItem="nnt-C3-45T" firstAttribute="top" secondItem="0VU-WY-3bp" secondAttribute="top" constant="10" id="icH-G7-EfX"/>
+                                        <constraint firstAttribute="bottom" secondItem="nnt-C3-45T" secondAttribute="bottom" constant="10" id="j7K-42-7cz"/>
+                                        <constraint firstAttribute="trailing" secondItem="nnt-C3-45T" secondAttribute="trailing" constant="10" id="jVI-VY-jpm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionTextfield" destination="tjj-j2-rkp" id="VDz-Vc-bod"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="K4A-j6-nrN" id="3tS-8W-q6P"/>
+                            <outlet property="delegate" destination="K4A-j6-nrN" id="whi-f0-CA5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="도전 생성" id="fa5-li-PBQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rzc-qE-8fx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1896" y="820"/>
         </scene>
         <!--Search-->
         <scene sceneID="Cl9-zm-owA">
