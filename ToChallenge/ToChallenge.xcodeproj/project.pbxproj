@@ -18,6 +18,7 @@
 		474F42F526ADA4E200AC29EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F326ADA4E200AC29EE /* Main.storyboard */; };
 		474F42F726ADA4E300AC29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F626ADA4E300AC29EE /* Assets.xcassets */; };
 		474F42FA26ADA4E300AC29EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 474F42F826ADA4E300AC29EE /* LaunchScreen.storyboard */; };
+		47713A7326C4E2D200C6F339 /* achievementsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47713A7226C4E2D200C6F339 /* achievementsModel.swift */; };
 		47889A6026BCCCB1005903C4 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A5F26BCCCB1005903C4 /* History.storyboard */; };
 		47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A6126BCCD8B005903C4 /* HistoryViewController.swift */; };
 		47889A6526BCCE09005903C4 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6426BCCE09005903C4 /* Search.storyboard */; };
@@ -52,6 +53,7 @@
 		474F42F626ADA4E300AC29EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		474F42F926ADA4E300AC29EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		474F42FB26ADA4E300AC29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47713A7226C4E2D200C6F339 /* achievementsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = achievementsModel.swift; sourceTree = "<group>"; };
 		47889A5F26BCCCB1005903C4 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		47889A6126BCCD8B005903C4 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		47889A6426BCCE09005903C4 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				47889A6926BCD06B005903C4 /* Achievements.storyboard */,
 				47889A6B26BCD082005903C4 /* AchievementsViewController.swift */,
+				47713A7226C4E2D200C6F339 /* achievementsModel.swift */,
 			);
 			path = Achievements;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
 				A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */,
 				A5EE213F26BFDB71004B464E /* OngoingCell.swift in Sources */,
+				47713A7326C4E2D200C6F339 /* achievementsModel.swift in Sources */,
 				A52B7B0126BFD97200B8D286 /* OngoingChallengeList.swift in Sources */,
 				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
