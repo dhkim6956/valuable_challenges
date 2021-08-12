@@ -1,5 +1,5 @@
 //
-//  searchListViewController.swift
+//  SearchListViewController.swift
 //  ToChallenge
 //
 //  Created by 김도훈 on 2021/08/06.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class searchListViewController: UIViewController, UISearchBarDelegate {
+class SearchListViewController: UIViewController, UISearchBarDelegate {
     
     var data: [String] = []
     
@@ -20,6 +20,7 @@ class searchListViewController: UIViewController, UISearchBarDelegate {
     var challengeImage: [String]!
     
     
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var innerSearchBar: UISearchBar!
     @IBOutlet weak var challengeTable: UITableView!
@@ -30,6 +31,8 @@ class searchListViewController: UIViewController, UISearchBarDelegate {
         challengeTable.delegate = self
         challengeTable.dataSource = self
         innerSearchBar.delegate = self
+        
+        tableView.layer.cornerRadius = 10
         
         let challengeModel = UsersChallengesModel()
         for list in challengeModel.arrayList {
@@ -103,12 +106,14 @@ class searchListViewController: UIViewController, UISearchBarDelegate {
             }
         }
     }
+    
+    
 }
 
 
 
 
-extension searchListViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receivedData.count
     }
