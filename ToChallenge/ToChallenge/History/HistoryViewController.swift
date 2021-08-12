@@ -44,20 +44,50 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-           tableView.deselectRow(at: indexPath, animated: false)
+//           tableView.deselectRow(at: indexPath, animated: false)
 
-           switch indexPath.row {
-
-           case 0: performSegue(withIdentifier: "GoOngoingList", sender: self)
-
-           case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
-
-           case 2: performSegue(withIdentifier: "GoFailedChallnegeList", sender: self)
-
-           default:
-
-               return
-
-           }
+        performSegue(withIdentifier: "GoOngoingList", sender: self)
+        
+//           switch indexPath.row {
+//
+//           case 0: performSegue(withIdentifier: "GoOngoingList", sender: self)
+//
+//           case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
+//
+//           case 2: performSegue(withIdentifier: "GoFailedChallnegeList", sender: self)
+//
+//           default:
+//
+//               return
+//
+//           }
        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        historyListTableView.indexPath(for: <#T##UITableViewCell#>)
+        let index = historyListTableView.indexPathForSelectedRow!.row // 0, 1, 2
+//        segue.identifier == "GoOngoingList"
+//        segue.source
+        var selectedStatus: ChallengeStatus = .onGoing
+        
+        switch index {
+        case 0: selectedStatus = .onGoing
+        case 1: selectedStatus = .finished
+        case 2: selectedStatus = .failed
+        default:
+            assertionFailure()
+        }
+        
+        let vcDest = segue.destination as! OngoingChallengeList
+        
+        vcDest.selectedStatus = selectedStatus
+        
+//        for item in vcDest.ongoingChallenge.originalList {
+//            if item.status == selectedStatus {
+//                vcDest.ongoingChallenge.arraylist.append(item)
+//            }
+//        }
+        vcDest.ongoingChallenge.arraylist = vcDest.ongoingChallenge.originalList.filter({ info in
+            info.status == selectedStatus
+        })
+    }
 }

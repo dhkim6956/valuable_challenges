@@ -7,11 +7,44 @@
 
 import Foundation
 
+///  도전 상태.
+enum ChallengeStatus {
+    case onGoing, finished, failed
+}
+
+struct Challenge {
+    var title: String
+    var category: String
+    
+    var finishPeriod: Int // 도전 완료? 목표? 기간
+//    var challengeCount: Int // 목표 횟수. (몇회까지 해야 함)
+    
+    var ongoingPeriod: Int // 도전한지 며칠 되었는지
+//    var nowCount: Int // 몇번 시도 했는지.
+    
+    var startDate: String // 시작 일자
+    var finishDate: String // 종료된 일자
+//    var remainedCount: Int // 남은 도전 빼먹기 횟수. 3
+    
+    var status: ChallengeStatus // 현재 이 도전의 상태.
+}
+
+let c1 = [Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .onGoing),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .finished),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .failed),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .onGoing),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .failed),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .finished),
+          Challenge(title: "깃 능력 올리기", category: "개발", finishPeriod: 10, ongoingPeriod: 0, startDate: "", finishDate: "", status: .onGoing)
+          ]
+
+
 struct OngoingChallenge {
     var title: String
     var ongoingPeriod: Int
     var finishPeriod: Int
     var category: String
+    var status: ChallengeStatus = .onGoing // 현재 이 도전의 상태.
 }
 
 
@@ -36,12 +69,14 @@ struct FailedChallenge {
 
 class OngoingChallnegeModel {
     var arraylist: [OngoingChallenge] = []
+    var originalList: [OngoingChallenge] = []
+    
     init() {
-        arraylist.append(OngoingChallenge(title: "Front-end 정복", ongoingPeriod: 14, finishPeriod: 30, category: "Coding"))
-        arraylist.append(OngoingChallenge(title: "다양한 분야의 도서 읽기", ongoingPeriod: 189, finishPeriod: 365, category: "독서"))
-        arraylist.append(OngoingChallenge(title: "매일 영어일기 쓰기", ongoingPeriod: 23, finishPeriod: 100, category: "외국어"))
-        arraylist.append( OngoingChallenge(title: "1일 1commit", ongoingPeriod: 58, finishPeriod: 100, category: "Coding"))
-        arraylist.append(OngoingChallenge(title: "매일 러닝 30분", ongoingPeriod: 8, finishPeriod: 30, category: "운동"))
+        originalList.append(OngoingChallenge(title: "Front-end 정복", ongoingPeriod: 14, finishPeriod: 30, category: "Coding", status: .failed))
+        originalList.append(OngoingChallenge(title: "다양한 분야의 도서 읽기", ongoingPeriod: 189, finishPeriod: 365, category: "독서",status: .onGoing))
+        originalList.append(OngoingChallenge(title: "매일 영어일기 쓰기", ongoingPeriod: 23, finishPeriod: 100, category: "외국어", status: .finished))
+        originalList.append( OngoingChallenge(title: "1일 1commit", ongoingPeriod: 58, finishPeriod: 100, category: "Coding", status: .finished))
+        originalList.append(OngoingChallenge(title: "매일 러닝 30분", ongoingPeriod: 8, finishPeriod: 30, category: "운동", status: .onGoing))
         
     }
 }
