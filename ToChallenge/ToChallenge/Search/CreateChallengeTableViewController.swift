@@ -8,7 +8,29 @@
 import UIKit
 
 class CreateChallengeTableViewController: UITableViewController {
-
+    
+    let datePicker = UIDatePicker()
+    
+    @IBOutlet weak var titleFrame: UIView!
+    @IBOutlet var upperSide: [UIView]!
+    @IBOutlet var lowerSide: [UIView]!
+    
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var durationTextField: UITextField!
+    @IBOutlet weak var periodTextField: UITextField!
+    
+    @IBOutlet weak var startDateTextField: UITextField!
+    @IBOutlet weak var finishDateTextField: UITextField!
+    
+    let category = ["독서", "자격증", "코딩", "운동", "외국어"]
+    let period = ["매일", "매주", "매월"]
+    
+    var categoryPickerView = UIPickerView()
+    var periodPickerView = UIPickerView()
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,111 +39,94 @@ class CreateChallengeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 5
-        case 2:
-            return 4
-        default:
-            return 0
-        }
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        if indexPath.section == 0 {
-            <#code#>
-        } else if indexPath.section == 1 {
-            if <#condition#> {
-                <#code#>
-            }
-        } else {
-            
+        
+        
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.editingChanged)
+        datePicker.preferredDatePickerStyle = .compact
+        
+        
+        titleFrame.layer.cornerRadius = 10
+        
+        for upper in upperSide {
+            upper.layer.cornerRadius = 10
+            upper.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeTitle", for: indexPath) as! challengeTitleTableViewCell
-        cell.challengeImage.image = UIImage(named: "challenge_certificate")
-        cell.challengeTitle.text = "시험용"
-        return cell
+        for lower in lowerSide {
+            lower.layer.cornerRadius = 10
+            lower.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
+        }
+        
+        categoryTextField.inputView = categoryPickerView
+        periodTextField.inputView = periodPickerView
+        
+        categoryPickerView.dataSource = self
+        categoryPickerView.delegate = self
+        periodPickerView.dataSource = self
+        periodPickerView.delegate = self
+        
+        categoryPickerView.tag = 1
+        periodPickerView.tag = 2
+        
+    }
+
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(displayP3Red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1:
-            return "개요"
-        case 2:
-            return "일정"
-        default:
-            return ""
-        }
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+        
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
     @objc func addTapped() {
         print("추가버튼 눌러짐")
-//        let index1 = IndexPath(row: 0, section: 0)
-//        if let cell = tableView.cellForRow(at: index1) as? challengeTitleTableViewCell {
-//            let name: String = cell.challengeTitle.text!
-//            print(name)
-//        }
+        let index1 = IndexPath(row: 2, section: 1)
+        if let cell = tableView.cellForRow(at: index1) as? challengeDescriptionTableViewCell {
+            let name: String = cell.descriptionTextfield.text!
+            print(name)
+        }
+    }
+}
 
 
+extension CreateChallengeTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag {
+        case 1:
+            return category.count
+        case 2:
+            return period.count
+        default:
+            return 1
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView.tag {
+        case 1:
+            return category[row]
+        case 2:
+            return period[row]
+        default:
+            return "Data not Found"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView.tag {
+        case 1:
+            categoryTextField.text = category[row]
+        case 2:
+            periodTextField.text = period[row]
+        default:
+            return
+        }
     }
 }
