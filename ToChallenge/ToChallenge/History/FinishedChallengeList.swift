@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var selectedStatus: ChallengeStatus = .onGoing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishedCell", for: indexPath) as! FinishedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChallengeListCell", for: indexPath) as! ChallengeListCell
         
         cell.titleLabel?.text = finishedChallenge.arraylist[indexPath.item].title
         cell.categoryLabel?.text = finishedChallenge.arraylist[indexPath.item].category
@@ -91,15 +92,21 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
         return CGSize(width: 50, height: 70)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryListHeader", for: indexPath) as! HistoryListHeader
             
-            header.historyListHeader?.text = "완료한 도전"
-     
-        return header
+        var titleName = ""
+        
+        switch selectedStatus {
+        case .onGoing: titleName = "진행중"
+        case .finished: titleName = "완료됨"
+        case .failed: titleName = "실패함"
+        }
+            header.historyListHeader?.text = titleName
+
+            return header
     
     }
 }
