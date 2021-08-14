@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12E808B626BC274400176A73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E808B526BC274400176A73 /* Home.storyboard */; };
-		396CF7D126C528AF0067A637 /* challengeTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CF7D026C528AF0067A637 /* challengeTitleTableViewCell.swift */; };
-		396CF7D326C543A70067A637 /* challengeConfigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CF7D226C543A70067A637 /* challengeConfigTableViewCell.swift */; };
-		396CF7D526C543BB0067A637 /* challengeDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */; };
-		397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* SearchListViewController.swift */; };
-		39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */; };
-		39B6EC7D26C69A9500FB1890 /* challengeHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */; };
+		397137CB26BD26A6002DE12B /* searchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* searchListViewController.swift */; };
 		39D83D1226BD60A400D6575A /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D83D1126BD60A400D6575A /* ChallengeTableViewCell.swift */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
@@ -43,12 +38,7 @@
 
 /* Begin PBXFileReference section */
 		12E808B526BC274400176A73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		396CF7D026C528AF0067A637 /* challengeTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeTitleTableViewCell.swift; sourceTree = "<group>"; };
-		396CF7D226C543A70067A637 /* challengeConfigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeConfigTableViewCell.swift; sourceTree = "<group>"; };
-		396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeDescriptionTableViewCell.swift; sourceTree = "<group>"; };
-		397137CA26BD26A6002DE12B /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
-		39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeTableViewController.swift; sourceTree = "<group>"; };
-		39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		397137CA26BD26A6002DE12B /* searchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchListViewController.swift; sourceTree = "<group>"; };
 		39D83D1126BD60A400D6575A /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,15 +150,10 @@
 		47889A6326BCCDA4005903C4 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */,
-				397137CA26BD26A6002DE12B /* SearchListViewController.swift */,
+				397137CA26BD26A6002DE12B /* searchListViewController.swift */,
 				47889A6626BCCE5B005903C4 /* SearchViewController.swift */,
 				47889A6426BCCE09005903C4 /* Search.storyboard */,
 				39D83D1126BD60A400D6575A /* ChallengeTableViewCell.swift */,
-				396CF7D026C528AF0067A637 /* challengeTitleTableViewCell.swift */,
-				396CF7D226C543A70067A637 /* challengeConfigTableViewCell.swift */,
-				396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */,
-				39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -281,25 +266,19 @@
 				A5EE214326BFFA5A004B464E /* ChallengeListCell.swift in Sources */,
 				474F42F226ADA4E200AC29EE /* HomeViewController.swift in Sources */,
 				A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */,
-				396CF7D326C543A70067A637 /* challengeConfigTableViewCell.swift in Sources */,
 				A5EE214126BFFA4A004B464E /* FinishedChallengeList.swift in Sources */,
 				474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */,
 				47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */,
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
-				396CF7D526C543BB0067A637 /* challengeDescriptionTableViewCell.swift in Sources */,
 				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
-				39B6EC7D26C69A9500FB1890 /* challengeHeaderTableViewCell.swift in Sources */,
-				A5EE214726BFFE5A004B464E /* FailedCell.swift in Sources */,
-				397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */,
+				397137CB26BD26A6002DE12B /* searchListViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
-				39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */,
 				A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */,
 				A52B7B0126BFD97200B8D286 /* OngoingChallengeList.swift in Sources */,
-				396CF7D126C528AF0067A637 /* challengeTitleTableViewCell.swift in Sources */,
 				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
