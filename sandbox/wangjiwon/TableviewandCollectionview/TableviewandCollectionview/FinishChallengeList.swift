@@ -1,22 +1,40 @@
 //
-//  FinishedChallengeList.swift
-//  ToChallenge
+//  FinishChallengeList.swift
+//  TableviewandCollectionview
 //
-//  Created by 왕지원 on 2021/08/08.
+//  Created by 왕지원 on 2021/08/03.
 //
 
 import Foundation
 import UIKit
 
-class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+
+class FinishChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var finishListView: UICollectionView!
+    
+    
+    
+    
+    
+    var completeChallenges: [CompleteChallenge] = [
+        CompleteChallenge(title: "필기시험 2주 준비", finishPeriod: 14, category: "자격증", startDate: "2021.06.01", finishDate: "2021.01.15"),
+        CompleteChallenge(title: "토익영어단어 외우기", finishPeriod: 30, category: "외국어", startDate: "2021.07.01", finishDate: "2021.07.30"),
+        CompleteChallenge(title: "독후감 작성", finishPeriod: 30, category: "독서", startDate: "2021.08.01", finishDate: "2021.08.30"),
+        CompleteChallenge(title: "체지방 1kg 빼기", finishPeriod: 14, category: "운동", startDate: "2021.07.15", finishDate: "2021.07.29"),
+        CompleteChallenge(title: "필기+실기시험 준비", finishPeriod: 45, category: "자격증", startDate: "2021.06.15", finishDate: "2021.07.30"),
+        CompleteChallenge(title: "필기시험 4주 준비", finishPeriod: 30, category: "자격증", startDate: "2022.01.01", finishDate: "2022.01.30"),
+        CompleteChallenge(title: "다이어트 30일", finishPeriod: 30, category: "운동", startDate: "2022.01.01", finishDate: "2020.01.30")
+    ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
     }
+
     
-    let finishedChallenge = FinishedChallengeModel()
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        return 1
@@ -25,22 +43,27 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return finishedChallenge.arraylist.count
+        return completeChallenges.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishedCell", for: indexPath) as! FinishedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishChallengeCell", for: indexPath) as! FinishChallengeCell
         
-        cell.titleLabel?.text = finishedChallenge.arraylist[indexPath.item].title
-        cell.categoryLabel?.text = finishedChallenge.arraylist[indexPath.item].category
-        cell.finishedPeriodLabel.text = "\(finishedChallenge.arraylist[indexPath.item].finishPeriod)일"
-        cell.finishedPeriodLabelProgress?.text = "\(finishedChallenge.arraylist[indexPath.item].finishPeriod)일"
+        cell.titleLabel?.text = completeChallenges[indexPath.item].title
+        cell.categoryLabel?.text = completeChallenges[indexPath.item].category
+        //cell.finishedPeriodLabel1?.text = ongoingChallenges[indexPath.item].finishPeriod
+        cell.finishedPeriodLabel.text = "\(completeChallenges[indexPath.item].finishPeriod)일"
+
+        //cell.finishedPeriodLabel2?.text = ongoingChallenges[indexPath.item].finishPeriod
+        cell.finishedPeriodProgressLabel.text = "\(completeChallenges[indexPath.item].finishPeriod)일"
+
+        //cell.ongoingLabel?.text = ongoingChallenges[indexPath.item].ongoingPeriod
         cell.ongoingLabel?.text = .none
         cell.slashLabel?.text = .none
         cell.percentLabel?.text = "100%"
-        cell.startDateLabel?.text = finishedChallenge.arraylist[indexPath.item].startDate
-        cell.finishDateLabel?.text = finishedChallenge.arraylist[indexPath.item].finishDate
+        cell.startDateLabel?.text = completeChallenges[indexPath.item].startDate
+        cell.finishDateLabel?.text = completeChallenges[indexPath.item].finishDate
         
             
         cell.layer.cornerRadius = 20
@@ -66,9 +89,15 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
             cell.progressView.progressViewStyle = .default
             cell.progressView.progressTintColor = #colorLiteral(red: 0.01527210232, green: 0.1787953973, blue: 0.9026312828, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
+            
+        
             cell.challengePeriodView.challengePeriodViewTopLine(color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), width: 2.0)
             cell.challengePeriodView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+//            cell.challengePeriodView.clipsToBounds = true
+//            cell.challengePeriodView.layer.cornerRadius = 10
+//            cell.challengePeriodView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner, .layerMinXMaxYCorner )
 
+        
         return cell
             
     }
@@ -95,9 +124,9 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryListHeader", for: indexPath) as! HistoryListHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "DetailListHeader", for: indexPath) as! DetailListHeader
             
-            header.historyListHeader?.text = "완료한 도전"
+            header.detailListHeader?.text = "완료한 도전"
      
         return header
     

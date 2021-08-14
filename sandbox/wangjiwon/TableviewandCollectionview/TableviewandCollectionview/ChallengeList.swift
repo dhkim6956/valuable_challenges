@@ -66,53 +66,21 @@ class ChallengeList: UITableViewController {
 //        }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "GoChallengeList", sender: self)
-        
-        
 
-//           tableView.deselectRow(at: indexPath, animated: false)
-//
-//           switch indexPath.row {
-//
-//           case 0: performSegue(withIdentifier: "GoOngoingList", sender: self)
-//
-//           case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
-//
-//           case 2: performSegue(withIdentifier: "GoFailedChallnegeList", sender: self)
-//
-//           default:
-//
-//               return
-//
-//           }
-     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let index = tableView.indexPathForSelectedRow!.row
-        
-        var selectedStatus: ChallengeStatus = .onGoing
-        
-        switch index {
-        case 0: selectedStatus = .onGoing
-        case 1: selectedStatus = .finished
-        case 2: selectedStatus = .failed
-        default:
-            assertionFailure()
-        }
-        
-        let vcDest = segue.destination as! FinishChallengeList
-        
-        vcDest.selectedStatus = selectedStatus
-        
-        vcDest.challenges.arraylist = vcDest.challenges.originalList.filter({info in
-            info.status == selectedStatus
-        })
-        
-    }
-    
-    
-    
-    
+           tableView.deselectRow(at: indexPath, animated: false)
+
+           switch indexPath.row {
+
+           case 0: performSegue(withIdentifier: "GoOngoingList", sender: self)
+
+           case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
+
+           case 2: performSegue(withIdentifier: "GoFailedChallnegeList", sender: self)
+
+           default:
+
+               return
+
+           }
+       }
 }
-

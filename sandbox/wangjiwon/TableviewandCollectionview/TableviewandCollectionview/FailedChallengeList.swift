@@ -1,23 +1,28 @@
 //
-//  FinishedChallengeList.swift
-//  ToChallenge
+//  FailedChallengeList.swift
+//  TableviewandCollectionview
 //
-//  Created by 왕지원 on 2021/08/08.
+//  Created by 왕지원 on 2021/08/03.
 //
 
 import Foundation
 import UIKit
 
-class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+class FailedChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+   @IBOutlet weak var failedListView: UICollectionView!
+    
+    var failedChallenge: [FailedChallenge] = [
+        FailedChallenge(title: "아침 7시 기상", finishPeriod: 30, ongoingPeriod: 3, category: "자기계발", startDate: "2021.01.01", finishDate: "2021.01.03")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        
     }
-    
-    let finishedChallenge = FinishedChallengeModel()
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        return 1
         
@@ -25,22 +30,27 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return finishedChallenge.arraylist.count
+        return failedChallenge.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishedCell", for: indexPath) as! FinishedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FailedChallengeCell", for: indexPath) as! FailedChallengeCell
         
-        cell.titleLabel?.text = finishedChallenge.arraylist[indexPath.item].title
-        cell.categoryLabel?.text = finishedChallenge.arraylist[indexPath.item].category
-        cell.finishedPeriodLabel.text = "\(finishedChallenge.arraylist[indexPath.item].finishPeriod)일"
-        cell.finishedPeriodLabelProgress?.text = "\(finishedChallenge.arraylist[indexPath.item].finishPeriod)일"
-        cell.ongoingLabel?.text = .none
-        cell.slashLabel?.text = .none
-        cell.percentLabel?.text = "100%"
-        cell.startDateLabel?.text = finishedChallenge.arraylist[indexPath.item].startDate
-        cell.finishDateLabel?.text = finishedChallenge.arraylist[indexPath.item].finishDate
+        cell.titleLabel?.text = failedChallenge[indexPath.item].title
+        cell.categoryLabel?.text = failedChallenge[indexPath.item].category
+        //cell.finishedPeriodLabel1?.text = ongoingChallenges[indexPath.item].finishPeriod
+        cell.finishedPeriodLabel.text = "\(failedChallenge[indexPath.item].finishPeriod)일"
+
+        //cell.finishedPeriodLabel2?.text = ongoingChallenges[indexPath.item].finishPeriod
+        cell.finishedPeriodProgressLabel.text = "\(failedChallenge[indexPath.item].finishPeriod)일"
+
+        //cell.ongoingLabel?.text = ongoingChallenges[indexPath.item].ongoingPeriod
+        cell.ongoingLabel?.text = "\(failedChallenge[indexPath.item].ongoingPeriod)일"
+        cell.slashLabel?.text = .some("/")
+        cell.percentLabel?.text =  "\(floor((Double(Double(failedChallenge[indexPath.item].ongoingPeriod) / (Double(failedChallenge[indexPath.item].finishPeriod)))) * 100))%"
+        cell.startDateLabel?.text = failedChallenge[indexPath.item].startDate
+        cell.finishDateLabel?.text = failedChallenge[indexPath.item].finishDate
         
             
         cell.layer.cornerRadius = 20
@@ -62,13 +72,19 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
             
         //프로그레스 바
-            cell.progressView.progress = 1
+        cell.progressView.progress =  (Float(Float(failedChallenge[indexPath.item].ongoingPeriod) / (Float(failedChallenge[indexPath.item].finishPeriod))))
             cell.progressView.progressViewStyle = .default
-            cell.progressView.progressTintColor = #colorLiteral(red: 0.01527210232, green: 0.1787953973, blue: 0.9026312828, alpha: 1)
+            cell.progressView.progressTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             cell.progressView.trackTintColor = .lightGray
+            
+        
             cell.challengePeriodView.challengePeriodViewTopLine(color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), width: 2.0)
             cell.challengePeriodView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+//            cell.challengePeriodView.clipsToBounds = true
+//            cell.challengePeriodView.layer.cornerRadius = 10
+//            cell.challengePeriodView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner, .layerMinXMaxYCorner )
 
+        
         return cell
             
     }
@@ -95,9 +111,9 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryListHeader", for: indexPath) as! HistoryListHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "DetailListHeader", for: indexPath) as! DetailListHeader
             
-            header.historyListHeader?.text = "완료한 도전"
+            header.detailListHeader?.text = "실패한 도전"
      
         return header
     
@@ -105,14 +121,8 @@ class FinishedChallengeList: UIViewController, UICollectionViewDelegate, UIColle
 }
 
 
-extension UIView {
-    func challengePeriodViewTopLine(color: UIColor, width: CGFloat) {
-        
-        let topBorderLine = CALayer()
-        topBorderLine.backgroundColor = color.cgColor
-        topBorderLine.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
-        
-        self.layer.addSublayer(topBorderLine)
-    }
+
     
-}
+
+    
+

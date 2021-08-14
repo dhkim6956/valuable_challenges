@@ -10,7 +10,6 @@ import UIKit
 
 class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var selectedStatus: ChallengeStatus = .onGoing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +17,7 @@ class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     let ongoingChallenge = OngoingChallnegeModel()
+
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        return 1
@@ -96,14 +96,7 @@ class OngoingChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryListHeader", for: indexPath) as! HistoryListHeader
             
-        var titleName = ""
-        
-        switch selectedStatus {
-        case .onGoing: titleName = "진행중"
-        case .finished: titleName = "완료됨"
-        case .failed: titleName = "실패함"
-        }
-            header.historyListHeader?.text = titleName
+            header.historyListHeader?.text = "진행중인 도전"
 
             return header
     
