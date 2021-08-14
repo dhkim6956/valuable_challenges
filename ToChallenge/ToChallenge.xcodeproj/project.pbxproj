@@ -13,6 +13,7 @@
 		396CF7D526C543BB0067A637 /* challengeDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */; };
 		397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* SearchListViewController.swift */; };
 		39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */; };
+		39B6EC7D26C69A9500FB1890 /* challengeHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */; };
 		39D83D1226BD60A400D6575A /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D83D1126BD60A400D6575A /* ChallengeTableViewCell.swift */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
@@ -45,6 +46,7 @@
 		396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		397137CA26BD26A6002DE12B /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeTableViewController.swift; sourceTree = "<group>"; };
+		39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		39D83D1126BD60A400D6575A /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				396CF7D026C528AF0067A637 /* challengeTitleTableViewCell.swift */,
 				396CF7D226C543A70067A637 /* challengeConfigTableViewCell.swift */,
 				396CF7D426C543BB0067A637 /* challengeDescriptionTableViewCell.swift */,
+				39B6EC7C26C69A9500FB1890 /* challengeHeaderTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				396CF7D526C543BB0067A637 /* challengeDescriptionTableViewCell.swift in Sources */,
 				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
+				39B6EC7D26C69A9500FB1890 /* challengeHeaderTableViewCell.swift in Sources */,
 				397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,

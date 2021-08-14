@@ -1,18 +1,19 @@
 //
-//  challengeConfigTableViewCell.swift
+//  challengeHeaderTableViewCell.swift
 //  ToChallenge
 //
-//  Created by 김도훈 on 2021/08/12.
+//  Created by 김도훈 on 2021/08/13.
 //
 
 import UIKit
 
-class challengeConfigTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var configLabel: UILabel!
-    @IBOutlet weak var configTextfield: UITextField!
+class challengeHeaderTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerDetail: UILabel!
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
