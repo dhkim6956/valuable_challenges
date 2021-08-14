@@ -48,7 +48,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             if searchText == "" {
                 print("찾는 내용이 없습니다.")
             } else {
-                performSegue(withIdentifier: "searchButtonClicked", sender: nil)
+                performSegue(withIdentifier: "filterButtonClicked", sender: nil)
             }
         }
     }
@@ -68,7 +68,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let nextViewController = segue.destination as? searchListViewController else { return }
+        guard let nextViewController = segue.destination as? SearchListViewController else { return }
         
         nextViewController.receivedData = self.filteredData
     }
@@ -82,7 +82,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         }
         
-        performSegue(withIdentifier: "searchButtonClicked", sender: nil)
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
     }
     
     @IBAction func normalChallengeTapped(_ sender: Any) {
@@ -94,6 +94,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         }
         
-        performSegue(withIdentifier: "searchButtonClicked", sender: nil)
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
     }
+    
+    @IBAction func createChallengeTapped(_ sender: Any) {
+        performSegue(withIdentifier: "createButtonClicked", sender: nil)
+        
+    }
+    
+    
+    
 }
