@@ -18,20 +18,21 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
     
         historyListTableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-
     
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return historyListModel.count
         
     }
+    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
