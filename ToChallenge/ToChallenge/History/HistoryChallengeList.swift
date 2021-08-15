@@ -184,7 +184,14 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryListHeader", for: indexPath) as! HistoryListHeader
             
-            header.historyListHeader?.text = "완료한 도전"
+        var titleName = ""
+
+                switch selectedStatus {
+                case .onGoing: titleName = "진행중인 도전"
+                case .finished: titleName = "완료한 도전"
+                case .failed: titleName = "실패한 도전"
+                }
+                    header.historyListHeader?.text = titleName
      
         return header
     
