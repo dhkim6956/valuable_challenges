@@ -47,6 +47,8 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
                     
                 //소수점에 0이 붙음
                 cell.percentLabel?.text = "\(floor((Float(Float(challenges.arraylist[indexPath.item].ongoingPeriod) / (Float(challenges.arraylist[indexPath.item].finishPeriod)))) * 100))%"
+                cell.startDateLabel?.text = challenges.arraylist[indexPath.item].startDate
+                cell.finishDateLabel?.text = challenges.arraylist[indexPath.item].finishDate
                 
                     
                 cell.layer.cornerRadius = 20
