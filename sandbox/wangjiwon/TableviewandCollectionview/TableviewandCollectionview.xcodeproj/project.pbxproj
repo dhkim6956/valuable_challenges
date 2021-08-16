@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A520DE1326B98B53002391A1 /* FinishChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520DE1226B98B53002391A1 /* FinishChallengeCell.swift */; };
 		A545F62F26B9771700BE3430 /* FinishChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A545F62E26B9771700BE3430 /* FinishChallengeList.swift */; };
-		A545F63126B9788700BE3430 /* FailedChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A545F63026B9788700BE3430 /* FailedChallengeList.swift */; };
 		A592E20E26B7AAA300B2F0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E20D26B7AAA300B2F0AC /* AppDelegate.swift */; };
 		A592E21026B7AAA300B2F0AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E20F26B7AAA300B2F0AC /* SceneDelegate.swift */; };
 		A592E21226B7AAA300B2F0AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E21126B7AAA300B2F0AC /* ViewController.swift */; };
@@ -18,16 +17,12 @@
 		A592E21A26B7AAA300B2F0AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A592E21826B7AAA300B2F0AC /* LaunchScreen.storyboard */; };
 		A592E22226B7ABCC00B2F0AC /* ChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22126B7ABCC00B2F0AC /* ChallengeList.swift */; };
 		A592E22626B7ACA200B2F0AC /* ChallengeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22526B7ACA200B2F0AC /* ChallengeListModel.swift */; };
-		A592E22826B7B18C00B2F0AC /* DetailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22726B7B18C00B2F0AC /* DetailListCell.swift */; };
 		A592E22A26B7B25100B2F0AC /* DetailListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22926B7B25100B2F0AC /* DetailListHeader.swift */; };
-		A592E22C26B7B3C500B2F0AC /* DetailListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592E22B26B7B3C500B2F0AC /* DetailListCollectionView.swift */; };
-		A5CC008526BF0BCF00593B1A /* FailedChallnegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A520DE1226B98B53002391A1 /* FinishChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishChallengeCell.swift; sourceTree = "<group>"; };
 		A545F62E26B9771700BE3430 /* FinishChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishChallengeList.swift; sourceTree = "<group>"; };
-		A545F63026B9788700BE3430 /* FailedChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedChallengeList.swift; sourceTree = "<group>"; };
 		A592E20A26B7AAA300B2F0AC /* TableviewandCollectionview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableviewandCollectionview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A592E20D26B7AAA300B2F0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A592E20F26B7AAA300B2F0AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,10 +33,7 @@
 		A592E21B26B7AAA300B2F0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A592E22126B7ABCC00B2F0AC /* ChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeList.swift; sourceTree = "<group>"; };
 		A592E22526B7ACA200B2F0AC /* ChallengeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListModel.swift; sourceTree = "<group>"; };
-		A592E22726B7B18C00B2F0AC /* DetailListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCell.swift; sourceTree = "<group>"; };
 		A592E22926B7B25100B2F0AC /* DetailListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListHeader.swift; sourceTree = "<group>"; };
-		A592E22B26B7B3C500B2F0AC /* DetailListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCollectionView.swift; sourceTree = "<group>"; };
-		A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedChallnegeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,14 +71,10 @@
 				A592E21126B7AAA300B2F0AC /* ViewController.swift */,
 				A592E22126B7ABCC00B2F0AC /* ChallengeList.swift */,
 				A592E21326B7AAA300B2F0AC /* Main.storyboard */,
-				A5CC008426BF0BCF00593B1A /* FailedChallnegeCell.swift */,
 				A520DE1226B98B53002391A1 /* FinishChallengeCell.swift */,
 				A545F62E26B9771700BE3430 /* FinishChallengeList.swift */,
-				A545F63026B9788700BE3430 /* FailedChallengeList.swift */,
-				A592E22B26B7B3C500B2F0AC /* DetailListCollectionView.swift */,
 				A592E22926B7B25100B2F0AC /* DetailListHeader.swift */,
 				A592E22526B7ACA200B2F0AC /* ChallengeListModel.swift */,
-				A592E22726B7B18C00B2F0AC /* DetailListCell.swift */,
 				A592E21626B7AAA300B2F0AC /* Assets.xcassets */,
 				A592E21826B7AAA300B2F0AC /* LaunchScreen.storyboard */,
 				A592E21B26B7AAA300B2F0AC /* Info.plist */,
@@ -167,15 +155,11 @@
 				A592E21226B7AAA300B2F0AC /* ViewController.swift in Sources */,
 				A592E22A26B7B25100B2F0AC /* DetailListHeader.swift in Sources */,
 				A592E22226B7ABCC00B2F0AC /* ChallengeList.swift in Sources */,
-				A592E22C26B7B3C500B2F0AC /* DetailListCollectionView.swift in Sources */,
-				A5CC008526BF0BCF00593B1A /* FailedChallnegeCell.swift in Sources */,
 				A592E20E26B7AAA300B2F0AC /* AppDelegate.swift in Sources */,
 				A520DE1326B98B53002391A1 /* FinishChallengeCell.swift in Sources */,
 				A592E22626B7ACA200B2F0AC /* ChallengeListModel.swift in Sources */,
 				A545F62F26B9771700BE3430 /* FinishChallengeList.swift in Sources */,
 				A592E21026B7AAA300B2F0AC /* SceneDelegate.swift in Sources */,
-				A545F63126B9788700BE3430 /* FailedChallengeList.swift in Sources */,
-				A592E22826B7B18C00B2F0AC /* DetailListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

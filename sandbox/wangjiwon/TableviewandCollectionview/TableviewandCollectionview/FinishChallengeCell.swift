@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FinishChallengeCell: UICollectionViewCell {
+class HistoryChallengeCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var finishedPeriodProgressLabel: UILabel!
     @IBOutlet weak var finishedPeriodLabel: UILabel!
