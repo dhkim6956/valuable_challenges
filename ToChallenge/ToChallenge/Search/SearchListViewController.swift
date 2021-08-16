@@ -128,6 +128,7 @@ extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.challengeDuration.text = challengeDuration[indexPath.row]
         cell.listOutLine.layer.cornerRadius = 10
         
+        
         return cell
     }
     

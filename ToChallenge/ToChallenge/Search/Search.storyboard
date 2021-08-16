@@ -138,6 +138,9 @@
                         <outletCollection property="createChallengeWay" destination="rRv-zS-v6q" collectionClass="NSMutableArray" id="s0Z-09-ipd"/>
                         <outletCollection property="createChallengeWay" destination="7Eo-uC-DWH" collectionClass="NSMutableArray" id="McU-Vz-kHq"/>
                         <outletCollection property="createChallengeWay" destination="zbc-SR-93Q" collectionClass="NSMutableArray" id="Smv-0c-xVL"/>
+                        <outletCollection property="symbolOnLabel" destination="9DF-KP-O64" collectionClass="NSMutableArray" id="RUZ-eb-AYf"/>
+                        <outletCollection property="symbolOnLabel" destination="W0w-2j-XZe" collectionClass="NSMutableArray" id="X2c-F7-r2p"/>
+                        <outletCollection property="symbolOnLabel" destination="Zgb-j6-wSj" collectionClass="NSMutableArray" id="dzD-Az-zhQ"/>
                         <segue destination="2s3-Cd-JRx" kind="show" identifier="filterButtonClicked" id="blO-5b-Ahq"/>
                         <segue destination="K4A-j6-nrN" kind="show" identifier="createButtonClicked" id="ITW-sx-X0b"/>
                     </connections>

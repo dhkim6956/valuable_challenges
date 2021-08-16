@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var filteredData: [String]!
     
     
+    @IBOutlet var symbolOnLabel: [UILabel]!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var createChallengeWay: [UIView]!
     
@@ -33,6 +34,26 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         for index in 0...2 {
             createChallengeWay[index].layer.cornerRadius = 10
+        }
+        
+        for eachLabel in symbolOnLabel {
+            let eachText = eachLabel.text!
+            
+            let imageAttachment = NSTextAttachment()
+            
+            switch eachText {
+            case "나만의 도전 만들기":
+                imageAttachment.image = UIImage(systemName: "square.and.pencil")
+            default:
+                imageAttachment.image = UIImage(systemName: "list.bullet")
+            }
+            
+            
+            let fullString = NSMutableAttributedString(string: eachText)
+            fullString.append(NSMutableAttributedString(string: " "))
+            
+            fullString.append(NSAttributedString(attachment: imageAttachment))
+            eachLabel.attributedText = fullString
         }
     }
     
