@@ -39,21 +39,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         for eachLabel in symbolOnLabel {
             let eachText = eachLabel.text!
             
-            let imageAttachment = NSTextAttachment()
-            
+            var symbolString = ""
             switch eachText {
             case "나만의 도전 만들기":
-                imageAttachment.image = UIImage(systemName: "square.and.pencil")
+                symbolString = "square.and.pencil"
             default:
-                imageAttachment.image = UIImage(systemName: "list.bullet")
+                symbolString = "list.bullet"
             }
             
-            
-            let fullString = NSMutableAttributedString(string: eachText)
-            fullString.append(NSMutableAttributedString(string: " "))
-            
-            fullString.append(NSAttributedString(attachment: imageAttachment))
-            eachLabel.attributedText = fullString
+            eachLabel.attributedText = insertSymbol(textString: eachText, symbolName: symbolString, symbolColor: UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0))
         }
     }
     
@@ -122,7 +116,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         performSegue(withIdentifier: "createButtonClicked", sender: nil)
         
     }
-    
     
     
 }

@@ -1,5 +1,5 @@
 //
-//  ChallengeTableViewCell.swift
+//  challengeTableViewCell.swift
 //  ToChallenge
 //
 //  Created by 김도훈 on 2021/08/06.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChallengeTableViewCell: UITableViewCell {
+class challengeTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var challengeImage: UIImageView!

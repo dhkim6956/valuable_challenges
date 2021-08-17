@@ -9,7 +9,19 @@ import UIKit
 
 class CreateChallengeTableViewController: UITableViewController {
     
-    let datePicker = UIDatePicker()
+    let category = ["독서", "자격증", "코딩", "운동", "외국어"]
+    let period = ["매일", "매주", "매월"]
+    
+    let startDatePicker = UIDatePicker()
+    let finishDatePicker = UIDatePicker()
+    
+    var categoryPickerView = UIPickerView()
+    var periodPickerView = UIPickerView()
+    
+    var startDate: Date!
+    var finishDate: Date!
+    
+    
     
     @IBOutlet weak var titleFrame: UIView!
     @IBOutlet var upperSide: [UIView]!
@@ -22,32 +34,17 @@ class CreateChallengeTableViewController: UITableViewController {
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var finishDateTextField: UITextField!
     
-    let category = ["독서", "자격증", "코딩", "운동", "외국어"]
-    let period = ["매일", "매주", "매월"]
+    @IBOutlet weak var colorPickerView: UIColorWell!
     
-    var categoryPickerView = UIPickerView()
-    var periodPickerView = UIPickerView()
-    
-    
-    
+    @IBOutlet var sfSymbols: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        
-        
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.editingChanged)
-        datePicker.preferredDatePickerStyle = .compact
-        
+        for label in sfSymbols {
+            label.attributedText = insertSymbol(textString: nil, symbolName: "square.and.pencil", symbolColor: UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1.0))
+        }
         
         titleFrame.layer.cornerRadius = 10
-        
         for upper in upperSide {
             upper.layer.cornerRadius = 10
             upper.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
@@ -57,6 +54,23 @@ class CreateChallengeTableViewController: UITableViewController {
             lower.layer.cornerRadius = 10
             lower.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
         }
+        
+        colorPickerView.supportsAlpha = false
+        colorPickerView.selectedColor = getRandomColor()
+        colorPickerView.title = "도전 색상 지정"
+        colorPickerView.addTarget(self, action: #selector(colorPickerValueChanged), for: .valueChanged)
+        
+        
+        startDatePicker.datePickerMode = .date
+        startDatePicker.addTarget(self, action: #selector(startDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+        startDatePicker.preferredDatePickerStyle = .compact
+        startDateTextField.inputView = startDatePicker
+        
+        finishDatePicker.datePickerMode = .date
+        finishDatePicker.addTarget(self, action: #selector(finishDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+        finishDatePicker.preferredDatePickerStyle = .compact
+        finishDateTextField.inputView = finishDatePicker
+        
         
         categoryTextField.inputView = categoryPickerView
         periodTextField.inputView = periodPickerView
@@ -68,20 +82,32 @@ class CreateChallengeTableViewController: UITableViewController {
         
         categoryPickerView.tag = 1
         periodPickerView.tag = 2
-        
     }
+    
 
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as! UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(displayP3Red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
+        (view as! UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(displayP3Red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
     }
     
-    @objc func datePickerValueChanged(sender: UIDatePicker) {
-        
+    @objc func colorPickerValueChanged() {
+        print(colorPickerView.selectedColor!)
+    }
+    
+    @objc func startDatePickerValueChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        startDateTextField.text = formatter.string(from: sender.date)
+    }
+    @objc func finishDatePickerValueChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        finishDateTextField.text = formatter.string(from: sender.date)
     }
     
     
-    @objc func addTapped() {
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
         print("추가버튼 눌러짐")
         let index1 = IndexPath(row: 2, section: 1)
         if let cell = tableView.cellForRow(at: index1) as? challengeDescriptionTableViewCell {

@@ -98,6 +98,9 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
                     case .reading:
                         challengeType.append("독서")
                     }
+                    
+                    
+                    
                     challengeImage.append("challenge_\(challenge.type)")
                     challengeTitle.append(challenge.title)
                     challengeDuration.append("\(challenge.period)days")
@@ -119,10 +122,11 @@ extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = challengeTable.dequeueReusableCell(withIdentifier: "challengeTableCell") as! ChallengeTableViewCell
+        let cell = challengeTable.dequeueReusableCell(withIdentifier: "challengeTableCell") as! challengeTableViewCell
+        
         
         cell.challengeImage.image = UIImage(named: challengeImage[indexPath.row])
-        cell.challengeTitle.text = challengeTitle[indexPath.row]
+        cell.challengeTitle.attributedText = insertSymbol(textString: challengeTitle[indexPath.row], symbolName: "chevron.forward", symbolColor: .label)
         cell.challengeDescription.text = challengeDescription[indexPath.row]
         cell.challengeType.text = challengeType[indexPath.row]
         cell.challengeDuration.text = challengeDuration[indexPath.row]
