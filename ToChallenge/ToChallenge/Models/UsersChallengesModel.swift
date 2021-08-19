@@ -247,21 +247,21 @@ import Foundation
 //
 //
 //var UserChallenges: [UserChallenge] = [UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setInterval: dummyInterval1), UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기 ", setColor: #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyMonth, setInterval: dummyInterval2), UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setInterval: dummyInterval3)]
-
-
-
+//
+//
+//
 //func updateTodayChallengeStatus() {
 //    let calendar = Calendar.current
 //    let todayInfo = calendar.dateComponents([.weekday], from: Date())
-//    for eachChallenge in UserChallenges {
+//
+//    for (index,eachChallenge) in UserChallenges.enumerated() {
 //        switch eachChallenge.authenticationPeriod {
 //        case .everyYear:
 //            for dueDate in eachChallenge.dueDates {
 //                var alreadyFind = false
 //                if Date() < dueDate.date && alreadyFind == false {
 //                    if dueDate.dueDateStatus == .certified {
-//                        eachChallenge.todayStatus = .certified
-//                        UserChallenges[0].todayStatus = .certified
+//                        UserChallenges[index].todayStatus = .certified
 //                    } else {
 //                        eachChallenge.todayStatus = .waiting
 //                    }
@@ -275,7 +275,7 @@ import Foundation
 //        }
 //    }
 //}
-
+//
 //func updateTodayChallengeStatus() {
 //    let calendar = Calendar.current
 //    let todayInfo = calendar.dateComponents([.weekday], from: Date())
