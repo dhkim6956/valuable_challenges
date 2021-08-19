@@ -237,7 +237,7 @@
                                             <outlet property="slashLabel" destination="Wdm-0I-NDW" id="1M7-hC-wfR"/>
                                             <outlet property="startDateLabel" destination="AQa-ra-Fbi" id="w4o-xD-tYt"/>
                                             <outlet property="titleLabel" destination="dPm-X1-zn4" id="Ui1-id-0DI"/>
-                                            <segue destination="ESs-3r-Z72" kind="show" id="4fm-k7-DWu"/>
+                                            <segue destination="ESs-3r-Z72" kind="show" id="M8G-oD-twR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -294,11 +294,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="leP-Ei-wND">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentInsetAdjustmentBehavior="always" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="leP-Ei-wND">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="URJ-fm-I7C">
-                                    <size key="itemSize" width="409" height="201"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="URJ-fm-I7C">
+                                    <size key="itemSize" width="0.0" height="0.0"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -307,7 +307,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailChallengeCell" id="oBf-Ys-F1Z" customClass="DetailChallengeCell" customModule="TableviewandCollectionview" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="394" height="201"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0UC-Ro-xXV">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LKQ-Bj-bhG">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="201"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -340,8 +340,8 @@
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fIx-zO-7G9">
                                                             <rect key="frame" x="20" y="50.5" width="354" height="4"/>
                                                         </progressView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycl-Am-c35">
-                                                            <rect key="frame" x="20" y="55" width="31" height="15"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="진행도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycl-Am-c35">
+                                                            <rect key="frame" x="20" y="55" width="31.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -401,9 +401,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PM4-di-Ui5" firstAttribute="leading" secondItem="0UC-Ro-xXV" secondAttribute="leading" id="CeC-GJ-H1o"/>
+                                                <constraint firstItem="PM4-di-Ui5" firstAttribute="leading" secondItem="LKQ-Bj-bhG" secondAttribute="leading" id="CeC-GJ-H1o"/>
                                                 <constraint firstItem="PM4-di-Ui5" firstAttribute="top" secondItem="hk0-tn-ZiK" secondAttribute="bottom" constant="10" id="JrC-vc-LwR"/>
-                                                <constraint firstItem="5sj-NT-d6W" firstAttribute="leading" secondItem="0UC-Ro-xXV" secondAttribute="leading" constant="20" id="Tyb-e5-PRI"/>
+                                                <constraint firstItem="5sj-NT-d6W" firstAttribute="leading" secondItem="LKQ-Bj-bhG" secondAttribute="leading" constant="20" id="Tyb-e5-PRI"/>
                                                 <constraint firstAttribute="trailing" secondItem="PM4-di-Ui5" secondAttribute="trailing" id="cEJ-Z4-xib"/>
                                                 <constraint firstAttribute="bottom" secondItem="5sj-NT-d6W" secondAttribute="bottom" constant="20" id="eWL-pG-2kg"/>
                                                 <constraint firstItem="5sj-NT-d6W" firstAttribute="top" secondItem="PM4-di-Ui5" secondAttribute="bottom" constant="10" id="lfM-Fu-riD"/>
@@ -425,10 +425,10 @@
                                             <outlet property="todayDateLabel" destination="le4-rG-5iI" id="hlm-w2-aQn"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DetailChallengeCell2" id="TSb-3a-TkG" customClass="DetailChallengeCell2" customModule="TableviewandCollectionview" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailChallengeCell2" id="TSb-3a-TkG" customClass="DetailChallengeCell2" customModule="TableviewandCollectionview" customModuleProvider="target">
                                         <rect key="frame" x="10" y="221" width="394" height="326"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KJQ-4i-bfr">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gPn-lA-HnZ">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="326"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -480,19 +480,19 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ABK-g6-h15" secondAttribute="trailing" constant="10" id="5nv-cx-A4M"/>
-                                                <constraint firstItem="76a-IU-cEL" firstAttribute="leading" secondItem="KJQ-4i-bfr" secondAttribute="leading" id="7Pi-2w-pFX"/>
+                                                <constraint firstItem="76a-IU-cEL" firstAttribute="leading" secondItem="gPn-lA-HnZ" secondAttribute="leading" id="7Pi-2w-pFX"/>
                                                 <constraint firstItem="76a-IU-cEL" firstAttribute="top" secondItem="F8F-MF-pOM" secondAttribute="bottom" constant="10" id="9JC-rT-QEn"/>
                                                 <constraint firstItem="cuM-eE-u8U" firstAttribute="leading" secondItem="MZp-XF-4mG" secondAttribute="trailing" constant="10" id="9YK-8A-Gja"/>
                                                 <constraint firstAttribute="bottom" secondItem="76a-IU-cEL" secondAttribute="bottom" constant="10" id="GmC-WI-RVG"/>
-                                                <constraint firstItem="F8F-MF-pOM" firstAttribute="leading" secondItem="KJQ-4i-bfr" secondAttribute="leading" constant="10" id="HEQ-fO-a4I"/>
+                                                <constraint firstItem="F8F-MF-pOM" firstAttribute="leading" secondItem="gPn-lA-HnZ" secondAttribute="leading" constant="10" id="HEQ-fO-a4I"/>
                                                 <constraint firstItem="McC-jj-ohI" firstAttribute="top" secondItem="MZp-XF-4mG" secondAttribute="bottom" constant="10" id="RO1-2y-466"/>
                                                 <constraint firstItem="F8F-MF-pOM" firstAttribute="top" secondItem="McC-jj-ohI" secondAttribute="bottom" constant="10" id="Uck-72-hHR"/>
-                                                <constraint firstItem="MZp-XF-4mG" firstAttribute="top" secondItem="KJQ-4i-bfr" secondAttribute="top" constant="10" id="UdZ-wl-weF"/>
+                                                <constraint firstItem="MZp-XF-4mG" firstAttribute="top" secondItem="gPn-lA-HnZ" secondAttribute="top" constant="10" id="UdZ-wl-weF"/>
                                                 <constraint firstItem="ABK-g6-h15" firstAttribute="top" secondItem="McC-jj-ohI" secondAttribute="bottom" constant="10" id="XVK-Fx-lwe"/>
-                                                <constraint firstItem="MZp-XF-4mG" firstAttribute="leading" secondItem="KJQ-4i-bfr" secondAttribute="leading" constant="10" id="fXj-4s-yEL"/>
+                                                <constraint firstItem="MZp-XF-4mG" firstAttribute="leading" secondItem="gPn-lA-HnZ" secondAttribute="leading" constant="10" id="fXj-4s-yEL"/>
                                                 <constraint firstAttribute="trailing" secondItem="McC-jj-ohI" secondAttribute="trailing" id="i3y-os-3jb"/>
-                                                <constraint firstItem="McC-jj-ohI" firstAttribute="leading" secondItem="KJQ-4i-bfr" secondAttribute="leading" id="i63-6t-gWn"/>
-                                                <constraint firstItem="cuM-eE-u8U" firstAttribute="top" secondItem="KJQ-4i-bfr" secondAttribute="top" constant="10" id="p2A-Iv-3pP"/>
+                                                <constraint firstItem="McC-jj-ohI" firstAttribute="leading" secondItem="gPn-lA-HnZ" secondAttribute="leading" id="i63-6t-gWn"/>
+                                                <constraint firstItem="cuM-eE-u8U" firstAttribute="top" secondItem="gPn-lA-HnZ" secondAttribute="top" constant="10" id="p2A-Iv-3pP"/>
                                                 <constraint firstAttribute="trailing" secondItem="76a-IU-cEL" secondAttribute="trailing" id="y34-4v-oCl"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -508,6 +508,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ESs-3r-Z72" id="KDR-eD-AJk"/>
+                                    <outlet property="delegate" destination="ESs-3r-Z72" id="64G-EY-50f"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WRV-WC-alK"/>
@@ -515,7 +519,7 @@
                         <constraints>
                             <constraint firstItem="leP-Ei-wND" firstAttribute="top" secondItem="WRV-WC-alK" secondAttribute="top" id="3qa-Rm-DW8"/>
                             <constraint firstItem="WRV-WC-alK" firstAttribute="trailing" secondItem="leP-Ei-wND" secondAttribute="trailing" id="56C-1v-5xQ"/>
-                            <constraint firstItem="leP-Ei-wND" firstAttribute="centerY" secondItem="iVJ-uc-S1u" secondAttribute="centerY" id="9mR-4K-inr"/>
+                            <constraint firstItem="leP-Ei-wND" firstAttribute="centerY" secondItem="iVJ-uc-S1u" secondAttribute="centerY" constant="27" id="9mR-4K-inr"/>
                             <constraint firstItem="WRV-WC-alK" firstAttribute="bottom" secondItem="leP-Ei-wND" secondAttribute="bottom" id="HEf-4C-H5r"/>
                             <constraint firstItem="leP-Ei-wND" firstAttribute="centerX" secondItem="iVJ-uc-S1u" secondAttribute="centerX" id="WEI-fR-aKf"/>
                             <constraint firstItem="leP-Ei-wND" firstAttribute="leading" secondItem="WRV-WC-alK" secondAttribute="leading" id="Wyo-VJ-0wL"/>

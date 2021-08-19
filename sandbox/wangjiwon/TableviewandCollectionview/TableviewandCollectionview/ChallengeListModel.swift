@@ -26,6 +26,17 @@ struct Challenge {
 
 
 
+struct CertificationRecord {
+    var title: String
+    var category: String
+    var challengeCount: Int
+    var nowCount: Int
+    var startDate: String
+    var finishDate: String
+    var description: String
+    var status: ChallengeStatus
+}
+
 class Challenges {
     var arraylist: [Challenge] = []
 
