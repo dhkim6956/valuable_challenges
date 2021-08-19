@@ -1,22 +1,5 @@
 import UIKit
 
-
-
-struct Challenge1 {
-    var title: String
-    var category: String
-    var finishPeriod: Int // 도전 완료? 목표? 기간
-//  var challengeCount: Int // 목표 횟수. (몇회까지 해야 함)
-    var ongoingPeriod: Int // 도전한지 며칠 되었는지
-//  var nowCount: Int // 몇번 시도 했는지.
-    var startDate: String // 시작 일자
-    var finishDate: String // 종료된 일자
-//    var remainedCount: Int // 남은 도전 빼먹기 횟수. 3
-//    var status: ChallengeStatus // 현재 이 도전의 상태.
-}
-
-
-
 struct UserChallenge {
     let title: String                           //도전명
     let color: UIColor                          //도전색
@@ -25,50 +8,50 @@ struct UserChallenge {
     let description: String                     //설명
     let authenticationMethod: String            //인증방법
     let authenticationPeriod: challengePeriod   //인증주기
-    
-    
+
+
     var interval: DateInterval                  //기간
     var todayStatus: challengeStatus            //오늘 도전 상태
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
-    
-    
-    
-    
+
+
+
+
     enum challengeStatus {
         case certified, waiting, failed
     }
-    
+
     enum challengeSort {
         case userMade, normal, serviver
     }
-    
+
     enum challengeCategory {
         case certificate, coding, health, language, reading, etc
     }
-    
+
     enum challengePeriod {
         case everyYear, everyMonth, everyDay, everyMonday, everyTuesday, everyWednesday, everyThursday, everyFriday, everySaturday, everySunday
     }
-    
+
     func getDuration() -> Int {
         return Int(interval.duration / 86400)
     }
-    
+
     func getStartDate(yyyyMMdd: String?) -> String {
         let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
         return formatter.string(from: interval.start)
     }
-    
+
     func getFinishDate(yyyyMMdd: String?) -> String {
         let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
         return formatter.string(from: interval.end)
     }
-    
+
     func getTotalAuthenticationCount() -> Int {
         dueDates.count
     }
-    
+
     func getCategory() -> String {
         switch category {
         case .certificate:
@@ -85,7 +68,7 @@ struct UserChallenge {
             return "기타"
         }
     }
-    
+
     func getDoneAuthenticationCount() -> Int {
         var doneAuthenticationCount = 0
         for dueDate in dueDates {
@@ -95,7 +78,7 @@ struct UserChallenge {
         }
         return doneAuthenticationCount
     }
-    
+
     func getIsHaveToDoToday() -> Bool {
         let calendar = Calendar.current
         let todayInfo = calendar.dateComponents([.weekday], from: Date())
@@ -146,13 +129,13 @@ struct UserChallenge {
             return true
         }
     }
-    
+
     func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
         let customFormatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.timeZone = .current
             formatter.locale = .current
-            
+
             if let customFormat = yyyyMMdd {
                 formatter.dateFormat = customFormat
             } else {
@@ -162,15 +145,18 @@ struct UserChallenge {
         }()
         return customFormatter
     }
-    
+
     struct dueDatesStruct {
         let date: Date
         var dueDateStatus: challengeStatus = .waiting
         var authenticationImage: String = ""
         var authenticationReview: String = ""
     }
-    
-    init(setTitle: String, setColor: UIColor, setSort: challengeSort, setCategory: challengeCategory, setDescription: String, setAuthenticationMethod: String, setAuthenticationPeriod: challengePeriod, setInterval: DateInterval) {
+
+    init(setTitle: String, setColor: UIColor, setSort: challengeSort, setCategory: challengeCategory, setDescription: String, setAuthenticationMethod: String, setAuthenticationPeriod: challengePeriod, setStartDate: Date, setFinishDate: Date) {
+        
+        
+        
         title = setTitle
         color = setColor
         sort = setSort
@@ -178,12 +164,24 @@ struct UserChallenge {
         description = setDescription
         authenticationMethod = setAuthenticationMethod
         authenticationPeriod = setAuthenticationPeriod
-        interval = setInterval
 
         let calendar = Calendar.current
-        let finishDate = setInterval.end
-        var dateForCalc = setInterval.start
-
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        
+        let startDateInfo = calendar.dateComponents([.year, .month, .day], from: setStartDate)
+        let finishDateInfo = calendar.dateComponents([.year, .month, .day], from: setFinishDate)
+        let startDateString = "\(startDateInfo.year!)/\(startDateInfo.month!)/\(startDateInfo.day!) 12:00 AM"
+        let finishDateString = "\(finishDateInfo.year!)/\(finishDateInfo.month!)/\(finishDateInfo.day!) 11:59 PM"
+        
+        let startDate = formatter.date(from: startDateString)!
+        let finishDate = formatter.date(from: finishDateString)!
+        interval = DateInterval(start: startDate, end: finishDate)
+        
+        var dateForCalc = Date(timeInterval: 86399, since: startDate)
         dueDates = []
         while dateForCalc <= finishDate {
             let dateInfo = calendar.dateComponents([.year, .month, .day, .weekday], from: dateForCalc)
@@ -230,9 +228,9 @@ struct UserChallenge {
                     dueDates.append(dueDatesStruct(date: dateForCalc))
                 }
             }
-            
-            
-            
+
+
+
             let tomorrow = Date(timeInterval: 86400, since: dateForCalc)
             dateForCalc = tomorrow
         }
@@ -244,20 +242,70 @@ struct UserChallenge {
     }
 }
 
-var UserChallenges: [UserChallenge] = []
 
 
-let present = Date()
-let future = Date(timeInterval: 8640000, since: present)
-let interval = DateInterval(start: present, end: future)
+let dummyPresent = Date()
+let dummyFuture1 = Date(timeInterval: 86400*30, since: dummyPresent)
+let dummyFuture2 = Date(timeInterval: 86400*365, since: dummyPresent)
+let dummyFuture3 = Date(timeInterval: 86400*100, since: dummyPresent)
 
 
-UserChallenges.append(UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyMonth, setInterval: interval))
+var UserChallenges: [UserChallenge] = [UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1), UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기 ", setColor: #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyMonth, setStartDate: dummyPresent, setFinishDate: dummyFuture2), UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyTuesday, setStartDate: dummyPresent, setFinishDate: dummyFuture3)]
 
-UserChallenges[0].getDoneAuthenticationCount()
-UserChallenges[0].getTotalAuthenticationCount()
-UserChallenges[0].getDuration()
-UserChallenges[0].getStartDate(yyyyMMdd: nil)
-UserChallenges[0].getFinishDate(yyyyMMdd: "yyyy/MM/dd")
-UserChallenges[0].getIsHaveToDoToday()
-UserChallenges[0].getCategory()
+
+
+func updateTodayChallengeStatus() {
+    for (index,eachChallenge) in UserChallenges.enumerated() {
+        switch eachChallenge.authenticationPeriod {
+        case .everyYear:
+            for dueDate in eachChallenge.dueDates {
+                if Date() <= dueDate.date {
+                    if dueDate.dueDateStatus == .certified {
+                        UserChallenges[index].todayStatus = .certified
+                    } else {
+                        UserChallenges[index].todayStatus = .waiting
+                    }
+                    break
+                }
+            }
+        case .everyMonth:
+            for dueDate in eachChallenge.dueDates {
+                if Date() <= dueDate.date {
+                    if dueDate.dueDateStatus == .certified {
+                        UserChallenges[index].todayStatus = .certified
+                    } else {
+                        UserChallenges[index].todayStatus = .waiting
+                    }
+                    break
+                }
+            }
+        default:
+            var isAuthNeededDay = false
+            
+            for dueDate in eachChallenge.dueDates {
+                let calendar = Calendar.current
+                let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+                let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+                
+                if todayInfo.year == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
+                    if dueDate.dueDateStatus == .certified {
+                        UserChallenges[index].todayStatus = .certified
+                    } else {
+                        UserChallenges[index].todayStatus = .waiting
+                    }
+                    isAuthNeededDay = true
+                    break
+                }
+            }
+            if isAuthNeededDay == false {
+                UserChallenges[index].todayStatus = .failed
+            }
+        }
+    }
+}
+
+updateTodayChallengeStatus()
+
+UserChallenges[0].dueDates
+UserChallenges[1].dueDates
+UserChallenges[2].dueDates

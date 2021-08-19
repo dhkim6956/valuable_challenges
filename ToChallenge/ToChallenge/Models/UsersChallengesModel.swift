@@ -161,7 +161,10 @@ import Foundation
 //        var authenticationReview: String = ""
 //    }
 //
-//    init(setTitle: String, setColor: UIColor, setSort: challengeSort, setCategory: challengeCategory, setDescription: String, setAuthenticationMethod: String, setAuthenticationPeriod: challengePeriod, setInterval: DateInterval) {
+//    init(setTitle: String, setColor: UIColor, setSort: challengeSort, setCategory: challengeCategory, setDescription: String, setAuthenticationMethod: String, setAuthenticationPeriod: challengePeriod, setStartDate: Date, setFinishDate: Date) {
+//
+//
+//
 //        title = setTitle
 //        color = setColor
 //        sort = setSort
@@ -169,12 +172,24 @@ import Foundation
 //        description = setDescription
 //        authenticationMethod = setAuthenticationMethod
 //        authenticationPeriod = setAuthenticationPeriod
-//        interval = setInterval
 //
 //        let calendar = Calendar.current
-//        let finishDate = setInterval.end
-//        var dateForCalc = setInterval.start
 //
+//        let formatter = DateFormatter()
+//        formatter.timeZone = .current
+//        formatter.locale = .current
+//        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+//
+//        let startDateInfo = calendar.dateComponents([.year, .month, .day], from: setStartDate)
+//        let finishDateInfo = calendar.dateComponents([.year, .month, .day], from: setFinishDate)
+//        let startDateString = "\(startDateInfo.year!)/\(startDateInfo.month!)/\(startDateInfo.day!) 12:00 AM"
+//        let finishDateString = "\(finishDateInfo.year!)/\(finishDateInfo.month!)/\(finishDateInfo.day!) 11:59 PM"
+//
+//        let startDate = formatter.date(from: startDateString)!
+//        let finishDate = formatter.date(from: finishDateString)!
+//        interval = DateInterval(start: startDate, end: finishDate)
+//
+//        var dateForCalc = Date(timeInterval: 86399, since: startDate)
 //        dueDates = []
 //        while dateForCalc <= finishDate {
 //            let dateInfo = calendar.dateComponents([.year, .month, .day, .weekday], from: dateForCalc)
@@ -239,64 +254,59 @@ import Foundation
 //
 //let dummyPresent = Date()
 //let dummyFuture1 = Date(timeInterval: 86400*30, since: dummyPresent)
-//let dummyInterval1 = DateInterval(start: dummyPresent, end: dummyFuture1)
 //let dummyFuture2 = Date(timeInterval: 86400*365, since: dummyPresent)
-//let dummyInterval2 = DateInterval(start: dummyPresent, end: dummyFuture2)
 //let dummyFuture3 = Date(timeInterval: 86400*100, since: dummyPresent)
-//let dummyInterval3 = DateInterval(start: dummyPresent, end: dummyFuture3)
 //
 //
-//var UserChallenges: [UserChallenge] = [UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setInterval: dummyInterval1), UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기 ", setColor: #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyMonth, setInterval: dummyInterval2), UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setInterval: dummyInterval3)]
+//var UserChallenges: [UserChallenge] = [UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1), UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기 ", setColor: #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyMonth, setStartDate: dummyPresent, setFinishDate: dummyFuture2), UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyTuesday, setStartDate: dummyPresent, setFinishDate: dummyFuture3)]
 //
 //
 //
 //func updateTodayChallengeStatus() {
-//    let calendar = Calendar.current
-//    let todayInfo = calendar.dateComponents([.weekday], from: Date())
-//
 //    for (index,eachChallenge) in UserChallenges.enumerated() {
 //        switch eachChallenge.authenticationPeriod {
 //        case .everyYear:
 //            for dueDate in eachChallenge.dueDates {
-//                var alreadyFind = false
-//                if Date() < dueDate.date && alreadyFind == false {
-//                    if dueDate.dueDateStatus == .certified {
-//                        UserChallenges[index].todayStatus = .certified
-//                    } else {
-//                        eachChallenge.todayStatus = .waiting
-//                    }
-//                    alreadyFind = true
-//                }
-//            }
-//        case .everyMonth:
-//            <#code#>
-//        default:
-//            <#code#>
-//        }
-//    }
-//}
-//
-//func updateTodayChallengeStatus() {
-//    let calendar = Calendar.current
-//    let todayInfo = calendar.dateComponents([.weekday], from: Date())
-//    for index in 0...UserChallenges.count - 1 {
-//
-//        let eachChallenge = UserChallenges[index]
-//
-//        for dueDate in eachChallenge.dueDates {
-//            var alreadyFind = false
-//
-//            if eachChallenge.authenticationPeriod == .everyYear || eachChallenge.authenticationPeriod == .everyMonth {
-//                if Date() <= dueDate.date && alreadyFind == false {
+//                if Date() <= dueDate.date {
 //                    if dueDate.dueDateStatus == .certified {
 //                        UserChallenges[index].todayStatus = .certified
 //                    } else {
 //                        UserChallenges[index].todayStatus = .waiting
 //                    }
-//                    alreadyFind = true
+//                    break
 //                }
-//            } else {
+//            }
+//        case .everyMonth:
+//            for dueDate in eachChallenge.dueDates {
+//                if Date() <= dueDate.date {
+//                    if dueDate.dueDateStatus == .certified {
+//                        UserChallenges[index].todayStatus = .certified
+//                    } else {
+//                        UserChallenges[index].todayStatus = .waiting
+//                    }
+//                    break
+//                }
+//            }
+//        default:
+//            var isAuthNeededDay = false
 //
+//            for dueDate in eachChallenge.dueDates {
+//                let calendar = Calendar.current
+//                let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+//                let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+//
+//                if todayInfo.year == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
+//                    if dueDate.dueDateStatus == .certified {
+//                        UserChallenges[index].todayStatus = .certified
+//                    } else {
+//                        UserChallenges[index].todayStatus = .waiting
+//                    }
+//                    isAuthNeededDay = true
+//                    break
+//                }
+//            }
+//            if isAuthNeededDay == false {
+//                UserChallenges[index].todayStatus = .failed
 //            }
 //        }
 //    }
