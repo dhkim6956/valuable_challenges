@@ -37,8 +37,6 @@ class HomeViewController: UIViewController {
         
     }
     
-    let challengeModel = UsersChallengesModel()
-
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -48,18 +46,19 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return challengeModel.arrayList.count
+        return UserChallenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let mainTableCell = mainTableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         
-        let arrayData = challengeModel.arrayList[indexPath.row]
+        let arrayData = UserChallenges[indexPath.row]
         
-        mainTableCell.progressLabel.text = "\(arrayData.completionDate)/\(arrayData.period)"
+        
+        mainTableCell.progressLabel.text = "/\(arrayData.getDuration())"
         mainTableCell.mainCellTitleLabel.text = arrayData.title
         
-        let perc = Float(Float(arrayData.completionDate) / Float(arrayData.period))
+        let perc = Float(Float(arrayData.getDoneAuthenticationCount()) / Float(arrayData.getTotalAuthenticationCount()))
         
         mainTableCell.progressView.trackColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 224/255, alpha: 1)
         mainTableCell.progressView.progressColor = UIColor.green
