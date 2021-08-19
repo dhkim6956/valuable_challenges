@@ -54,13 +54,9 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
                 cell.layer.cornerRadius = 20
                 cell.contentView.layer.cornerRadius = 20
                 cell.contentView.layer.borderWidth = 0
-                //cell색깔
                 cell.contentView.layer.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9249887572, blue: 0.9593478133, alpha: 1)
-                //셀 테두리
                 cell.contentView.layer.borderColor = .none
-                //폰 배경화면 색
                 cell.backgroundColor = UIColor.white
-                //셀 레이어 그림자색깔
                 cell.layer.shadowColor = UIColor.darkGray
                     .cgColor
                 cell.layer.shadowOffset = CGSize(width: 2, height: 2)
