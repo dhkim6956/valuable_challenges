@@ -18,9 +18,6 @@ struct Challenge1 {
 
 
 struct UserChallenge {
-    
-    
-    
     let title: String                           //도전명
     let color: UIColor                          //도전색
     let sort: challengeSort                     //나만의 도전, 일반 도전, 서바이벌 도전
@@ -31,7 +28,6 @@ struct UserChallenge {
     
     
     var interval: DateInterval                  //기간
-    var duration: Int                           //기간 정수
     var todayStatus: challengeStatus            //오늘 도전 상태
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
@@ -71,6 +67,23 @@ struct UserChallenge {
     
     func getTotalAuthenticationCount() -> Int {
         dueDates.count
+    }
+    
+    func getCategory() -> String {
+        switch category {
+        case .certificate:
+            return "자격증"
+        case .coding:
+            return "코딩"
+        case .health:
+            return "운동"
+        case .language:
+            return "외국어"
+        case .reading:
+            return "독서"
+        default:
+            return "기타"
+        }
     }
     
     func getDoneAuthenticationCount() -> Int {
@@ -166,7 +179,6 @@ struct UserChallenge {
         authenticationMethod = setAuthenticationMethod
         authenticationPeriod = setAuthenticationPeriod
         interval = setInterval
-        duration = Int(setInterval.duration / 86400)
 
         let calendar = Calendar.current
         let finishDate = setInterval.end
@@ -248,3 +260,4 @@ UserChallenges[0].getDuration()
 UserChallenges[0].getStartDate(yyyyMMdd: nil)
 UserChallenges[0].getFinishDate(yyyyMMdd: "yyyy/MM/dd")
 UserChallenges[0].getIsHaveToDoToday()
+UserChallenges[0].getCategory()

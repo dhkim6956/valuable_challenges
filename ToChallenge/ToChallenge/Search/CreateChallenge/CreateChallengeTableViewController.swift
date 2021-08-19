@@ -98,11 +98,13 @@ class CreateChallengeTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         startDateTextField.text = formatter.string(from: sender.date)
+        startDate = sender.date
     }
     @objc func finishDatePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         finishDateTextField.text = formatter.string(from: sender.date)
+        finishDate = sender.date
     }
     
     
@@ -113,6 +115,7 @@ class CreateChallengeTableViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: index1) as? challengeDescriptionTableViewCell {
             let name: String = cell.descriptionTextfield.text!
             print(name)
+            print(startDate)
         }
     }
 }
