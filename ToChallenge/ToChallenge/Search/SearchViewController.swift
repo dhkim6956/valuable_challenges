@@ -9,8 +9,6 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
-    let challengeModel = UsersChallengesModel()
-    
     var data: [String] = []
     var filteredData: [String]!
     
@@ -27,8 +25,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         
         searchBar.delegate = self
-        for list in challengeModel.arrayList {
-            data.append(list.title)
+        for challenge in DefaultChallenges {
+            data.append(challenge.title)
         }
         filteredData = data
         
@@ -91,8 +89,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBAction func survivalChallengeTapped(_ sender: Any) {
         filteredData = []
                 
-        for challenge in challengeModel.arrayList {
-            if challenge.category == .serviver {
+        for challenge in DefaultChallenges {
+            if challenge.sort == .survival {
                 filteredData.append(challenge.title)
             }
         }
@@ -103,8 +101,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBAction func normalChallengeTapped(_ sender: Any) {
         filteredData = []
                 
-        for challenge in challengeModel.arrayList {
-            if challenge.category == .normal {
+        for challenge in DefaultChallenges {
+            if challenge.sort == .normal {
                 filteredData.append(challenge.title)
             }
         }
@@ -116,6 +114,4 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         performSegue(withIdentifier: "createButtonClicked", sender: nil)
         
     }
-    
-    
 }

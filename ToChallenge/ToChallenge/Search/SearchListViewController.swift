@@ -34,8 +34,8 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
         
         tableView.layer.cornerRadius = 10
         
-        let challengeModel = UsersChallengesModel()
-        for list in challengeModel.arrayList {
+        
+        for list in DefaultChallenges {
             data.append(list.title)
         }
         getData()
@@ -74,8 +74,6 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
     
     
     func getData() {
-        let challengeModel = UsersChallengesModel()
-        
         challengeTitle = []
         challengeDescription = []
         challengeType = []
@@ -84,9 +82,9 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
         
         
         for filteredTitle in receivedData {
-            for challenge in challengeModel.arrayList {
+            for challenge in DefaultChallenges {
                 if filteredTitle == challenge.title {
-                    switch challenge.type {
+                    switch challenge.category {
                     case .certificate:
                         challengeType.append("자격증")
                     case .coding:
@@ -97,13 +95,15 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
                         challengeType.append("외국어")
                     case .reading:
                         challengeType.append("독서")
+                    case .etc:
+                        challengeType.append("기타")
                     }
                     
                     
                     
-                    challengeImage.append("challenge_\(challenge.type)")
+                    challengeImage.append("challenge_\(challenge.category)")
                     challengeTitle.append(challenge.title)
-                    challengeDuration.append("\(challenge.period)days")
+                    challengeDuration.append("\(challenge.duration)days")
                     challengeDescription.append("미완성")
                 }
             }
