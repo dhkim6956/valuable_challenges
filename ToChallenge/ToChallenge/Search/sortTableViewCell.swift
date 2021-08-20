@@ -1,17 +1,19 @@
 //
-//  challengeColorTableViewCell.swift
+//  sortTableViewCell.swift
 //  ToChallenge
 //
-//  Created by 김도훈 on 2021/08/17.
+//  Created by 김도훈 on 2021/08/20.
 //
 
 import UIKit
 
-class challengeColorTableViewCell: UITableViewCell {
-    
-    
-    
+class sortTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var sortTitle: UILabel!
+    @IBOutlet weak var sortDescription: UILabel!
+    @IBOutlet weak var sortOutLine: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -9,9 +9,8 @@ import UIKit
 
 class SearchListViewController: UIViewController, UISearchBarDelegate {
     
-    var data: [String] = []
-    
-    var receivedData: [String] = []
+    var unAddedChallenges = DefaultChallenges.filter{$0.challengeAdded == false}
+    var filteredChallenges: [DefaultChallenge]!
     
     var challengeTitle: [String]!
     var challengeDescription: [String]!
@@ -19,6 +18,7 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
     var challengeDuration: [String]!
     var challengeImage: [String]!
     
+    var selectedChallenge: DefaultChallenge? = nil
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -33,15 +33,11 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
         innerSearchBar.delegate = self
         
         tableView.layer.cornerRadius = 10
-        
-        
-        for list in DefaultChallenges {
-            data.append(list.title)
-        }
-        getData()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        unAddedChallenges = DefaultChallenges.filter{$0.challengeAdded == false}
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         reAlign(searchText: searchText)
@@ -58,59 +54,20 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
     }
     
     func reAlign(searchText: String) {
-        receivedData = []
         if searchText == "" {
-            receivedData = data
+            filteredChallenges = unAddedChallenges
         } else {
-            for title in data {
-                if title.lowercased().contains(searchText.lowercased()) {
-                    receivedData.append(title)
-                }
-            }
+            filteredChallenges = unAddedChallenges.filter{$0.title.lowercased().contains(searchText.lowercased())}
         }
-        getData()
         self.challengeTable.reloadData()
     }
     
     
-    func getData() {
-        challengeTitle = []
-        challengeDescription = []
-        challengeType = []
-        challengeDuration = []
-        challengeImage = []
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nextViewController = segue.destination as? CreateChallengeTableViewController else { return }
         
-        
-        for filteredTitle in receivedData {
-            for challenge in DefaultChallenges {
-                if filteredTitle == challenge.title {
-                    switch challenge.category {
-                    case .certificate:
-                        challengeType.append("자격증")
-                    case .coding:
-                        challengeType.append("코딩")
-                    case .health:
-                        challengeType.append("운동")
-                    case .language:
-                        challengeType.append("외국어")
-                    case .reading:
-                        challengeType.append("독서")
-                    case .etc:
-                        challengeType.append("기타")
-                    }
-                    
-                    
-                    
-                    challengeImage.append("challenge_\(challenge.category)")
-                    challengeTitle.append(challenge.title)
-                    challengeDuration.append("\(challenge.duration)days")
-                    challengeDescription.append("미완성")
-                }
-            }
-        }
+        nextViewController.selectedChallenge = self.selectedChallenge
     }
-    
-    
 }
 
 
@@ -118,22 +75,44 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
 
 extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return receivedData.count
+        return filteredChallenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = challengeTable.dequeueReusableCell(withIdentifier: "challengeTableCell") as! challengeTableViewCell
         
         
-        cell.challengeImage.image = UIImage(named: challengeImage[indexPath.row])
-        cell.challengeTitle.attributedText = insertSymbol(textString: challengeTitle[indexPath.row], symbolName: "chevron.forward", symbolColor: .label)
-        cell.challengeDescription.text = challengeDescription[indexPath.row]
-        cell.challengeType.text = challengeType[indexPath.row]
-        cell.challengeDuration.text = challengeDuration[indexPath.row]
+        cell.challengeImage.image = UIImage(named: "challenge_\(filteredChallenges[indexPath.row].category)")
+        cell.challengeTitle.attributedText = insertSymbol(textString: filteredChallenges[indexPath.row].title, symbolName: "chevron.forward", symbolColor: .label)
+        cell.challengeDescription.text = filteredChallenges[indexPath.row].description
+        cell.challengeType.text = {
+            var categoryInString: String = ""
+            switch filteredChallenges[indexPath.row].category {
+            case .certificate:
+                categoryInString = "자격증"
+            case .coding:
+                categoryInString = "코딩"
+            case .health:
+                categoryInString = "운동"
+            case .language:
+                categoryInString = "외국어"
+            case .reading:
+                categoryInString = "독서"
+            case .etc:
+                categoryInString = "기타"
+            }
+            return categoryInString
+        }()
+        cell.challengeDuration.text = "\(filteredChallenges[indexPath.row].duration)days"
         cell.listOutLine.layer.cornerRadius = 10
         
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedChallenge = filteredChallenges[indexPath.row]
+        performSegue(withIdentifier: "challengeSelected", sender: nil)
+    }
 }

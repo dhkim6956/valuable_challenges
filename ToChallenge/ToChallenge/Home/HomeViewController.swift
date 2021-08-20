@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var levelProgressView: CircularProgressView!
     @IBOutlet var objectImageViews: [UIImageView]!
     
+    var ongoingChallenges: [UserChallenge]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,10 @@ class HomeViewController: UIViewController {
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        ongoingChallenges = UserChallenges.filter{$0.progression == .onGoing}
+        mainTableView.reloadData()
+    }
     
 }
 
@@ -46,22 +52,22 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserChallenges.count
+        return ongoingChallenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let mainTableCell = mainTableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         
-        let arrayData = UserChallenges[indexPath.row]
+        let arrayData = ongoingChallenges[indexPath.row]
         
         
-        mainTableCell.progressLabel.text = "/\(arrayData.getDuration())"
+        mainTableCell.progressLabel.text = "\(arrayData.getInProgressDate())/\(arrayData.getEstimatedEndDate())"
         mainTableCell.mainCellTitleLabel.text = arrayData.title
         
         let perc = Float(Float(arrayData.getDoneAuthenticationCount()) / Float(arrayData.getTotalAuthenticationCount()))
         
-        mainTableCell.progressView.trackColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 224/255, alpha: 1)
-        mainTableCell.progressView.progressColor = UIColor.green
+        mainTableCell.progressView.trackColor = arrayData.color.withAlphaComponent(0.3)
+        mainTableCell.progressView.progressColor = arrayData.color
         mainTableCell.progressView.setProgressWithAnimation(duration: 1.0, value: perc)
         
         func animateProgress() {

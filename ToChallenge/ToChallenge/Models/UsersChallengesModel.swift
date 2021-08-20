@@ -16,18 +16,22 @@ struct UserChallenge {
     let description: String                     //설명
     let authenticationMethod: String            //인증방법
     let authenticationPeriod: challengePeriod   //인증주기
-
-
+    
+    var progression: challengeProgression
+    
     var interval: DateInterval                  //기간
-    var todayStatus: challengeStatus            //오늘 도전 상태
+    var todayStatus: authenticationStatus       //오늘 도전 상태
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
 
 
 
+    enum challengeProgression {
+        case waitForStart, onGoing, succeed, failed
+    }
 
-    enum challengeStatus {
-        case certified, waiting, failed
+    enum authenticationStatus {
+        case authenticated, waiting, failed
     }
 
     enum challengeSort {
@@ -41,8 +45,24 @@ struct UserChallenge {
     enum challengePeriod {
         case everyYear, everyMonth, everyDay, everyMonday, everyTuesday, everyWednesday, everyThursday, everyFriday, everySaturday, everySunday
     }
+    
+    func getInProgressDate() -> Int {
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
 
-    func getDuration() -> Int {
+        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
+        let todayDate = formatter.date(from: todayString)!
+        let progressInterval = DateInterval(start: interval.start, end: todayDate)
+        
+        return Int(progressInterval.duration / 86400)
+    }
+
+    func getEstimatedEndDate() -> Int {
         return Int(interval.duration / 86400)
     }
 
@@ -80,7 +100,7 @@ struct UserChallenge {
     func getDoneAuthenticationCount() -> Int {
         var doneAuthenticationCount = 0
         for dueDate in dueDates {
-            if dueDate.dueDateStatus == .certified {
+            if dueDate.dueDateStatus == .authenticated {
                 doneAuthenticationCount += 1
             }
         }
@@ -156,7 +176,7 @@ struct UserChallenge {
 
     struct dueDatesStruct {
         let date: Date
-        var dueDateStatus: challengeStatus = .waiting
+        var dueDateStatus: authenticationStatus = .waiting
         var authenticationImage: String = ""
         var authenticationReview: String = ""
     }
@@ -247,6 +267,11 @@ struct UserChallenge {
         }
         todayStatus = .waiting
         remainTry = 3
+        if Date() < startDate {
+            progression = .waitForStart
+        } else {
+            progression = .onGoing
+        }
     }
 }
 
@@ -276,8 +301,8 @@ func updateTodayChallengeStatus() {
         case .everyYear:
             for dueDate in eachChallenge.dueDates {
                 if Date() <= dueDate.date {
-                    if dueDate.dueDateStatus == .certified {
-                        UserChallenges[index].todayStatus = .certified
+                    if dueDate.dueDateStatus == .authenticated {
+                        UserChallenges[index].todayStatus = .authenticated
                     } else {
                         UserChallenges[index].todayStatus = .waiting
                     }
@@ -287,8 +312,8 @@ func updateTodayChallengeStatus() {
         case .everyMonth:
             for dueDate in eachChallenge.dueDates {
                 if Date() <= dueDate.date {
-                    if dueDate.dueDateStatus == .certified {
-                        UserChallenges[index].todayStatus = .certified
+                    if dueDate.dueDateStatus == .authenticated {
+                        UserChallenges[index].todayStatus = .authenticated
                     } else {
                         UserChallenges[index].todayStatus = .waiting
                     }
@@ -304,8 +329,8 @@ func updateTodayChallengeStatus() {
                 let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
 
                 if todayInfo.year == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
-                    if dueDate.dueDateStatus == .certified {
-                        UserChallenges[index].todayStatus = .certified
+                    if dueDate.dueDateStatus == .authenticated {
+                        UserChallenges[index].todayStatus = .authenticated
                     } else {
                         UserChallenges[index].todayStatus = .waiting
                     }
