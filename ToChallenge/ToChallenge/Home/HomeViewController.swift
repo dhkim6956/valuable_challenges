@@ -61,13 +61,13 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let arrayData = ongoingChallenges[indexPath.row]
         
         
-        mainTableCell.progressLabel.text = "\(arrayData.getInProgressDate())/\(arrayData.getEstimatedEndDate())"
+        mainTableCell.progressLabel.text = "\(manageUserChallenge.getInProgressDate(from: arrayData))/\(manageUserChallenge.getEstimatedEndDate(from: arrayData))"
         mainTableCell.mainCellTitleLabel.text = arrayData.title
         
-        let perc = Float(Float(arrayData.getDoneAuthenticationCount()) / Float(arrayData.getTotalAuthenticationCount()))
+        let perc = Float(Float(manageUserChallenge.getDoneAuthenticationCount(from: arrayData)) / Float(manageUserChallenge.getTotalAuthenticationCount(from: arrayData)))
         
-        mainTableCell.progressView.trackColor = arrayData.color.withAlphaComponent(0.3)
-        mainTableCell.progressView.progressColor = arrayData.color
+        mainTableCell.progressView.trackColor = UIColor(displayP3Red: arrayData.color.redFloat, green: arrayData.color.greenFloat, blue: arrayData.color.blueFloat, alpha: 0.3)
+        mainTableCell.progressView.progressColor = UIColor(displayP3Red: arrayData.color.redFloat, green: arrayData.color.greenFloat, blue: arrayData.color.blueFloat, alpha: 1.0)
         mainTableCell.progressView.setProgressWithAnimation(duration: 1.0, value: perc)
         
         func animateProgress() {

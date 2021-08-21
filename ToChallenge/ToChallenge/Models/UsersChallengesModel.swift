@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-struct UserChallenge {
+struct UserChallenge: Codable {
     let title: String                           //도전명
-    let color: UIColor                          //도전색
+    let color: uiColorInRGB                     //도전색
     let sort: challengeSort                     //나만의 도전, 일반 도전, 서바이벌 도전
     let category: challengeCategory             //자격증, 코딩, 운동, 외국어, 독서, 기타
     let description: String                     //설명
     let authenticationMethod: String            //인증방법
     let authenticationPeriod: challengePeriod   //인증주기
     
-    var progression: challengeProgression
+    var progression: challengeProgression       //진행상태별 구분
     
     var interval: DateInterval                  //기간
     var todayStatus: authenticationStatus       //오늘 도전 상태
@@ -26,159 +26,37 @@ struct UserChallenge {
 
 
 
-    enum challengeProgression {
+    enum challengeProgression: String, Codable {
         case waitForStart, onGoing, succeed, failed
     }
 
-    enum authenticationStatus {
+    enum authenticationStatus: String, Codable {
         case authenticated, waiting, failed
     }
 
-    enum challengeSort {
+    enum challengeSort: String, Codable {
         case userMade, normal, survival
     }
 
-    enum challengeCategory {
+    enum challengeCategory: String, Codable {
         case certificate, coding, health, language, reading, etc
     }
 
-    enum challengePeriod {
+    enum challengePeriod: String, Codable {
         case everyYear, everyMonth, everyDay, everyMonday, everyTuesday, everyWednesday, everyThursday, everyFriday, everySaturday, everySunday
     }
-    
-    func getInProgressDate() -> Int {
-        let calendar = Calendar.current
-        
-        let formatter = DateFormatter()
-        formatter.timeZone = .current
-        formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
 
-        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
-        let todayDate = formatter.date(from: todayString)!
-        let progressInterval = DateInterval(start: interval.start, end: todayDate)
-        
-        return Int(progressInterval.duration / 86400)
-    }
-
-    func getEstimatedEndDate() -> Int {
-        return Int(interval.duration / 86400)
-    }
-
-    func getStartDate(yyyyMMdd: String?) -> String {
-        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
-        return formatter.string(from: interval.start)
-    }
-
-    func getFinishDate(yyyyMMdd: String?) -> String {
-        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
-        return formatter.string(from: interval.end)
-    }
-    
-    func getCategory() -> String {
-        switch category {
-        case .certificate:
-            return "자격증"
-        case .coding:
-            return "코딩"
-        case .health:
-            return "운동"
-        case .language:
-            return "외국어"
-        case .reading:
-            return "독서"
-        default:
-            return "기타"
-        }
-    }
-
-    func getTotalAuthenticationCount() -> Int {
-        dueDates.count
-    }
-
-    func getDoneAuthenticationCount() -> Int {
-        var doneAuthenticationCount = 0
-        for dueDate in dueDates {
-            if dueDate.dueDateStatus == .authenticated {
-                doneAuthenticationCount += 1
-            }
-        }
-        return doneAuthenticationCount
-    }
-
-    func getIsHaveToDoToday() -> Bool {
-        let calendar = Calendar.current
-        let todayInfo = calendar.dateComponents([.weekday], from: Date())
-        switch authenticationPeriod {
-        case .everySunday:
-            if todayInfo.weekday == 1 {
-                return true
-            } else {
-                return false
-            }
-        case .everyMonday:
-            if todayInfo.weekday == 2 {
-                return true
-            } else {
-                return false
-            }
-        case .everyTuesday:
-            if todayInfo.weekday == 3 {
-                return true
-            } else {
-                return false
-            }
-        case .everyWednesday:
-            if todayInfo.weekday == 4 {
-                return true
-            } else {
-                return false
-            }
-        case .everyThursday:
-            if todayInfo.weekday == 5 {
-                return true
-            } else {
-                return false
-            }
-        case .everyFriday:
-            if todayInfo.weekday == 6 {
-                return true
-            } else {
-                return false
-            }
-        case .everySaturday:
-            if todayInfo.weekday == 7 {
-                return true
-            } else {
-                return false
-            }
-        default:
-            return true
-        }
-    }
-
-    func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
-        let customFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.timeZone = .current
-            formatter.locale = .current
-
-            if let customFormat = yyyyMMdd {
-                formatter.dateFormat = customFormat
-            } else {
-                formatter.dateFormat = "yyyy년 MM월 dd일"
-            }
-            return formatter
-        }()
-        return customFormatter
-    }
-
-    struct dueDatesStruct {
+    struct dueDatesStruct: Codable {
         let date: Date
         var dueDateStatus: authenticationStatus = .waiting
         var authenticationImage: String = ""
         var authenticationReview: String = ""
+    }
+    
+    struct uiColorInRGB: Codable{
+        var redFloat: CGFloat
+        var greenFloat: CGFloat
+        var blueFloat: CGFloat
     }
 
     init(setTitle: String, setColor: UIColor, setSort: challengeSort, setCategory: challengeCategory, setDescription: String, setAuthenticationMethod: String, setAuthenticationPeriod: challengePeriod, setStartDate: Date, setFinishDate: Date) {
@@ -186,7 +64,7 @@ struct UserChallenge {
 
 
         title = setTitle
-        color = setColor
+        color = uiColorInRGB(redFloat: setColor.redValue, greenFloat: setColor.greenValue, blueFloat: setColor.blueValue)
         sort = setSort
         category = setCategory
         description = setDescription
@@ -293,54 +171,231 @@ var UserChallenges: [UserChallenge] = {
     return challenges
 }()
 
+class UserChallengeManager {
+    
+    //오늘 - 시작일
+    func getInProgressDate(from: UserChallenge) -> Int {
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
 
+        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
+        let todayDate = formatter.date(from: todayString)!
+        let progressInterval = DateInterval(start: from.interval.start, end: todayDate)
+        
+        return Int(progressInterval.duration / 86400)
+    }
+    
+    //종료일 - 시작일
+    func getEstimatedEndDate(from: UserChallenge) -> Int {
+        return Int(from.interval.duration / 86400)
+    }
 
-func updateTodayChallengeStatus() {
-    for (index,eachChallenge) in UserChallenges.enumerated() {
-        switch eachChallenge.authenticationPeriod {
-        case .everyYear:
-            for dueDate in eachChallenge.dueDates {
-                if Date() <= dueDate.date {
-                    if dueDate.dueDateStatus == .authenticated {
-                        UserChallenges[index].todayStatus = .authenticated
-                    } else {
-                        UserChallenges[index].todayStatus = .waiting
-                    }
-                    break
-                }
+    //시작일
+    func getStartDate(from: UserChallenge, yyyyMMdd: String?) -> String {
+        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
+        return formatter.string(from: from.interval.start)
+    }
+
+    //종료일
+    func getFinishDate(from: UserChallenge, yyyyMMdd: String?) -> String {
+        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
+        return formatter.string(from: from.interval.end)
+    }
+    
+    //카테고리
+    func getCategory(from: UserChallenge) -> String {
+        switch from.category {
+        case .certificate:
+            return "자격증"
+        case .coding:
+            return "코딩"
+        case .health:
+            return "운동"
+        case .language:
+            return "외국어"
+        case .reading:
+            return "독서"
+        default:
+            return "기타"
+        }
+    }
+
+    //총 필요 인증 횟수
+    func getTotalAuthenticationCount(from: UserChallenge) -> Int {
+        from.dueDates.count
+    }
+
+    //총 인증 횟수
+    func getDoneAuthenticationCount(from: UserChallenge) -> Int {
+        var doneAuthenticationCount = 0
+        for dueDate in from.dueDates {
+            if dueDate.dueDateStatus == .authenticated {
+                doneAuthenticationCount += 1
             }
-        case .everyMonth:
-            for dueDate in eachChallenge.dueDates {
-                if Date() <= dueDate.date {
-                    if dueDate.dueDateStatus == .authenticated {
-                        UserChallenges[index].todayStatus = .authenticated
-                    } else {
-                        UserChallenges[index].todayStatus = .waiting
-                    }
-                    break
-                }
+        }
+        return doneAuthenticationCount
+    }
+
+    //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (화면표시용)
+    func getIsHaveToDoToday(from: UserChallenge) -> Bool {
+        let calendar = Calendar.current
+        let todayInfo = calendar.dateComponents([.weekday], from: Date())
+        switch from.authenticationPeriod {
+        case .everySunday:
+            if todayInfo.weekday == 1 {
+                return true
+            } else {
+                return false
+            }
+        case .everyMonday:
+            if todayInfo.weekday == 2 {
+                return true
+            } else {
+                return false
+            }
+        case .everyTuesday:
+            if todayInfo.weekday == 3 {
+                return true
+            } else {
+                return false
+            }
+        case .everyWednesday:
+            if todayInfo.weekday == 4 {
+                return true
+            } else {
+                return false
+            }
+        case .everyThursday:
+            if todayInfo.weekday == 5 {
+                return true
+            } else {
+                return false
+            }
+        case .everyFriday:
+            if todayInfo.weekday == 6 {
+                return true
+            } else {
+                return false
+            }
+        case .everySaturday:
+            if todayInfo.weekday == 7 {
+                return true
+            } else {
+                return false
             }
         default:
-            var isAuthNeededDay = false
+            return true
+        }
+    }
 
-            for dueDate in eachChallenge.dueDates {
-                let calendar = Calendar.current
-                let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-                let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+    //타입 Date <-> String
+    func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
+        let customFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.timeZone = .current
+            formatter.locale = .current
 
-                if todayInfo.year == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
-                    if dueDate.dueDateStatus == .authenticated {
-                        UserChallenges[index].todayStatus = .authenticated
-                    } else {
-                        UserChallenges[index].todayStatus = .waiting
-                    }
-                    isAuthNeededDay = true
-                    break
-                }
+            if let customFormat = yyyyMMdd {
+                formatter.dateFormat = customFormat
+            } else {
+                formatter.dateFormat = "yyyy년 MM월 dd일"
             }
-            if isAuthNeededDay == false {
-                UserChallenges[index].todayStatus = .failed
+            return formatter
+        }()
+        return customFormatter
+    }
+    
+    //
+    func updateTodayChallengeStatus() {
+        for (index,eachChallenge) in UserChallenges.enumerated() {
+            switch eachChallenge.authenticationPeriod {
+            case .everyYear:
+                for dueDate in eachChallenge.dueDates {
+                    if Date() <= dueDate.date {
+                        if dueDate.dueDateStatus == .authenticated {
+                            UserChallenges[index].todayStatus = .authenticated
+                        } else {
+                            UserChallenges[index].todayStatus = .waiting
+                        }
+                        break
+                    }
+                }
+            case .everyMonth:
+                for dueDate in eachChallenge.dueDates {
+                    if Date() <= dueDate.date {
+                        if dueDate.dueDateStatus == .authenticated {
+                            UserChallenges[index].todayStatus = .authenticated
+                        } else {
+                            UserChallenges[index].todayStatus = .waiting
+                        }
+                        break
+                    }
+                }
+            default:
+                var isAuthNeededDay = false
+
+                for dueDate in eachChallenge.dueDates {
+                    let calendar = Calendar.current
+                    let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+                    let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+
+                    if todayInfo.year == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
+                        if dueDate.dueDateStatus == .authenticated {
+                            UserChallenges[index].todayStatus = .authenticated
+                        } else {
+                            UserChallenges[index].todayStatus = .waiting
+                        }
+                        isAuthNeededDay = true
+                        break
+                    }
+                }
+                if isAuthNeededDay == false {
+                    UserChallenges[index].todayStatus = .failed
+                }
             }
         }
     }
+    
+    func saveUserData() {
+        let encoder = JSONEncoder()
+        
+        guard let result = try? encoder.encode(UserChallenges) else { return }
+        
+        let homepath = NSHomeDirectory()
+        var url = URL(fileURLWithPath: homepath)
+        
+        url.appendPathComponent("Documents/UserChallenges.json")
+        
+        _ = try! result.write(to: url)
+        
+    }
+    
+    func loadUserData() {
+        let homepath = NSHomeDirectory()
+        var url = URL(fileURLWithPath: homepath)
+        
+        url.appendPathComponent("Documents/UserChallenges.json")
+        
+        guard let data = try? Data(contentsOf: url) else { return }
+        let result = try! JSONDecoder().decode([UserChallenge].self, from: data)
+        
+        UserChallenges = result
+    }
+}
+
+let manageUserChallenge = UserChallengeManager.init()
+
+
+
+
+extension UIColor {
+    var redValue: CGFloat{ return CIColor(color: self).red }
+    var greenValue: CGFloat{ return CIColor(color: self).green }
+    var blueValue: CGFloat{ return CIColor(color: self).blue }
+    var alphaValue: CGFloat{ return CIColor(color: self).alpha }
 }

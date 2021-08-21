@@ -16,6 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <color key="barTintColor" red="0.97248452900000004" green="0.97259706260000001" blue="0.97243398430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FAx-nb-3tM">
                                 <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,23 +79,52 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-B5-eiG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
-                                <color key="barTintColor" red="0.97248452900000004" green="0.97259706260000001" blue="0.97243398430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dit-Dz-2rF">
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mA-h4-fY7">
+                                <rect key="frame" x="52" y="343" width="310.5" height="209"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="필터링 함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgb-Ve-8yQ">
+                                        <rect key="frame" x="28" y="25" width="64" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSl-ck-PN1">
+                                        <rect key="frame" x="228" y="20" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="dit-Dz-2rF" firstAttribute="bottom" secondItem="FAx-nb-3tM" secondAttribute="bottom" id="0sM-WO-b75"/>
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="top" secondItem="QPd-B5-eiG" secondAttribute="bottom" id="5t8-QE-hCM"/>
+                            <constraint firstItem="6mA-h4-fY7" firstAttribute="centerY" secondItem="dit-Dz-2rF" secondAttribute="centerY" id="88a-Qy-asK"/>
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="9Lq-fT-8VH"/>
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="L0s-nn-lfa"/>
+                            <constraint firstItem="6mA-h4-fY7" firstAttribute="centerX" secondItem="dit-Dz-2rF" secondAttribute="centerX" id="P4A-eQ-cBJ"/>
+                            <constraint firstItem="dit-Dz-2rF" firstAttribute="leading" secondItem="FAx-nb-3tM" secondAttribute="leading" id="Q8z-0g-bvg"/>
+                            <constraint firstItem="6mA-h4-fY7" firstAttribute="width" secondItem="dit-Dz-2rF" secondAttribute="width" multiplier="3:4" id="SeR-WP-P4x"/>
                             <constraint firstItem="QPd-B5-eiG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Vm0-I8-zPU"/>
+                            <constraint firstItem="dit-Dz-2rF" firstAttribute="top" secondItem="FAx-nb-3tM" secondAttribute="top" id="Y8N-o6-XFD"/>
                             <constraint firstItem="QPd-B5-eiG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="iQC-TP-hA5"/>
+                            <constraint firstItem="dit-Dz-2rF" firstAttribute="trailing" secondItem="FAx-nb-3tM" secondAttribute="trailing" id="j4P-cS-Rba"/>
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="qE4-TI-cOS"/>
                             <constraint firstItem="QPd-B5-eiG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yF6-Z5-Ps6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="dit-Dz-2rF"/>
+                                <exclude reference="6mA-h4-fY7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="도전 찾기" id="VNi-le-RWx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -764,13 +798,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GKG-Ib-EQO"/>
+        <segue reference="ITW-sx-X0b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="challenge_certificate" width="640" height="640"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

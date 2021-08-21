@@ -97,6 +97,7 @@ class CreateChallengeTableViewController: UITableViewController {
         
         categoryTextField.addTarget(self, action: #selector(categoryValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
         
+        
         if let selectedChallengeInfo = selectedChallenge {
             titleTextField.text = selectedChallengeInfo.title
             titleTextField.isUserInteractionEnabled = false

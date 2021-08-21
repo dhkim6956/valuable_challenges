@@ -122,6 +122,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             default:
                 performSegue(withIdentifier: "createButtonClicked", sender: nil)
             }
+        } else {
+            manageUserChallenge.saveUserData()
         }
         
     }
