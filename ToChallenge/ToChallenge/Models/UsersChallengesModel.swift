@@ -24,6 +24,147 @@ struct UserChallenge: Codable {
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
 
+    
+    //오늘 - 시작일
+    func getInProgressDate() -> Int {
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+
+        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
+        let todayDate = formatter.date(from: todayString)!
+        let progressInterval = DateInterval(start: interval.start, end: todayDate)
+        
+        return Int(progressInterval.duration / 86400)
+    }
+    
+    //종료일 - 시작일
+    func getEstimatedEndDate() -> Int {
+        return Int(interval.duration / 86400)
+    }
+
+    //시작일
+    func getStartDate(yyyyMMdd: String?) -> String {
+        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
+        return formatter.string(from: interval.start)
+    }
+
+    //종료일
+    func getFinishDate(yyyyMMdd: String?) -> String {
+        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
+        return formatter.string(from: interval.end)
+    }
+    
+    //카테고리
+    func getCategory() -> String {
+        switch category {
+        case .certificate:
+            return "자격증"
+        case .coding:
+            return "코딩"
+        case .health:
+            return "운동"
+        case .language:
+            return "외국어"
+        case .reading:
+            return "독서"
+        default:
+            return "기타"
+        }
+    }
+
+    //총 필요 인증 횟수
+    func getTotalAuthenticationCount() -> Int {
+        dueDates.count
+    }
+
+    //총 인증 횟수
+    func getDoneAuthenticationCount() -> Int {
+        var doneAuthenticationCount = 0
+        for dueDate in dueDates {
+            if dueDate.dueDateStatus == .authenticated {
+                doneAuthenticationCount += 1
+            }
+        }
+        return doneAuthenticationCount
+    }
+
+    //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (화면표시용)
+    func getIsHaveToDoToday() -> Bool {
+        let calendar = Calendar.current
+        let todayInfo = calendar.dateComponents([.weekday], from: Date())
+        switch authenticationPeriod {
+        case .everySunday:
+            if todayInfo.weekday == 1 {
+                return true
+            } else {
+                return false
+            }
+        case .everyMonday:
+            if todayInfo.weekday == 2 {
+                return true
+            } else {
+                return false
+            }
+        case .everyTuesday:
+            if todayInfo.weekday == 3 {
+                return true
+            } else {
+                return false
+            }
+        case .everyWednesday:
+            if todayInfo.weekday == 4 {
+                return true
+            } else {
+                return false
+            }
+        case .everyThursday:
+            if todayInfo.weekday == 5 {
+                return true
+            } else {
+                return false
+            }
+        case .everyFriday:
+            if todayInfo.weekday == 6 {
+                return true
+            } else {
+                return false
+            }
+        case .everySaturday:
+            if todayInfo.weekday == 7 {
+                return true
+            } else {
+                return false
+            }
+        default:
+            return true
+        }
+    }
+    
+    func getColor() -> UIColor {
+        return UIColor(displayP3Red: color.redFloat, green: color.greenFloat, blue: color.blueFloat, alpha: 1.0)
+    }
+
+    //타입 Date <-> String
+    func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
+        let customFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.timeZone = .current
+            formatter.locale = .current
+
+            if let customFormat = yyyyMMdd {
+                formatter.dateFormat = customFormat
+            } else {
+                formatter.dateFormat = "yyyy년 MM월 dd일"
+            }
+            return formatter
+        }()
+        return customFormatter
+    }
 
 
     enum challengeProgression: String, Codable {
@@ -173,142 +314,6 @@ var UserChallenges: [UserChallenge] = {
 
 class UserChallengeManager {
     
-    //오늘 - 시작일
-    func getInProgressDate(from: UserChallenge) -> Int {
-        let calendar = Calendar.current
-        
-        let formatter = DateFormatter()
-        formatter.timeZone = .current
-        formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
-
-        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
-        let todayDate = formatter.date(from: todayString)!
-        let progressInterval = DateInterval(start: from.interval.start, end: todayDate)
-        
-        return Int(progressInterval.duration / 86400)
-    }
-    
-    //종료일 - 시작일
-    func getEstimatedEndDate(from: UserChallenge) -> Int {
-        return Int(from.interval.duration / 86400)
-    }
-
-    //시작일
-    func getStartDate(from: UserChallenge, yyyyMMdd: String?) -> String {
-        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
-        return formatter.string(from: from.interval.start)
-    }
-
-    //종료일
-    func getFinishDate(from: UserChallenge, yyyyMMdd: String?) -> String {
-        let formatter = customDateFormat(yyyyMMdd: yyyyMMdd)
-        return formatter.string(from: from.interval.end)
-    }
-    
-    //카테고리
-    func getCategory(from: UserChallenge) -> String {
-        switch from.category {
-        case .certificate:
-            return "자격증"
-        case .coding:
-            return "코딩"
-        case .health:
-            return "운동"
-        case .language:
-            return "외국어"
-        case .reading:
-            return "독서"
-        default:
-            return "기타"
-        }
-    }
-
-    //총 필요 인증 횟수
-    func getTotalAuthenticationCount(from: UserChallenge) -> Int {
-        from.dueDates.count
-    }
-
-    //총 인증 횟수
-    func getDoneAuthenticationCount(from: UserChallenge) -> Int {
-        var doneAuthenticationCount = 0
-        for dueDate in from.dueDates {
-            if dueDate.dueDateStatus == .authenticated {
-                doneAuthenticationCount += 1
-            }
-        }
-        return doneAuthenticationCount
-    }
-
-    //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (화면표시용)
-    func getIsHaveToDoToday(from: UserChallenge) -> Bool {
-        let calendar = Calendar.current
-        let todayInfo = calendar.dateComponents([.weekday], from: Date())
-        switch from.authenticationPeriod {
-        case .everySunday:
-            if todayInfo.weekday == 1 {
-                return true
-            } else {
-                return false
-            }
-        case .everyMonday:
-            if todayInfo.weekday == 2 {
-                return true
-            } else {
-                return false
-            }
-        case .everyTuesday:
-            if todayInfo.weekday == 3 {
-                return true
-            } else {
-                return false
-            }
-        case .everyWednesday:
-            if todayInfo.weekday == 4 {
-                return true
-            } else {
-                return false
-            }
-        case .everyThursday:
-            if todayInfo.weekday == 5 {
-                return true
-            } else {
-                return false
-            }
-        case .everyFriday:
-            if todayInfo.weekday == 6 {
-                return true
-            } else {
-                return false
-            }
-        case .everySaturday:
-            if todayInfo.weekday == 7 {
-                return true
-            } else {
-                return false
-            }
-        default:
-            return true
-        }
-    }
-
-    //타입 Date <-> String
-    func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
-        let customFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.timeZone = .current
-            formatter.locale = .current
-
-            if let customFormat = yyyyMMdd {
-                formatter.dateFormat = customFormat
-            } else {
-                formatter.dateFormat = "yyyy년 MM월 dd일"
-            }
-            return formatter
-        }()
-        return customFormatter
-    }
     
     //
     func updateTodayChallengeStatus() {

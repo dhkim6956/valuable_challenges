@@ -11,6 +11,8 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
     
     var unAddedChallenges = DefaultChallenges.filter{$0.challengeAdded == false}
     var filteredChallenges: [DefaultChallenge]!
+    var selectedChallenges: [DefaultChallenge]!
+
     
     var challengeTitle: [String]!
     var challengeDescription: [String]!
@@ -55,9 +57,9 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
     
     func reAlign(searchText: String) {
         if searchText == "" {
-            filteredChallenges = unAddedChallenges
+            selectedChallenges = unAddedChallenges
         } else {
-            filteredChallenges = unAddedChallenges.filter{$0.title.lowercased().contains(searchText.lowercased())}
+            selectedChallenges = unAddedChallenges.filter{$0.title.lowercased().contains(searchText.lowercased())}
         }
         self.challengeTable.reloadData()
     }
@@ -75,19 +77,19 @@ class SearchListViewController: UIViewController, UISearchBarDelegate {
 
 extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredChallenges.count
+        return selectedChallenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = challengeTable.dequeueReusableCell(withIdentifier: "challengeTableCell") as! challengeTableViewCell
         
         
-        cell.challengeImage.image = UIImage(named: "challenge_\(filteredChallenges[indexPath.row].category)")
-        cell.challengeTitle.attributedText = insertSymbol(textString: filteredChallenges[indexPath.row].title, symbolName: "chevron.forward", symbolColor: .label)
-        cell.challengeDescription.text = filteredChallenges[indexPath.row].description
+        cell.challengeImage.image = UIImage(named: "challenge_\(selectedChallenges[indexPath.row].category)")
+        cell.challengeTitle.attributedText = insertSymbol(textString: selectedChallenges[indexPath.row].title, symbolName: "chevron.forward", symbolColor: .label)
+        cell.challengeDescription.text = selectedChallenges[indexPath.row].description
         cell.challengeType.text = {
             var categoryInString: String = ""
-            switch filteredChallenges[indexPath.row].category {
+            switch selectedChallenges[indexPath.row].category {
             case .certificate:
                 categoryInString = "자격증"
             case .coding:
@@ -103,7 +105,7 @@ extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return categoryInString
         }()
-        cell.challengeDuration.text = "\(filteredChallenges[indexPath.row].duration)days"
+        cell.challengeDuration.text = "\(selectedChallenges[indexPath.row].duration)days"
         cell.listOutLine.layer.cornerRadius = 10
         
         
@@ -112,7 +114,7 @@ extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedChallenge = filteredChallenges[indexPath.row]
+        selectedChallenge = selectedChallenges[indexPath.row]
         performSegue(withIdentifier: "challengeSelected", sender: nil)
     }
 }

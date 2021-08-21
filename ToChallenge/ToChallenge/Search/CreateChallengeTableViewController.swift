@@ -39,12 +39,12 @@ class CreateChallengeTableViewController: UITableViewController {
     @IBOutlet weak var authenticationMethodTextField: UITextField!
     
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var categoryTextField: PickerUITextField!
     @IBOutlet weak var durationTextField: UITextField!
-    @IBOutlet weak var periodTextField: UITextField!
+    @IBOutlet weak var periodTextField: PickerUITextField!
     
-    @IBOutlet weak var startDateTextField: UITextField!
-    @IBOutlet weak var finishDateTextField: UITextField!
+    @IBOutlet weak var startDateTextField: PickerUITextField!
+    @IBOutlet weak var finishDateTextField: PickerUITextField!
     
     @IBOutlet weak var colorPickerView: UIColorWell!
     
@@ -355,3 +355,4 @@ extension CreateChallengeTableViewController: UIPickerViewDataSource, UIPickerVi
         }
     }
 }
+
