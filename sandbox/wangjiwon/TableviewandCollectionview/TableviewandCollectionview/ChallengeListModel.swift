@@ -53,7 +53,7 @@ class Challenges {
         arraylist.append(Challenge(title: "필기+실기시험 준비", category: "자격증", finishPeriod: 45, ongoingPeriod: 45, startDate: "2020.01.01", finishDate: "2020.02.14", status: .finished))
         arraylist.append(Challenge(title: "필기시험 4주 준비", category: "자격증", finishPeriod: 30, ongoingPeriod: 30, startDate: "2021.05.01", finishDate: "2021.05.30", status: .finished))
         arraylist.append(Challenge(title: "다이어트 30일", category: "운동", finishPeriod: 30, ongoingPeriod: 30, startDate: "2021.06.01", finishDate: "2021.06.30", status: .finished))
-        arraylist.append(Challenge(title: "아침 7시 기상하기", category: "자기계발", finishPeriod: 30, ongoingPeriod: 3, startDate: "2021.01.01", finishDate: "2021.01.01", status: .failed))
+        arraylist.append(Challenge(title: "아침 7시 기상하기", category: "자기계발", finishPeriod: 30, ongoingPeriod: 3, startDate: "2021.01.01", finishDate: "2021.01.03", status: .failed))
 
     }
 }

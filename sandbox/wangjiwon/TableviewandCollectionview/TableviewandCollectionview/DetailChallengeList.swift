@@ -10,11 +10,14 @@ import UIKit
 
 class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
  
+    @IBOutlet weak var detailChallengeView: UICollectionView!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        detailChallengeView.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
+    
     }
     
     
@@ -38,13 +41,14 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailChallengeCell", for: indexPath) as! DetailChallengeCell
             
             cell.titleLabel?.text = certificationRecord[indexPath.item].title
-            cell.descriptionLabel?.text = certificationRecord[indexPath.item].description
+            cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
             cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
             cell.ongoingPeriodLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일"
             cell.percentLabel?.text = "\(floor((Float(Float(certificationRecord[indexPath.item].nowCount) / (Float(certificationRecord[indexPath.item].challengeCount)))) * 100))%"
@@ -54,7 +58,7 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             cell.layer.cornerRadius = 20
             cell.contentView.layer.cornerRadius = 20
             cell.contentView.layer.borderWidth = 0
-            cell.contentView.layer.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9249887572, blue: 0.9593478133, alpha: 1)
+            cell.contentView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             cell.contentView.layer.borderColor = .none
             cell.backgroundColor = UIColor.white
             cell.layer.shadowColor = UIColor.darkGray
@@ -75,13 +79,13 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             
             return cell
             
-        } else  {
+        } else if indexPath.section == 1 {
         
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailChallengeCell2", for: indexPath) as! DetailChallengeCell2
             
             cell.dateLabel?.text = ("yyyy-MM-dd".stringFromDate())
             cell.titleLabel?.text = ("HH:mm:ss".stringFromDate())
-            cell.certificationImage?.image = #imageLiteral(resourceName: "스크린샷 2021-08-17 12.30.04.png")
+            cell.certificationImage = .none
             cell.titleLabel?.text = certificationRecord[indexPath.item].title
             cell.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
             cell.recordLabel?.text = "오늘은 ~~을 했다."
@@ -90,7 +94,7 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             cell.layer.cornerRadius = 20
             cell.contentView.layer.cornerRadius = 20
             cell.contentView.layer.borderWidth = 0
-            cell.contentView.layer.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9249887572, blue: 0.9593478133, alpha: 1)
+            cell.contentView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             cell.contentView.layer.borderColor = .none
             cell.backgroundColor = UIColor.white
             cell.layer.shadowColor = UIColor.darkGray
@@ -106,14 +110,14 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             return cell
             
         }
+        return UICollectionViewCell()
+    
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-    performSegue(withIdentifier: "GoDetailChallengeList", sender: self)
-        
-        }
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 30, right: 10)
     }
@@ -125,9 +129,7 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         return 15
     }
     
-    // 셀사이의 간격
-
-
+  
 }
 
 

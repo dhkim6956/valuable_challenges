@@ -47,6 +47,7 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
                     
                 //소수점에 0이 붙음
                 cell.percentLabel?.text = "\(floor((Float(Float(challenges.arraylist[indexPath.item].ongoingPeriod) / (Float(challenges.arraylist[indexPath.item].finishPeriod)))) * 100))%"
+                //format
                 cell.startDateLabel?.text = challenges.arraylist[indexPath.item].startDate
                 cell.finishDateLabel?.text = challenges.arraylist[indexPath.item].finishDate
                 
@@ -194,6 +195,12 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             return header
         
         }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+        performSegue(withIdentifier: "GoDetailChallengeList", sender: self)
+        
+        }
+    
     }
 
 
@@ -204,6 +211,10 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             let topBorderLine = CALayer()
             topBorderLine.backgroundColor = color.cgColor
             topBorderLine.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
+            
+            let topBottomBorderLine = CALayer()
+            topBottomBorderLine.backgroundColor = color.cgColor
+            topBottomBorderLine.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
             
             self.layer.addSublayer(topBorderLine)
         }

@@ -10,7 +10,6 @@ import UIKit
 
 class DetailChallengeCell2: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var certificationImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
