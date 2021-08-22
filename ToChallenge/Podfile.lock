@@ -1,0 +1,20 @@
+PODS:
+  - FSCalendar (2.8.2)
+  - Toast-Swift (5.0.1)
+
+DEPENDENCIES:
+  - FSCalendar
+  - Toast-Swift (~> 5.0.1)
+
+SPEC REPOS:
+  trunk:
+    - FSCalendar
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+
+PODFILE CHECKSUM: d1f7ba0b3c9e6c7da6866943e8fa6a3ea3171ca9
+
+COCOAPODS: 1.10.2
