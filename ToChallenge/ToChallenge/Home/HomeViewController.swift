@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
-    @IBOutlet weak var levelProgressView: LevelCircularProgressView!
+    @IBOutlet weak var levelProgressView: CircularProgressView!
     
     var ongoingChallenges: [UserChallenge]!
     
@@ -24,19 +24,17 @@ class HomeViewController: UIViewController {
         ongoingChallenges = UserChallenges.filter{$0.progression == .onGoing}
         mainTableView.reloadData()
     }
-    override func viewWillLayoutSubviews() {
-        levelProgressView.frameSize = self.view.safeAreaLayoutGuide.layoutFrame.height * 2 / 5
-        levelProgressView.createCircularPath()
-        levelProgressView.trackColor = UIColor(displayP3Red: 222/255, green: 234/255, blue: 224/255, alpha: 1)
-        levelProgressView.progressColor = UIColor.systemBlue
-        levelProgressView.setProgressWithAnimation(duration: 1.0, value: 0.3)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        levelProgressView.startCircularProgress(trackColor: UIColor(displayP3Red: 222/255, green: 234/255, blue: 224/255, alpha: 1), progressColor: UIColor.systemBlue, duration: 1.0, percentage: 0.3)
     }
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110.0;//Choose your custom row height
+        return 110.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,11 +52,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         let perc = Float(Float(arrayData.getDoneAuthenticationCount()) / Float(arrayData.getTotalAuthenticationCount()))
         
-        mainTableCell.progressView.trackColor = arrayData.getColor().withAlphaComponent(0.3)
-        mainTableCell.progressView.progressColor = arrayData.getColor()
-        mainTableCell.progressView.setProgressWithAnimation(duration: 1.0, value: perc)
+        mainTableCell.progressView.startCircularProgress(trackColor: arrayData.getColor().withAlphaComponent(0.3), progressColor: arrayData.getColor(), duration: 1.0, percentage: perc)
+        
         
         mainTableCell.mainCellLayer.layer.cornerRadius = 10
+        
+        mainTableCell.mainCellLayer.layer.shadowOpacity = 0.3
+        mainTableCell.mainCellLayer.layer.shadowOffset = CGSize(width: 3, height: 3)
+        mainTableCell.mainCellLayer.layer.shadowRadius = 3
+        mainTableCell.mainCellLayer.layer.masksToBounds = false
         
         return mainTableCell
     }
