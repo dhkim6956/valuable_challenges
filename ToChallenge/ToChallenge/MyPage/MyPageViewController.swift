@@ -100,7 +100,4 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionMenuArray[section]
     }
-    
-    
-    
-    }
+}

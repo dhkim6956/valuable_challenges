@@ -109,8 +109,8 @@ class HistoryChallengeList: UIViewController, UITableViewDelegate, UITableViewDa
         cell.layout.layer.cornerRadius = 20
         cell.layout.layer.shadowColor = UIColor.darkGray
             .cgColor
-        cell.layout.layer.shadowOpacity = 1
-        cell.layout.layer.shadowOffset = CGSize(width: 2, height: 2)
+        cell.layout.layer.shadowOpacity = 0.5
+        cell.layout.layer.shadowOffset = CGSize(width: 5, height: 5)
         cell.layout.layer.shadowRadius = 2
         cell.layout.layer.masksToBounds = false
         return cell

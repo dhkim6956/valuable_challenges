@@ -57,6 +57,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         mainTableCell.mainCellLayer.layer.cornerRadius = 10
         
+        mainTableCell.mainCellLayer.layer.shadowOpacity = 0.3
+        mainTableCell.mainCellLayer.layer.shadowOffset = CGSize(width: 3, height: 3)
+        mainTableCell.mainCellLayer.layer.shadowRadius = 3
+        mainTableCell.mainCellLayer.layer.masksToBounds = false
+        
         return mainTableCell
     }
 }

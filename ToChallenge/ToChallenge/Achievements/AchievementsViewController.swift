@@ -36,14 +36,14 @@ extension AchievementsViewController: UICollectionViewDataSource, UICollectionVi
         cell.collectImage.image = UIImage(named: collectModel.arrayList[indexPath.row].imgTitle)
         cell.collectLabel.text = collectModel.arrayList[indexPath.row].title
         
-
-        cell.layer.cornerRadius = 10
-        cell.layer.masksToBounds = true
-        cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        cell.layer.shadowRadius = 6.0
-        cell.layer.shadowOpacity = 1.0
+        cell.collectLayout.layer.cornerRadius = 10
+        cell.collectLayout.layer.masksToBounds = true
         
+        cell.layer.masksToBounds = false
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowOpacity = 0.5
         return cell
     }
     
@@ -55,5 +55,6 @@ extension AchievementsViewController: UICollectionViewDataSource, UICollectionVi
 class CollectCell: UICollectionViewCell {
     @IBOutlet weak var collectImage: UIImageView!
     @IBOutlet weak var collectLabel: UILabel!
+    @IBOutlet weak var collectLayout: UIView!
     
 }

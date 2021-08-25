@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -76,6 +77,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         unAddedChallenges = DefaultChallenges.filter{$0.challengeAdded == false}
     }
     
@@ -93,6 +95,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func reAlign(searchText: String) {
+        if filteredChallenges == nil {
+            filterSwitch.isOn = false
+        }
         switch filterSwitch.isOn {
         case true:
             if searchText == "" {
@@ -156,6 +161,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             }
             cell.sortTitle.attributedText = insertSymbol(textString: eachText, symbolName: symbolString, symbolColor: UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0))
             cell.sortOutLine.layer.cornerRadius = 10
+            
+            cell.sortOutLine.layer.shadowOpacity = 0.3
+            cell.sortOutLine.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.sortOutLine.layer.shadowRadius = 3
+            cell.sortOutLine.layer.masksToBounds = false
             return cell
         default :
             let cell = sortTable.dequeueReusableCell(withIdentifier: "sortTableCell") as! sortTableViewCell
@@ -218,98 +228,102 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     @IBAction func filterApplyButtonTapped(_ sender: Any) {
-        for filterView in filterViews {
-            filterView.isHidden = true
-        }
-        self.view.endEditing(true)
-        
-        var categoryFilteredChallenges: [DefaultChallenge]
-        
-        if searchCategoryTextField.text == "전부" || searchCategoryTextField.text == "" {
-            categoryFilteredChallenges = unAddedChallenges
+        if selectedAtLeast - selectedAtMost > 1 {
+            self.view.makeToast("최대 기간을 최소 기간보다 길게 설정하세요", position: .top, image: UIImage(named: "character1"))
         } else {
-            categoryFilteredChallenges = unAddedChallenges.filter{$0.category == {
-                switch searchCategoryTextField.text {
-                case "자격증":
-                    return .certificate
-                case "코딩":
-                    return .coding
-                case "운동":
-                    return .health
-                case "외국어":
-                    return .language
-                case "독서":
-                    return .reading
-                default:
-                    return .etc
-                }
-            }()}
+            for filterView in filterViews {
+                filterView.isHidden = true
+            }
+            self.view.endEditing(true)
+            
+            var categoryFilteredChallenges: [DefaultChallenge]
+            
+            if searchCategoryTextField.text == "전부" || searchCategoryTextField.text == "" {
+                categoryFilteredChallenges = unAddedChallenges
+            } else {
+                categoryFilteredChallenges = unAddedChallenges.filter{$0.category == {
+                    switch searchCategoryTextField.text {
+                    case "자격증":
+                        return .certificate
+                    case "코딩":
+                        return .coding
+                    case "운동":
+                        return .health
+                    case "외국어":
+                        return .language
+                    case "독서":
+                        return .reading
+                    default:
+                        return .etc
+                    }
+                }()}
+            }
+            
+            var durationFilteredChallenges: [DefaultChallenge]
+            
+            if selectedAtLeast == 0 && selectedAtMost == 3 || selectedAtLeast == -1 || selectedAtMost == -1 {
+                durationFilteredChallenges = categoryFilteredChallenges
+            } else {
+                durationFilteredChallenges = categoryFilteredChallenges.filter({(challenge: DefaultChallenge) -> Bool in
+                    var atLeastDate: Int
+                    var atMostDate: Int
+                    switch selectedAtLeast {
+                    case 0:
+                        atLeastDate = 1
+                    case 1:
+                        atLeastDate = 7
+                    case 2:
+                        atLeastDate = 30
+                    default:
+                        atLeastDate = 365
+                    }
+                    switch selectedAtMost {
+                    case 0:
+                        atMostDate = 7
+                    case 1:
+                        atMostDate = 30
+                    case 2:
+                        atMostDate = 365
+                    default:
+                        atMostDate = Int.max
+                    }
+                    
+                    if challenge.duration >= atLeastDate && challenge.duration <= atMostDate {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+            }
+            
+            var periodFilteredChallenges: [DefaultChallenge]
+            
+            switch searchPeriodTextField.text {
+            case "매년":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyYear}
+            case "매월":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyMonth}
+            case "매일":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyDay}
+            case "일요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everySunday}
+            case "월요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyMonday}
+            case "화요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyTuesday}
+            case "수요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyWednesday}
+            case "목요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyThursday}
+            case "금요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyFriday}
+            case "토요일마다":
+                periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everySaturday}
+            default:
+                periodFilteredChallenges = durationFilteredChallenges
+            }
+            filteredChallenges = periodFilteredChallenges
         }
-        
-        var durationFilteredChallenges: [DefaultChallenge]
-        
-        if selectedAtLeast == 0 && selectedAtMost == 3 || selectedAtLeast == -1 || selectedAtMost == -1 {
-            durationFilteredChallenges = categoryFilteredChallenges
-        } else {
-            durationFilteredChallenges = categoryFilteredChallenges.filter({(challenge: DefaultChallenge) -> Bool in
-                var atLeastDate: Int
-                var atMostDate: Int
-                switch selectedAtLeast {
-                case 0:
-                    atLeastDate = 1
-                case 1:
-                    atLeastDate = 7
-                case 2:
-                    atLeastDate = 30
-                default:
-                    atLeastDate = 365
-                }
-                switch selectedAtMost {
-                case 0:
-                    atMostDate = 7
-                case 1:
-                    atMostDate = 30
-                case 2:
-                    atMostDate = 365
-                default:
-                    atMostDate = Int.max
-                }
-                
-                if challenge.duration >= atLeastDate && challenge.duration <= atMostDate {
-                    return true
-                } else {
-                    return false
-                }
-            })
-        }
-        
-        var periodFilteredChallenges: [DefaultChallenge]
-        
-        switch searchPeriodTextField.text {
-        case "매년":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyYear}
-        case "매월":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyMonth}
-        case "매일":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyDay}
-        case "일요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everySunday}
-        case "월요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyMonday}
-        case "화요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyTuesday}
-        case "수요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyWednesday}
-        case "목요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyThursday}
-        case "금요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everyFriday}
-        case "토요일마다":
-            periodFilteredChallenges = categoryFilteredChallenges.filter{$0.authenticationPeriod == .everySaturday}
-        default:
-            periodFilteredChallenges = durationFilteredChallenges
-        }
-        filteredChallenges = periodFilteredChallenges
     }
     
     @IBAction func filterBackgroundTapped(_ sender: Any) {
@@ -385,24 +399,14 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                 if selectedAtMost == -1 {
                     selectedAtMost = 0
                 }
-                
-                if row - selectedAtMost > 1 {
-                    print("최소기간을 최대 기간보다 짧게 설정하세요")
-                } else {
-                    selectedAtLeast = row
-                    searchDurationTextField.text = "\(durationAtLeast[selectedAtLeast]) \(durationAtMost[selectedAtMost])"
-                }
+                selectedAtLeast = row
+                searchDurationTextField.text = "\(durationAtLeast[selectedAtLeast]) \(durationAtMost[selectedAtMost])"
             default:
                 if selectedAtLeast == -1 {
                     selectedAtLeast = 0
                 }
-                
-                if selectedAtLeast - row > 1 {
-                    print("최대 기간을 최소 기간보다 길게 설정하세요")
-                } else {
-                    selectedAtMost = row
-                    searchDurationTextField.text = "\(durationAtLeast[selectedAtLeast]) \(durationAtMost[selectedAtMost])"
-                }
+                selectedAtMost = row
+                searchDurationTextField.text = "\(durationAtLeast[selectedAtLeast]) \(durationAtMost[selectedAtMost])"
             }
         case 4:
             searchPeriodTextField.text = period[row]
