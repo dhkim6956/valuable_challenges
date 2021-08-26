@@ -211,12 +211,17 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             let topBorderLine = CALayer()
             topBorderLine.backgroundColor = color.cgColor
             topBorderLine.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
-            
-            let topBottomBorderLine = CALayer()
-            topBottomBorderLine.backgroundColor = color.cgColor
-            topBottomBorderLine.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
-            
+           
             self.layer.addSublayer(topBorderLine)
+        }
+        
+        func challengePeriodViewBottomLine(color: UIColor, width: CGFloat) {
+            
+            let bottomBorderLine = CALayer()
+            bottomBorderLine.backgroundColor = color.cgColor
+            bottomBorderLine.frame = CGRect(x: 0, y: frame.height - width, width: frame.width, height: width)
+            
+            self.layer.addSublayer(bottomBorderLine)
         }
         
     }
