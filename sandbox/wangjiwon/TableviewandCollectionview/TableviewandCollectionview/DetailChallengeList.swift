@@ -55,7 +55,8 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
     case .onGoing:
         
         if indexPath.section == 0 {
-    
+            cell.todayDateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
+            cell.challengeStatusLabel?.text = "진행 중"
             cell.titleLabel?.text = certificationRecord[indexPath.item].title
             cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
             cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
@@ -92,8 +93,8 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         } else if indexPath.section == 1 {
     
             
-            cell1.dateLabel?.text = ("yyyy-MM-dd".stringFromDate())
-            cell1.titleLabel?.text = ("HH:mm:ss".stringFromDate())
+            cell1.dateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
+            cell1.titleLabel?.text = "\("HH:mm:ss".stringFromDate())"
             cell1.certificationImage = .none
             cell1.titleLabel?.text = certificationRecord[indexPath.item].title
             cell1.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
@@ -125,6 +126,8 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             if indexPath.section == 0 {
                 
                 cell.titleLabel?.text = certificationRecord[indexPath.item].title
+                cell.todayDateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
+                cell.challengeStatusLabel?.text = "완료"
                 cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
                 cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
                 cell.ongoingPeriodLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일"
@@ -159,8 +162,8 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             
             } else if indexPath.section == 1 {
             
-                cell1.dateLabel?.text = ("yyyy-MM-dd".stringFromDate())
-                cell1.titleLabel?.text = ("HH:mm:ss".stringFromDate())
+                cell1.dateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
+                cell1.titleLabel?.text = "\("HH:mm:ss".stringFromDate())"
                 cell1.certificationImage = .none
                 cell1.titleLabel?.text = certificationRecord[indexPath.item].title
                 cell1.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
