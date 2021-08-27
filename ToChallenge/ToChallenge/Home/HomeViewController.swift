@@ -65,7 +65,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         return mainTableCell
     }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = mainTableView.cellForRow(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
         
