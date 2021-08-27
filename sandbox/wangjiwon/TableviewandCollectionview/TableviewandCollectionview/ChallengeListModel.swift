@@ -4,7 +4,7 @@
 //
 //  Created by 왕지원 on 2021/08/02.
 //
-
+import UIKit
 import Foundation
 
 enum ChallengeStatus {
@@ -35,6 +35,7 @@ struct CertificationRecord {
     var finishDate: String
     var description: String
     var status: ChallengeStatus
+    var proofImage: UIImage? = UIImage(named: "Image")
 }
 
 class Challenges {

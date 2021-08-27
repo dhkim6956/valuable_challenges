@@ -8,8 +8,34 @@
 import Foundation
 import UIKit
 
-class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
  
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        var newCert = CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 1, startDate: "2021.08.01", finishDate: "2021.08.30", description: "첫날! 열심히 해보자!", status: .onGoing)
+        
+        newCert.proofImage = info[.editedImage] as? UIImage
+        
+        
+        certificationRecord.append(newCert)
+        
+        detailChallengeView.reloadData()
+        
+    }
+    
+    @IBAction func addNewProof(_ sender: Any) {
+        let picker = UIImagePickerController()
+        
+        picker.allowsEditing = true
+        picker.sourceType = .camera
+        
+        picker.delegate = self
+        
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
     @IBOutlet weak var detailChallengeView: UICollectionView!
     var detailSelectedStatus: ChallengeStatus = .onGoing
     
@@ -19,6 +45,17 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         detailChallengeView.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
     
+        certificationRecord = certificationRecord.enumerated().map({
+            if $0 % 2 == 0 {
+                var fixed = $1
+                
+                fixed.proofImage = UIImage(named: "proofImage01")
+                
+                return fixed
+            }
+            return $1
+        })
+        
     }
     
     
@@ -95,10 +132,12 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             
             cell1.dateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
             cell1.titleLabel?.text = "\("HH:mm:ss".stringFromDate())"
-            cell1.certificationImage = .none
+//            cell1.certificationImage = .none
             cell1.titleLabel?.text = certificationRecord[indexPath.item].title
             cell1.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
             cell1.recordLabel?.text = "오늘은 ~~을 했다."
+            
+            cell1.certificationImage.image = certificationRecord[indexPath.item].proofImage
             
             //cell UI
             cell1.layer.cornerRadius = 20

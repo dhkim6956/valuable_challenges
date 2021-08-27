@@ -526,7 +526,13 @@
                             <constraint firstItem="n05-Qp-6vk" firstAttribute="top" secondItem="x4o-KO-obo" secondAttribute="top" id="nGQ-OV-Rk9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="도전기록" id="kvr-9L-jmB"/>
+                    <navigationItem key="navigationItem" title="도전기록" id="kvr-9L-jmB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="se1-Iw-pGp">
+                            <connections>
+                                <action selector="addNewProof:" destination="R0o-Nv-SMD" id="tzL-qi-oVR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailChallengeView" destination="n05-Qp-6vk" id="Yn5-ya-hk4"/>
                     </connections>
