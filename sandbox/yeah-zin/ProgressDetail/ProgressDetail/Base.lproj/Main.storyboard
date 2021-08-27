@@ -15,13 +15,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNp-f7-QbD" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="64" width="374" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="lQa-ju-zc5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fNp-f7-QbD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="5bV-U0-hnq"/>
+                            <constraint firstAttribute="trailing" secondItem="fNp-f7-QbD" secondAttribute="trailing" constant="20" id="IiC-sc-oQr"/>
+                            <constraint firstItem="fNp-f7-QbD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="VO2-y4-4zh"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendar" destination="fNp-f7-QbD" id="xPw-a5-FFz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30" y="89"/>
+            <point key="canvasLocation" x="28.985507246376812" y="88.392857142857139"/>
         </scene>
     </scenes>
     <resources>
