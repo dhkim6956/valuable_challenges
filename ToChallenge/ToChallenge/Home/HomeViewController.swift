@@ -50,6 +50,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         mainTableCell.progressLabel.text = "\(arrayData .getInProgressDate())/\(arrayData.getEstimatedEndDate())"
         mainTableCell.mainCellTitleLabel.text = arrayData.title
         
+        
         let perc = Float(Float(arrayData.getDoneAuthenticationCount()) / Float(arrayData.getTotalAuthenticationCount()))
         
         mainTableCell.progressView.startCircularProgress(trackColor: arrayData.getColor().withAlphaComponent(0.3), progressColor: arrayData.getColor(), duration: 1.0, percentage: perc)
@@ -63,6 +64,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         mainTableCell.mainCellLayer.layer.masksToBounds = false
         
         return mainTableCell
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = mainTableView.cellForRow(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "ProgressDetail", sender: cell)
     }
 }
 

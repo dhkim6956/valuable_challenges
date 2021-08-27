@@ -156,11 +156,28 @@
                     <connections>
                         <outlet property="levelProgressView" destination="eSe-Ik-GPn" id="Ru9-Pm-1iV"/>
                         <outlet property="mainTableView" destination="9do-ZV-2rD" id="jHT-Hl-248"/>
+                        <segue destination="Mp3-YN-mpi" kind="push" identifier="ProgressDetail" id="WHd-4N-LkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="792.75362318840587" y="57.589285714285708"/>
+        </scene>
+        <!--ProgressDetail-->
+        <scene sceneID="L0a-Ue-E57">
+            <objects>
+                <viewController storyboardIdentifier="ProgressDetail" title="ProgressDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mp3-YN-mpi" customClass="DetailViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W2E-dJ-dua">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5kB-K1-03m"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NJ5-Ah-h9l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZU2-gf-zOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661" y="68"/>
         </scene>
         <!--Home-->
         <scene sceneID="ZBt-5T-b5m">

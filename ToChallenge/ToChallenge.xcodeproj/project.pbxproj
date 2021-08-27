@@ -34,6 +34,7 @@
 		47889A6F26BCD119005903C4 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47889A6E26BCD119005903C4 /* MyPage.storyboard */; };
 		47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47889A7026BCD12F005903C4 /* MyPageViewController.swift */; };
 		4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4788B62926BA283100A554AB /* UsersChallengesModel.swift */; };
+		47B5BBA526D8BC4100E682A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5BBA426D8BC4100E682A1 /* DetailViewController.swift */; };
 		A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */; };
 		A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2E726B0699200637494 /* ChallengeModel.swift */; };
 		A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580585326C02D1100797255 /* MyPageCustomCell.swift */; };
@@ -73,6 +74,7 @@
 		47889A6E26BCD119005903C4 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		47889A7026BCD12F005903C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		4788B62926BA283100A554AB /* UsersChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChallengesModel.swift; sourceTree = "<group>"; };
+		47B5BBA426D8BC4100E682A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6067B2884C69CB81FB192D3F /* Pods_ToChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		813CF2EA274054276BE690E8 /* Pods-ToChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToChallenge.debug.xcconfig"; path = "Target Support Files/Pods-ToChallenge/Pods-ToChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListHeader.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				4734127226BBEEE00077197B /* MainTableViewCell.swift */,
 				474F42F126ADA4E200AC29EE /* HomeViewController.swift */,
 				12E808B526BC274400176A73 /* Home.storyboard */,
+				47B5BBA426D8BC4100E682A1 /* DetailViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
 				397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */,
+				47B5BBA526D8BC4100E682A1 /* DetailViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
