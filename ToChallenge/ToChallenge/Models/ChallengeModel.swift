@@ -5,6 +5,7 @@
 //  Created by 왕지원 on 2021/07/28.
 //
 
+import UIKit
 import Foundation
 
 enum ChallengeStatus {
@@ -22,6 +23,20 @@ struct Challenge {
     var finishDate: String // 종료된 일자
 //    var remainedCount: Int // 남은 도전 빼먹기 횟수. 3
     var status: ChallengeStatus // 현재 이 도전의 상태.
+}
+
+
+
+struct CertificationRecord {
+    var title: String
+    var category: String
+    var challengeCount: Int
+    var nowCount: Int
+    var startDate: String
+    var finishDate: String
+    var description: String
+    var status: ChallengeStatus
+    var proofImage: UIImage? = UIImage(named: "Image")
 }
 
 

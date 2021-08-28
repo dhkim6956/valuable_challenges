@@ -1,15 +1,17 @@
 //
-//  DetailChallengeList.swift
-//  TableviewandCollectionview
+//  ChallengeRecord.swift
+//  ToChallenge
 //
-//  Created by 왕지원 on 2021/08/16.
+//  Created by 왕지원 on 2021/08/28.
 //
 
 import Foundation
 import UIKit
 
-class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
- 
+class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    @IBOutlet weak var challengeRecordList: UICollectionView!
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
@@ -20,7 +22,7 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         
         certificationRecord.append(newCert)
         
-        detailChallengeView.reloadData()
+        challengeRecordList.reloadData()
         
     }
     
@@ -36,14 +38,13 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    @IBOutlet weak var detailChallengeView: UICollectionView!
     var detailSelectedStatus: ChallengeStatus = .onGoing
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailChallengeView.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
+        challengeRecordList.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
     
         certificationRecord = certificationRecord.enumerated().map({
             if $0 % 2 == 0 {
@@ -82,9 +83,9 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
     
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailChallengeCell", for: indexPath) as! DetailChallengeCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChallengeRecordCell1", for: indexPath) as! ChallengeRecordCell1
     
-    let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailChallengeCell2", for: indexPath) as! DetailChallengeCell2
+    let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "ChallengeRecordCell2", for: indexPath) as! ChallengeRecordCell2
     
     
     switch detailSelectedStatus {
@@ -167,7 +168,7 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
                 cell.titleLabel?.text = certificationRecord[indexPath.item].title
                 cell.todayDateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
                 cell.challengeStatusLabel?.text = "완료"
-                cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일 \(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
+                cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
                 cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
                 cell.ongoingPeriodLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일"
                 cell.percentLabel?.text = "\(floor((Float(Float(certificationRecord[indexPath.item].nowCount) / (Float(certificationRecord[indexPath.item].challengeCount)))) * 100))%"
@@ -262,3 +263,4 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
             return dateFormatter.string(from: now)
         }
     }
+
