@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-class HistoryChallengeCell: UITableViewCell {
-    @IBOutlet weak var layout: UIView!
+class HistoryChallengeCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var finishedPeriodLabel: UILabel!
@@ -22,9 +21,4 @@ class HistoryChallengeCell: UITableViewCell {
     @IBOutlet weak var finishDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var challengePeriodView: UIView!
-    
-    
-    
-    
-    
 }
