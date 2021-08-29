@@ -38,6 +38,9 @@
 		A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */; };
 		A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57DD2E726B0699200637494 /* ChallengeModel.swift */; };
 		A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580585326C02D1100797255 /* MyPageCustomCell.swift */; };
+		A5A90ACB26DA759C0019ED12 /* ChallengeRecordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A90ACA26DA759C0019ED12 /* ChallengeRecordList.swift */; };
+		A5A90ACD26DA75DB0019ED12 /* ChallengeRecordCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A90ACC26DA75DB0019ED12 /* ChallengeRecordCell1.swift */; };
+		A5A90ACF26DA75EE0019ED12 /* ChallengeRecordCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A90ACE26DA75EE0019ED12 /* ChallengeRecordCell2.swift */; };
 		A5EE214126BFFA4A004B464E /* HistoryChallengeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214026BFFA4A004B464E /* HistoryChallengeList.swift */; };
 		A5EE214326BFFA5A004B464E /* HistoryChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE214226BFFA5A004B464E /* HistoryChallengeCell.swift */; };
 		AE5EB60719003D05F1349E5D /* Pods_ToChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6067B2884C69CB81FB192D3F /* Pods_ToChallenge.framework */; };
@@ -80,6 +83,9 @@
 		A52B7AFE26BFD87100B8D286 /* HistoryListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListHeader.swift; sourceTree = "<group>"; };
 		A57DD2E726B0699200637494 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
 		A580585326C02D1100797255 /* MyPageCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCustomCell.swift; sourceTree = "<group>"; };
+		A5A90ACA26DA759C0019ED12 /* ChallengeRecordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRecordList.swift; sourceTree = "<group>"; };
+		A5A90ACC26DA75DB0019ED12 /* ChallengeRecordCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRecordCell1.swift; sourceTree = "<group>"; };
+		A5A90ACE26DA75EE0019ED12 /* ChallengeRecordCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRecordCell2.swift; sourceTree = "<group>"; };
 		A5EE214026BFFA4A004B464E /* HistoryChallengeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChallengeList.swift; sourceTree = "<group>"; };
 		A5EE214226BFFA5A004B464E /* HistoryChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChallengeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				47889A5F26BCCCB1005903C4 /* History.storyboard */,
+				A5A90ACA26DA759C0019ED12 /* ChallengeRecordList.swift */,
+				A5A90ACC26DA75DB0019ED12 /* ChallengeRecordCell1.swift */,
+				A5A90ACE26DA75EE0019ED12 /* ChallengeRecordCell2.swift */,
 				47889A6126BCCD8B005903C4 /* HistoryViewController.swift */,
 				A5EE214026BFFA4A004B464E /* HistoryChallengeList.swift */,
 				A5EE214226BFFA5A004B464E /* HistoryChallengeCell.swift */,
@@ -353,14 +362,17 @@
 				3906E6E426CC08B400C7DA84 /* commonFunctions.swift in Sources */,
 				474F42F226ADA4E200AC29EE /* HomeViewController.swift in Sources */,
 				A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */,
+				396CF7D326C543A70067A637 /* challengeConfigTableViewCell.swift in Sources */,
 				A5EE214126BFFA4A004B464E /* HistoryChallengeList.swift in Sources */,
 				474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */,
 				47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */,
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
+				A5A90ACF26DA75EE0019ED12 /* ChallengeRecordCell2.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
 				3923174B26CEB0E2001219E7 /* DefaultChallengesModel.swift in Sources */,
 				391B04E026D133D70001518C /* publicClass.swift in Sources */,
 				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
+				A5A90ACD26DA75DB0019ED12 /* ChallengeRecordCell1.swift in Sources */,
 				47889A7126BCD12F005903C4 /* MyPageViewController.swift in Sources */,
 				397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */,
 				47B5BBA526D8BC4100E682A1 /* DetailViewController.swift in Sources */,
@@ -371,6 +383,7 @@
 				A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */,
 				39068CB626CFD657005BCB1B /* sortTableViewCell.swift in Sources */,
 				47713A7326C4E2D200C6F339 /* achievementsModel.swift in Sources */,
+                A5A90ACB26DA759C0019ED12 /* ChallengeRecordList.swift in Sources */,
 				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

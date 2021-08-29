@@ -31,19 +31,7 @@ class ChallengeList: UITableViewController {
         return 1
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        self.performSegue(withIdentifier: "DetailSegue", sender: self)
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//          if let detailList = segue.destination as? DetailListCollectionView {
-//
-//
-//
-//    }
-//
-//    }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -53,34 +41,33 @@ class ChallengeList: UITableViewController {
         
         return cell
     }
-    //추가
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//            super.viewWillAppear(animated)
-//            self.navigationController?.navigationBar.prefersLargeTitles = true
-//        }
-//        override func viewWillDisappear(_ animated: Bool) {
-//            super.viewWillDisappear(animated)
-//            self.navigationController?.navigationBar.prefersLargeTitles = false
-//        }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-           tableView.deselectRow(at: indexPath, animated: false)
+        performSegue(withIdentifier: "GoChallengeList", sender: self)
 
-           switch indexPath.row {
+        }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-           case 0: performSegue(withIdentifier: "GoOngoingList", sender: self)
+        let index = tableView.indexPathForSelectedRow!.row // 0, 1, 2
+        var selectedStatus: ChallengeStatus = .onGoing
 
-           case 1: performSegue(withIdentifier: "GoFinishChallenges", sender: self)
+        switch index {
+        case 0: selectedStatus = .onGoing
+        case 1: selectedStatus = .finished
+        case 2: selectedStatus = .failed
+        default:
+            assertionFailure()
+               }
 
-           case 2: performSegue(withIdentifier: "GoFailedChallnegeList", sender: self)
+               let vcDest = segue.destination as! HistoryChallengeList
 
-           default:
+               vcDest.selectedStatus = selectedStatus
 
-               return
-
+               vcDest.challenges.arraylist = vcDest.challenges.arraylist.filter({ info in
+                   info.status == selectedStatus
+               })
            }
-       }
 }
