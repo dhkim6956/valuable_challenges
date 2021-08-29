@@ -17,12 +17,15 @@ struct UserChallenge: Codable {
     let authenticationMethod: String            //인증방법
     let authenticationPeriod: challengePeriod   //인증주기
     
-    var progression: challengeProgression       //진행상태별 구분
+    var progression: challengeProgression       //도전 상태 : 시작전, 진행중, 성공함, 실패함
     
     var interval: DateInterval                  //기간
-    var todayStatus: authenticationStatus       //오늘 도전 상태
+    var todayStatus: authenticationStatus       //인증 상태 : 인증, 대기중
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
+    
+    var originalIndex: Int!                     //유저 챌린지 목록 배열 번호
+    
 
     
     //오늘 - 시작일
@@ -95,56 +98,22 @@ struct UserChallenge: Codable {
 
     //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (화면표시용)
     func getIsHaveToDoToday() -> Bool {
-        let calendar = Calendar.current
-        let todayInfo = calendar.dateComponents([.weekday], from: Date())
-        switch authenticationPeriod {
-        case .everySunday:
-            if todayInfo.weekday == 1 {
-                return true
-            } else {
-                return false
+        if progression == .onGoing {
+            let calendar = Calendar.current
+            let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+            
+            for dueDate in dueDates {
+                let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+                if todayInfo.year  == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
+                    return true
+                }
             }
-        case .everyMonday:
-            if todayInfo.weekday == 2 {
-                return true
-            } else {
-                return false
-            }
-        case .everyTuesday:
-            if todayInfo.weekday == 3 {
-                return true
-            } else {
-                return false
-            }
-        case .everyWednesday:
-            if todayInfo.weekday == 4 {
-                return true
-            } else {
-                return false
-            }
-        case .everyThursday:
-            if todayInfo.weekday == 5 {
-                return true
-            } else {
-                return false
-            }
-        case .everyFriday:
-            if todayInfo.weekday == 6 {
-                return true
-            } else {
-                return false
-            }
-        case .everySaturday:
-            if todayInfo.weekday == 7 {
-                return true
-            } else {
-                return false
-            }
-        default:
-            return true
+            return false
         }
+        return false
     }
     
+    //도전 구분 색
     func getColor() -> UIColor {
         return UIColor(displayP3Red: color.redFloat, green: color.greenFloat, blue: color.blueFloat, alpha: 1.0)
     }
@@ -377,7 +346,6 @@ class UserChallengeManager {
         url.appendPathComponent("Documents/UserChallenges.json")
         
         _ = try! result.write(to: url)
-        
     }
     
     func loadUserData() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class CreateChallengeTableViewController: UITableViewController {
     
@@ -171,14 +172,26 @@ class CreateChallengeTableViewController: UITableViewController {
     @objc func startDatePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
-        startDateTextField.text = formatter.string(from: sender.date)
-        startDate = sender.date
+        self.view.endEditing(true)
+        if Date() <= sender.date {
+            startDateTextField.text = formatter.string(from: sender.date)
+            startDate = sender.date
+        } else {
+            self.view.makeToast("시작일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+        }
+        
     }
     @objc func finishDatePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
-        finishDateTextField.text = formatter.string(from: sender.date)
-        finishDate = sender.date
+        self.view.endEditing(true)
+        if Date() <= sender.date {
+            finishDateTextField.text = formatter.string(from: sender.date)
+            finishDate = sender.date
+        } else {
+            self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+        }
+        
     }
     
     @objc func categoryValueChanged(sender: UITextField) {
@@ -289,28 +302,28 @@ class CreateChallengeTableViewController: UITableViewController {
                                             tabbarController.selectedIndex = 0
                                         }
                                     } else {
-                                        print("종료일이 지정되지 않았음")
+                                        self.view.makeToast("종료일이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                                     }
                                 } else {
-                                    print("시작일이 지정되지 않았음")
+                                    self.view.makeToast("시작일이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                                 }
                             } else {
-                                print("인증주기가 지정되지 않았음")
+                                self.view.makeToast("인증주기가 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                             }
                         } else {
-                            print("인증방법이 지정되지 않았음")
+                            self.view.makeToast("인증방법이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                         }
                     } else {
-                        print("설명이 지정되지 않았음")
+                        self.view.makeToast("설명이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                     }
                 } else {
-                    print("카테고리이 지정되지 않았음")
+                    self.view.makeToast("카테고리이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                 }
             } else {
-                print("색이 지정되지 않았음")
+                self.view.makeToast("색이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
             }
         } else {
-            print("제목이 지정되지 않았음")
+            self.view.makeToast("제목이 지정되지 않았음", duration: 1, position: .top, title: "설정 미완료", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
         }
     }
     

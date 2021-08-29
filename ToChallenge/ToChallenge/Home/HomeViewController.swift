@@ -21,12 +21,15 @@ class HomeViewController: UIViewController {
         mainTableView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        ongoingChallenges = UserChallenges.filter{$0.progression == .onGoing}
+        super.viewWillAppear(animated)
+        
+        ongoingChallenges = UserChallenges.filter{$0.getIsHaveToDoToday()}
         mainTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         levelProgressView.startCircularProgress(trackColor: UIColor(displayP3Red: 222/255, green: 234/255, blue: 224/255, alpha: 1), progressColor: UIColor.systemBlue, duration: 1.0, percentage: 0.3)
     }
 }

@@ -156,7 +156,7 @@
                     <connections>
                         <outlet property="levelProgressView" destination="eSe-Ik-GPn" id="Ru9-Pm-1iV"/>
                         <outlet property="mainTableView" destination="9do-ZV-2rD" id="jHT-Hl-248"/>
-                        <segue destination="Mp3-YN-mpi" kind="push" identifier="ProgressDetail" id="WHd-4N-LkT"/>
+                        <segue destination="Mp3-YN-mpi" kind="show" identifier="ProgressDetail" id="WHd-4N-LkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
