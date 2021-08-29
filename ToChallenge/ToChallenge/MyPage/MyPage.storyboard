@@ -81,7 +81,7 @@
                                                     <rect key="frame" x="10" y="10" width="138" height="200"/>
                                                     <subviews>
                                                         <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="charactor4" translatesAutoresizingMaskIntoConstraints="NO" id="atK-gH-Sjx">
-                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
+                                                            <rect key="frame" x="0.0" y="31" width="138" height="138"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="atK-gH-Sjx" secondAttribute="height" multiplier="1:1" id="FnA-GU-rYA"/>
                                                             </constraints>
@@ -90,7 +90,7 @@
                                                     <constraints>
                                                         <constraint firstItem="atK-gH-Sjx" firstAttribute="leading" secondItem="DKa-DB-hd1" secondAttribute="leading" id="DUv-hh-Tcd"/>
                                                         <constraint firstAttribute="trailing" secondItem="atK-gH-Sjx" secondAttribute="trailing" id="fH0-O5-zEs"/>
-                                                        <constraint firstItem="atK-gH-Sjx" firstAttribute="top" secondItem="DKa-DB-hd1" secondAttribute="top" id="jMo-Nl-qUl"/>
+                                                        <constraint firstItem="atK-gH-Sjx" firstAttribute="centerY" secondItem="DKa-DB-hd1" secondAttribute="centerY" id="nJq-oj-7Yn"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="진행중인 도전" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDI-JR-3n1">

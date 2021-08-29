@@ -61,4 +61,3 @@ let futureDateText = checkFormatter.string(from: futureDate)
 let check2 = calendar.dateComponents([.weekday], from: futureDate)
 
 
-

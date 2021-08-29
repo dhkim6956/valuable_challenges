@@ -19,8 +19,8 @@ class CreateChallengeTableViewController: UITableViewController {
     var categoryPickerView = UIPickerView()
     var periodPickerView = UIPickerView()
     
-    var startDate: Date!
-    var finishDate: Date!
+    var startDate: Date?
+    var finishDate: Date?
     
     var selectedChallenge: DefaultChallenge? = nil
     
@@ -97,7 +97,7 @@ class CreateChallengeTableViewController: UITableViewController {
         periodPickerView.tag = 2
         
         categoryTextField.addTarget(self, action: #selector(categoryValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
-        periodTextField.addTarget(self, action: #selector(periodValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
+        durationTextField.addTarget(self, action: #selector(durationValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
         
         
         if let selectedChallengeInfo = selectedChallenge {
@@ -175,8 +175,7 @@ class CreateChallengeTableViewController: UITableViewController {
         formatter.dateFormat = "yyyy년 MM월 dd일"
         self.view.endEditing(true)
         if today.start <= sender.date {
-            startDateTextField.text = formatter.string(from: sender.date)
-            startDate = sender.date
+            correctDate(changedStartDate: true, changedEndDate: false, changedDuration: false, datePicker: sender.date)
         } else {
             self.view.makeToast("시작일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
         }
@@ -187,16 +186,15 @@ class CreateChallengeTableViewController: UITableViewController {
         formatter.dateFormat = "yyyy년 MM월 dd일"
         self.view.endEditing(true)
         if today.start <= sender.date {
-            finishDateTextField.text = formatter.string(from: sender.date)
-            finishDate = sender.date
+            correctDate(changedStartDate: false, changedEndDate: true, changedDuration: false, datePicker: sender.date)
         } else {
             self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
         }
         
     }
     
-    @objc func periodValueChanged(sender: UITextField) {
-        
+    @objc func durationValueChanged(sender: UITextField) {
+        correctDate(changedStartDate: false, changedEndDate: false, changedDuration: true, datePicker: nil)
     }
     
     @objc func categoryValueChanged(sender: UITextField) {
@@ -238,11 +236,60 @@ class CreateChallengeTableViewController: UITableViewController {
         if changedStartDate == true {
             guard let selectedDate = datePicker else { return }
             startDate = selectedDate
-            startDateTextField.text = formatter.string(from: startDate)
-            if durationTextField.text != "" {
-                guard let timeIntervalDouble = Double(durationTextField.text!) else { return }
+            startDateTextField.text = formatter.string(from: startDate!)
+            guard let durationText = durationTextField.text else { return }
+            if durationText != "" {
+                let timeIntervalDouble = Double(durationText)! * 86400
                 finishDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
-                finishDateTextField.text = formatter.string(from: finishDate)
+                finishDateTextField.text = formatter.string(from: finishDate!)
+            } else {
+                if let haveFinishDate = finishDate {
+                    let getInterval = DateInterval(start: selectedDate, end: haveFinishDate)
+                    durationTextField.text = "\(Int(getInterval.duration / 86400))"
+                }
+            }
+        } else if changedEndDate == true {
+            guard let selectedDate = datePicker else { return }
+            finishDate = selectedDate
+            finishDateTextField.text = formatter.string(from: finishDate!)
+            guard let durationText = durationTextField.text else { return }
+            if durationText != "" {
+                let timeIntervalDouble = Double(durationText)! * -86400
+                let startDateBackup = startDate
+                startDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
+                if startDate! < today.start {
+                    startDate = startDateBackup
+                    finishDate = nil
+                    finishDateTextField.text = ""
+                    self.view.makeToast("종료일이 진행기간보다 짧게 지정되었습니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+                } else {
+                    startDateTextField.text = formatter.string(from: startDate!)
+                }
+            } else {
+                if let haveStartDate = startDate {
+                    let getInterval = DateInterval(start: haveStartDate, end: selectedDate)
+                    durationTextField.text = "\(Int(getInterval.duration / 86400))"
+                }
+            }
+        } else {
+            if let haveStartDate = startDate {
+                if let durationText = durationTextField.text {
+                    let timeIntervalDouble = Double(durationText)! * 86400
+                    finishDate = Date(timeInterval: timeIntervalDouble, since: haveStartDate)
+                    finishDateTextField.text = formatter.string(from: finishDate!)
+                }
+            } else if let haveFinishDate = finishDate {
+                if let durationText = durationTextField.text {
+                    let timeIntervalDouble = Double(durationText)! * -86400
+                    startDate = Date(timeInterval: timeIntervalDouble, since: haveFinishDate)
+                    if startDate! < today.start {
+                        startDate = nil
+                        durationTextField.text = ""
+                        self.view.makeToast("진행기간이 종료일보다 길게 지정되었습니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+                    } else {
+                        startDateTextField.text = formatter.string(from: startDate!)
+                    }
+                }
             }
         }
     }

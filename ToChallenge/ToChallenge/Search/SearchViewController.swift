@@ -132,7 +132,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 2
         default:
             return 1
         }
@@ -147,10 +147,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             
             switch indexPath.row {
             case 0:
-                eachText = "서바이벌 도전 리스트"
-                cell.sortDescription.text = "포인트를 걸고 도전에 참가합니다. 도전 완수시 대량의 포인트를 받습니다."
-                symbolString = "list.bullet"
-            case 1:
                 eachText = "일반 도전 리스트"
                 cell.sortDescription.text = "포인트를 걸고 도전에 참가합니다. 도전 완수시 대량의 포인트를 받습니다."
                 symbolString = "list.bullet"
@@ -168,9 +164,55 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             cell.sortOutLine.layer.masksToBounds = false
             return cell
         default :
-            let cell = sortTable.dequeueReusableCell(withIdentifier: "sortTableCell") as! sortTableViewCell
+            let cell = sortTable.dequeueReusableCell(withIdentifier: "categoryTableCell") as! categoryTableViewCell
+            
+            let tapCertificateRecognizer = UITapGestureRecognizer(target: self, action: #selector(certificateRecognizerTapped(sender:)))
+            
+            cell.selectCertificate.addGestureRecognizer(tapCertificateRecognizer)
+            
+            
+            let tapCodingRecognizer = UITapGestureRecognizer(target: self, action: #selector(codingRecognizerTapped(sender:)))
+            
+            cell.selectCertificate.addGestureRecognizer(tapCodingRecognizer)
+            
+            
+            let tapHealthRecognizer = UITapGestureRecognizer(target: self, action: #selector(healthRecognizerTapped(sender:)))
+            
+            cell.selectCertificate.addGestureRecognizer(tapHealthRecognizer)
+            
+            
+            let tapLanguageRecognizer = UITapGestureRecognizer(target: self, action: #selector(languageRecognizerTapped(sender:)))
+            
+            cell.selectCertificate.addGestureRecognizer(tapLanguageRecognizer)
+            
+            
+            let tapReadingRecognizer = UITapGestureRecognizer(target: self, action: #selector(readingRecognizerTapped(sender:)))
+            
+            cell.selectCertificate.addGestureRecognizer(tapReadingRecognizer)
+            
             return cell
         }
+    }
+    
+    @objc func certificateRecognizerTapped(sender: UISwitch) {
+        selectedChallenges = unAddedChallenges.filter{$0.category == .certificate}
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
+    }
+    @objc func codingRecognizerTapped(sender: UISwitch) {
+        selectedChallenges = unAddedChallenges.filter{$0.category == .coding}
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
+    }
+    @objc func healthRecognizerTapped(sender: UISwitch) {
+        selectedChallenges = unAddedChallenges.filter{$0.category == .health}
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
+    }
+    @objc func languageRecognizerTapped(sender: UISwitch) {
+        selectedChallenges = unAddedChallenges.filter{$0.category == .language}
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
+    }
+    @objc func readingRecognizerTapped(sender: UISwitch) {
+        selectedChallenges = unAddedChallenges.filter{$0.category == .reading}
+        performSegue(withIdentifier: "filterButtonClicked", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -182,15 +224,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             case 0:
                 switch filterSwitch.isOn {
                 case true:
-                    selectedChallenges = filteredChallenges.filter{$0.sort == .survival}
-                case false:
-                    selectedChallenges = unAddedChallenges.filter{$0.sort == .survival}
-                }
-                
-                performSegue(withIdentifier: "filterButtonClicked", sender: nil)
-            case 1:
-                switch filterSwitch.isOn {
-                case true:
                     selectedChallenges = filteredChallenges.filter{$0.sort == .normal}
                 case false:
                     selectedChallenges = unAddedChallenges.filter{$0.sort == .normal}
@@ -200,10 +233,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             default:
                 performSegue(withIdentifier: "createButtonClicked", sender: nil)
             }
-        } else {
-            manageUserChallenge.saveUserData()
         }
-        
     }
     
     @objc func switchValueChanged(sender: UISwitch) {

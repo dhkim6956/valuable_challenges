@@ -9,11 +9,12 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var mainCellTitleLabel: UILabel!
-    @IBOutlet weak var mainCellButtonLabel: UIButton!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var mainCellLayer: UIView!
+    @IBOutlet weak var sortLabel: UILabel!
     
     
 

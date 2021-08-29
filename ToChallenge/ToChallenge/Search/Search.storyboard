@@ -76,6 +76,72 @@
                                             <outlet property="sortTitle" destination="9DF-KP-O64" id="NNg-1y-P9a"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="categoryTableCell" id="rAg-Y2-cpl" customClass="categoryTableViewCell" customModule="ToChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="154.5" width="414" height="78.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rAg-Y2-cpl" id="P30-o8-JWj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="78.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZF-tQ-8hS">
+                                                    <rect key="frame" x="10" y="10" width="394" height="58.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-Qa-YNQ">
+                                                            <rect key="frame" x="10.5" y="0.0" width="373" height="58.5"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_certificate" translatesAutoresizingMaskIntoConstraints="NO" id="Gu3-bC-eeZ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="58.5" height="58.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Gu3-bC-eeZ" secondAttribute="height" multiplier="1:1" id="g33-p3-7zy"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_coding" translatesAutoresizingMaskIntoConstraints="NO" id="x2X-jR-kfX">
+                                                                    <rect key="frame" x="78.5" y="0.0" width="58.5" height="58.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="x2X-jR-kfX" secondAttribute="height" multiplier="1:1" id="RrD-zV-Uv5"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_health" translatesAutoresizingMaskIntoConstraints="NO" id="yeK-xj-gW2">
+                                                                    <rect key="frame" x="157.5" y="0.0" width="58.5" height="58.5"/>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_language" translatesAutoresizingMaskIntoConstraints="NO" id="64r-Tu-IjH">
+                                                                    <rect key="frame" x="236" y="0.0" width="58.5" height="58.5"/>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_reading" translatesAutoresizingMaskIntoConstraints="NO" id="GxD-co-Z1h">
+                                                                    <rect key="frame" x="314.5" y="0.0" width="58.5" height="58.5"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="64r-Tu-IjH" firstAttribute="width" secondItem="64r-Tu-IjH" secondAttribute="height" multiplier="1:1" id="Nz6-hw-bI6"/>
+                                                                <constraint firstItem="yeK-xj-gW2" firstAttribute="width" secondItem="yeK-xj-gW2" secondAttribute="height" multiplier="1:1" id="SpK-Hc-WUI"/>
+                                                                <constraint firstItem="GxD-co-Z1h" firstAttribute="width" secondItem="GxD-co-Z1h" secondAttribute="height" multiplier="1:1" id="cdy-ut-h5U"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="dgx-Qa-YNQ" firstAttribute="centerX" secondItem="MZF-tQ-8hS" secondAttribute="centerX" id="Lx6-ir-96N"/>
+                                                        <constraint firstItem="dgx-Qa-YNQ" firstAttribute="centerY" secondItem="MZF-tQ-8hS" secondAttribute="centerY" id="YVu-MA-rZI"/>
+                                                        <constraint firstAttribute="height" secondItem="dgx-Qa-YNQ" secondAttribute="height" id="lub-lU-RQE"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MZF-tQ-8hS" secondAttribute="trailing" constant="10" id="ZD5-zh-Ost"/>
+                                                <constraint firstItem="MZF-tQ-8hS" firstAttribute="leading" secondItem="P30-o8-JWj" secondAttribute="leading" constant="10" id="ZXo-qc-A5w"/>
+                                                <constraint firstItem="dgx-Qa-YNQ" firstAttribute="width" secondItem="P30-o8-JWj" secondAttribute="width" multiplier="9:10" id="qsy-3t-m5Z"/>
+                                                <constraint firstItem="MZF-tQ-8hS" firstAttribute="top" secondItem="P30-o8-JWj" secondAttribute="top" constant="10" id="rhh-yC-au0"/>
+                                                <constraint firstAttribute="bottom" secondItem="MZF-tQ-8hS" secondAttribute="bottom" constant="10" id="wXH-Pw-rcy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="selectCertificate" destination="Gu3-bC-eeZ" id="cZH-4O-Sfd"/>
+                                            <outlet property="selectCoding" destination="x2X-jR-kfX" id="BrF-fb-iJY"/>
+                                            <outlet property="selectHealth" destination="yeK-xj-gW2" id="YUg-9b-NhW"/>
+                                            <outlet property="selectLanguage" destination="64r-Tu-IjH" id="c0c-vY-VBs"/>
+                                            <outlet property="selectReading" destination="GxD-co-Z1h" id="b4z-ka-7Gz"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
@@ -269,6 +335,12 @@
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="qE4-TI-cOS"/>
                             <constraint firstItem="QPd-B5-eiG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yF6-Z5-Ps6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="dit-Dz-2rF"/>
+                                <exclude reference="6mA-h4-fY7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="도전 찾기" id="VNi-le-RWx">
                         <barButtonItem key="rightBarButtonItem" title="필터" id="vSD-Dp-YqS">
@@ -341,13 +413,14 @@
                                                     <rect key="frame" x="10" y="10" width="394" height="110"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="challenge_certificate" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-wT-Xn9">
-                                                            <rect key="frame" x="5" y="5" width="107" height="100"/>
+                                                            <rect key="frame" x="5" y="5" width="100" height="100"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="rXG-wT-Xn9" secondAttribute="height" multiplier="1:1" id="lFf-gn-mId"/>
+                                                                <constraint firstAttribute="height" constant="100" id="IQY-Ts-Xk8"/>
+                                                                <constraint firstAttribute="width" constant="100" id="lcn-0i-VGe"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필기시험 2주 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrE-DY-hE5">
-                                                            <rect key="frame" x="122" y="5" width="267" height="24"/>
+                                                            <rect key="frame" x="115" y="5" width="274" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="Vlq-W2-skK"/>
                                                             </constraints>
@@ -356,7 +429,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한국사능력검정시험, 컴활 필기 등 단기간에 준비" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuG-Ed-7DB">
-                                                            <rect key="frame" x="122" y="34" width="192" height="71"/>
+                                                            <rect key="frame" x="115" y="34" width="199" height="71"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -389,7 +462,6 @@
                                                         <constraint firstItem="79u-EE-CVe" firstAttribute="leading" secondItem="JuG-Ed-7DB" secondAttribute="trailing" constant="5" id="Dhs-ph-QdF"/>
                                                         <constraint firstItem="rXG-wT-Xn9" firstAttribute="leading" secondItem="WVd-Hn-JC1" secondAttribute="leading" constant="5" id="MgL-xd-K7j"/>
                                                         <constraint firstAttribute="bottom" secondItem="JuG-Ed-7DB" secondAttribute="bottom" constant="5" id="Nb8-zx-Rz6"/>
-                                                        <constraint firstItem="rXG-wT-Xn9" firstAttribute="width" secondItem="XrE-DY-hE5" secondAttribute="width" multiplier="2:5" id="ORL-rw-CVc"/>
                                                         <constraint firstAttribute="trailing" secondItem="LnN-Qv-JhQ" secondAttribute="trailing" constant="5" id="Y70-FL-SMp"/>
                                                         <constraint firstAttribute="bottom" secondItem="79u-EE-CVe" secondAttribute="bottom" constant="5" id="YQl-2e-TFb"/>
                                                         <constraint firstAttribute="trailing" secondItem="XrE-DY-hE5" secondAttribute="trailing" constant="5" id="a0w-AT-bED"/>
@@ -1178,10 +1250,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GKG-Ib-EQO"/>
+        <segue reference="ITW-sx-X0b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="challenge_certificate" width="640" height="640"/>
+        <image name="challenge_coding" width="640" height="640"/>
+        <image name="challenge_health" width="640" height="640"/>
+        <image name="challenge_language" width="640" height="640"/>
+        <image name="challenge_reading" width="640" height="640"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -49,7 +49,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         let arrayData = ongoingChallenges[indexPath.row]
         
-        
+        mainTableCell.categoryImage.image = arrayData.getCategoryImage()
+        mainTableCell.sortLabel.text = arrayData.getSort()
         mainTableCell.progressLabel.text = "\(arrayData .getInProgressDate())/\(arrayData.getEstimatedEndDate())"
         mainTableCell.mainCellTitleLabel.text = arrayData.title
         

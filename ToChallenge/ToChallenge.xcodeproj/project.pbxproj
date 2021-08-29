@@ -13,6 +13,7 @@
 		39078BA926D27531001ED2C6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39078BA826D27531001ED2C6 /* Settings.bundle */; };
 		391B04E026D133D70001518C /* publicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B04DF26D133D70001518C /* publicClass.swift */; };
 		3923174B26CEB0E2001219E7 /* DefaultChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3923174A26CEB0E2001219E7 /* DefaultChallengesModel.swift */; };
+		396296B326DBCA98009F34E2 /* categoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396296B226DBCA98009F34E2 /* categoryTableViewCell.swift */; };
 		397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* SearchListViewController.swift */; };
 		39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */; };
 		39D83D1226BD60A400D6575A /* challengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		39078BA826D27531001ED2C6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		391B04DF26D133D70001518C /* publicClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicClass.swift; sourceTree = "<group>"; };
 		3923174A26CEB0E2001219E7 /* DefaultChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChallengesModel.swift; sourceTree = "<group>"; };
+		396296B226DBCA98009F34E2 /* categoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryTableViewCell.swift; sourceTree = "<group>"; };
 		397137CA26BD26A6002DE12B /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeTableViewController.swift; sourceTree = "<group>"; };
 		39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeTableViewCell.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				47889A6426BCCE09005903C4 /* Search.storyboard */,
 				39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */,
 				39068CB526CFD657005BCB1B /* sortTableViewCell.swift */,
+				396296B226DBCA98009F34E2 /* categoryTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -362,13 +365,13 @@
 				3906E6E426CC08B400C7DA84 /* commonFunctions.swift in Sources */,
 				474F42F226ADA4E200AC29EE /* HomeViewController.swift in Sources */,
 				A57DD2E826B0699200637494 /* ChallengeModel.swift in Sources */,
-				396CF7D326C543A70067A637 /* challengeConfigTableViewCell.swift in Sources */,
 				A5EE214126BFFA4A004B464E /* HistoryChallengeList.swift in Sources */,
 				474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */,
 				47889A6726BCCE5B005903C4 /* SearchViewController.swift in Sources */,
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				A5A90ACF26DA75EE0019ED12 /* ChallengeRecordCell2.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
+				396296B326DBCA98009F34E2 /* categoryTableViewCell.swift in Sources */,
 				3923174B26CEB0E2001219E7 /* DefaultChallengesModel.swift in Sources */,
 				391B04E026D133D70001518C /* publicClass.swift in Sources */,
 				A52B7AFF26BFD87100B8D286 /* HistoryListHeader.swift in Sources */,
@@ -383,7 +386,7 @@
 				A580585426C02D1100797255 /* MyPageCustomCell.swift in Sources */,
 				39068CB626CFD657005BCB1B /* sortTableViewCell.swift in Sources */,
 				47713A7326C4E2D200C6F339 /* achievementsModel.swift in Sources */,
-                A5A90ACB26DA759C0019ED12 /* ChallengeRecordList.swift in Sources */,
+				A5A90ACB26DA759C0019ED12 /* ChallengeRecordList.swift in Sources */,
 				47889A6226BCCD8B005903C4 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

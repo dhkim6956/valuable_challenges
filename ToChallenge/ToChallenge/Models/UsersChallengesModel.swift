@@ -119,6 +119,27 @@ struct UserChallenge: Codable {
     func getColor() -> UIColor {
         return UIColor(displayP3Red: color.redFloat, green: color.greenFloat, blue: color.blueFloat, alpha: 1.0)
     }
+    
+    func getCategoryImage() -> UIImage? {
+        var enumToImageName: String!
+        
+        switch category {
+        case .certificate:
+            enumToImageName = "certificate"
+        case .coding:
+            enumToImageName = "coding"
+        case .health:
+            enumToImageName = "health"
+        case .language:
+            enumToImageName = "language"
+        case .reading:
+            enumToImageName = "reading"
+        case .etc:
+            enumToImageName = "reading"
+        }
+        
+        return UIImage(named: "challenge_\(enumToImageName!)")
+    }
 
     //타입 Date <-> String
     func customDateFormat(yyyyMMdd: String?) -> DateFormatter {
