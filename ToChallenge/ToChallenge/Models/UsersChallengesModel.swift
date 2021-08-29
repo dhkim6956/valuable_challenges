@@ -53,6 +53,18 @@ struct UserChallenge: Codable {
     }
     
     //카테고리
+    func getSort() -> String {
+        switch sort {
+        case .normal:
+            return "일반 도전"
+        case .userMade:
+            return "나만의 도전"
+        case .survival:
+            return "서바이벌 도전"
+        }
+    }
+    
+    //카테고리
     func getCategory() -> String {
         switch category {
         case .certificate:
@@ -65,17 +77,17 @@ struct UserChallenge: Codable {
             return "외국어"
         case .reading:
             return "독서"
-        default:
+        case .etc:
             return "기타"
         }
     }
 
-    //총 필요 인증 횟수
+    //총 필요 인증 횟수 (프로그레스 뷰에서 사용)
     func getTotalAuthenticationCount() -> Int {
         dueDates.count
     }
 
-    //총 인증 횟수
+    //총 인증 횟수 (프로그레스 뷰에서 사용)
     func getDoneAuthenticationCount() -> Int {
         var doneAuthenticationCount = 0
         for dueDate in dueDates {
@@ -86,7 +98,7 @@ struct UserChallenge: Codable {
         return doneAuthenticationCount
     }
 
-    //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (화면표시용)
+    //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (메인 화면표시용)
     func getIsHaveToDoToday() -> Bool {
         if progression == .onGoing {
             let calendar = Calendar.current
@@ -124,7 +136,13 @@ struct UserChallenge: Codable {
         }()
         return customFormatter
     }
-
+    
+    struct dueDatesStruct: Codable {
+        let date: Date                                      //인증 필요 날짜
+        var dueDateStatus: authenticationStatus = .waiting  //인증 여부
+        var authenticationImage: String = ""                //인증 사진
+        var authenticationReview: String = ""               //인증 후기
+    }
 
     enum challengeProgression: String, Codable {
         case waitForStart, onGoing, succeed, failed
@@ -144,13 +162,6 @@ struct UserChallenge: Codable {
 
     enum challengePeriod: String, Codable {
         case everyYear, everyMonth, everyDay, everyMonday, everyTuesday, everyWednesday, everyThursday, everyFriday, everySaturday, everySunday
-    }
-
-    struct dueDatesStruct: Codable {
-        let date: Date
-        var dueDateStatus: authenticationStatus = .waiting
-        var authenticationImage: String = ""
-        var authenticationReview: String = ""
     }
     
     struct uiColorInRGB: Codable{
