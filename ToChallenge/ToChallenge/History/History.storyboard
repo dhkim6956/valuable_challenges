@@ -278,7 +278,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hDv-oF-eli"/>
                     <connections>
-                        <segue destination="EHx-8e-Yhc" kind="show" id="ReW-Nw-DDE"/>
+                        <segue destination="EHx-8e-Yhc" kind="show" identifier="GoChallengeRecordList" id="ReW-Nw-DDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0QG-cw-uvG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

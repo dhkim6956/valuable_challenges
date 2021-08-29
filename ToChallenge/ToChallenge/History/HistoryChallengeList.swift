@@ -196,7 +196,15 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         return header
     
     }
-}
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+        performSegue(withIdentifier: "GoChallengeRecordList", sender: self)
+        
+        }
+    
+    }
+
 
 
 
