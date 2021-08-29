@@ -30,17 +30,7 @@ struct UserChallenge: Codable {
     
     //오늘 - 시작일
     func getInProgressDate() -> Int {
-        let calendar = Calendar.current
-        
-        let formatter = DateFormatter()
-        formatter.timeZone = .current
-        formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
-
-        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
-        let todayDate = formatter.date(from: todayString)!
-        let progressInterval = DateInterval(start: interval.start, end: todayDate)
+        let progressInterval = DateInterval(start: interval.start, end: today.end)
         
         return Int(progressInterval.duration / 86400)
     }
@@ -372,3 +362,38 @@ extension UIColor {
     var blueValue: CGFloat{ return CIColor(color: self).blue }
     var alphaValue: CGFloat{ return CIColor(color: self).alpha }
 }
+
+
+
+
+
+
+struct todayDateInfo {
+    let start: Date = {
+        let calendar = Calendar.current
+
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        
+        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 12:00 AM"
+        return formatter.date(from: todayString)!
+    }()
+    
+    let end: Date = {
+        let calendar = Calendar.current
+
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        
+        let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
+        return formatter.date(from: todayString)!
+    }()
+}
+
+let today = todayDateInfo.init()

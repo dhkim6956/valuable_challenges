@@ -97,6 +97,7 @@ class CreateChallengeTableViewController: UITableViewController {
         periodPickerView.tag = 2
         
         categoryTextField.addTarget(self, action: #selector(categoryValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
+        periodTextField.addTarget(self, action: #selector(periodValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
         
         
         if let selectedChallengeInfo = selectedChallenge {
@@ -173,7 +174,7 @@ class CreateChallengeTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         self.view.endEditing(true)
-        if Date() <= sender.date {
+        if today.start <= sender.date {
             startDateTextField.text = formatter.string(from: sender.date)
             startDate = sender.date
         } else {
@@ -185,12 +186,16 @@ class CreateChallengeTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         self.view.endEditing(true)
-        if Date() <= sender.date {
+        if today.start <= sender.date {
             finishDateTextField.text = formatter.string(from: sender.date)
             finishDate = sender.date
         } else {
             self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
         }
+        
+    }
+    
+    @objc func periodValueChanged(sender: UITextField) {
         
     }
     
@@ -225,8 +230,22 @@ class CreateChallengeTableViewController: UITableViewController {
         }
     }
     
-    
-    
+    func correctDate(changedStartDate: Bool, changedEndDate: Bool, changedDuration: Bool, datePicker: Date?) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        
+        if changedStartDate == true {
+            guard let selectedDate = datePicker else { return }
+            startDate = selectedDate
+            startDateTextField.text = formatter.string(from: startDate)
+            if durationTextField.text != "" {
+                guard let timeIntervalDouble = Double(durationTextField.text!) else { return }
+                finishDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
+                finishDateTextField.text = formatter.string(from: finishDate)
+            }
+        }
+    }
     
     @IBAction func addButtonTapped(_ sender: Any) {
         if titleTextField.text != "" {
