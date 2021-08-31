@@ -18,7 +18,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var challengeProgressView: UIProgressView!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var chanceLabel: UILabel!
     
     @IBOutlet weak var authenticationButton: UIButton!
     @IBOutlet weak var giveUpButton: UIButton!
@@ -70,6 +70,8 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         let category = selectedChallenge!.category.rawValue
         let period = selectedChallenge!.authenticationPeriod.rawValue
         categoryValueArray = [category, period]
+        
+        chanceLabel.text = "남은 기회: \(3 - absentDates.count)"
         
 
     }
