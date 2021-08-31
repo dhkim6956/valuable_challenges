@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var levelProgressView: CircularProgressView!
     
     var ongoingChallenges: [UserChallenge]!
+    var selectedChallenge: UserChallenge? = nil
     
     
     override func viewDidLoad() {
@@ -70,11 +71,23 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return mainTableCell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = mainTableView.cellForRow(at: indexPath)
+        // let cell = mainTableView.cellForRow(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
         
-        performSegue(withIdentifier: "ProgressDetail", sender: cell)
+        selectedChallenge = ongoingChallenges[indexPath.row]
+        
+        
+        performSegue(withIdentifier: "ProgressDetail", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailViewController = segue.destination as? DetailViewController else { return }
+        
+        detailViewController.selectedChallenge = self.selectedChallenge
+    }
+    
+    
+    
 }
 
 
