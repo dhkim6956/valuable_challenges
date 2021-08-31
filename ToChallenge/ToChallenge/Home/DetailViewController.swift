@@ -22,10 +22,22 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var authenticationButton: UIButton!
     @IBOutlet weak var giveUpButton: UIButton!
     
-    @IBOutlet weak var tableView: UITableView!
     
     var selectedChallenge: UserChallenge? = nil
-
+    
+    // var doneDates = [String]()
+    // var absentDates = [String]()
+    
+    var doneDates = ["2021-08-24", "2021-08-27"]
+    var absentDates = ["2021-08-25", "2021-08-26"]
+    
+    fileprivate lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    
     
     
     override func viewDidLoad() {
@@ -36,8 +48,46 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
             
         authenticationButton.layer.cornerRadius = 15.0
         giveUpButton.layer.cornerRadius = 15.0
+        
+        calendar.dataSource = self
+        calendar.delegate = self
+        
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.appearance.titleWeekendColor = .red
+        calendar.appearance.todayColor = .none
+        calendar.appearance.titleTodayColor = .black
+
     }
     
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        doneDates = ["2021-08-24", "2021-08-27"]
+        absentDates = ["2021-08-25", "2021-08-26"]
+        let dateString: String = dateFormatter.string(from: date)
+        
+        if doneDates.contains(dateString) {
+            return 1
+        } else if absentDates.contains(dateString) {
+            return 1
+        } else {
+            return 0
+        }
+        
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+        doneDates = ["2021-08-24", "2021-08-27"]
+        absentDates = ["2021-08-25", "2021-08-26"]
+        let dateString: String = dateFormatter.string(from: date)
+        
+        if doneDates.contains(dateString) {
+            return [UIColor.green]
+        } else if absentDates.contains(dateString) {
+            return [UIColor.red]
+        } else {
+            return nil
+        }
+    }
 
     
     
