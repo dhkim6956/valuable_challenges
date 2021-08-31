@@ -70,8 +70,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         let category = selectedChallenge!.category.rawValue
         let period = selectedChallenge!.authenticationPeriod.rawValue
         categoryValueArray = [category, period]
-//        print(selectedChallenge?.category.rawValue)
-//        print(selectedChallenge?.authenticationPeriod.rawValue)
+        
 
     }
     
@@ -105,8 +104,6 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryTitleArray.count
     }
@@ -119,6 +116,5 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
     
 }
