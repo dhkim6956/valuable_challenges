@@ -335,12 +335,6 @@
                             <constraint firstItem="FAx-nb-3tM" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="qE4-TI-cOS"/>
                             <constraint firstItem="QPd-B5-eiG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yF6-Z5-Ps6"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="dit-Dz-2rF"/>
-                                <exclude reference="6mA-h4-fY7"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="도전 찾기" id="VNi-le-RWx">
                         <barButtonItem key="rightBarButtonItem" title="필터" id="vSD-Dp-YqS">

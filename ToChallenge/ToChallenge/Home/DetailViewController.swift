@@ -25,10 +25,10 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var tableView: UITableView!
     
     
-    var selectedChallenge: UserChallenge? = nil
+    var selectedChallenge: UserChallenge!
     
-    var doneDates = [String]()
-    var absentDates = [String]()
+//    var doneDates = [String]()
+//    var absentDates = [String]()
     
     var categoryTitleArray = [String]()
     var categoryValueArray = [String]()
@@ -46,8 +46,9 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        categoryLabel.text = selectedChallenge?.sort.rawValue
-        titleLabel.text = selectedChallenge?.title
+        categoryLabel.text = selectedChallenge.getSort()  //<-
+        titleLabel.text = selectedChallenge.title
+        progressLabel.text = "\(selectedChallenge.getInProgressDate())/\(selectedChallenge.getEstimatedEndDate())일" //<-
             
         authenticationButton.layer.cornerRadius = 15.0
         giveUpButton.layer.cornerRadius = 15.0
@@ -63,45 +64,69 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendar.appearance.todayColor = .none
         calendar.appearance.titleTodayColor = .black
         
-        doneDates = ["2021-08-24", "2021-08-27", "2021-08-25", "2021-08-26"]
-        absentDates = ["2021-08-23", "2021-08-28"]
+//        doneDates = ["2021-08-24", "2021-08-27", "2021-08-25", "2021-08-26"]
+//        absentDates = ["2021-08-23", "2021-08-28"]
         
         categoryTitleArray = ["카테고리", "반복"]
-        let category = selectedChallenge!.category.rawValue
-        let period = selectedChallenge!.authenticationPeriod.rawValue
+        let category = selectedChallenge.getCategory()  //<-
+        let period = selectedChallenge.getPeriod()
         categoryValueArray = [category, period]
         
-        chanceLabel.text = "남은 기회: \(3 - absentDates.count)"
+        chanceLabel.text = "남은 기회: \(selectedChallenge.remainTry)"  //<-
         
 
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
-        let dateString: String = dateFormatter.string(from: date)
+//        let dateString: String = dateFormatter.string(from: date)
+//
+//        if doneDates.contains(dateString) {
+//            return 1
+//        } else if absentDates.contains(dateString) {
+//            return 1
+//        } else {
+//            return 0
+//        }
         
-        if doneDates.contains(dateString) {
-            return 1
-        } else if absentDates.contains(dateString) {
-            return 1
+        if selectedChallenge.interval.start <= date && selectedChallenge.interval.end >= date {
+            if selectedChallenge.checkDateStatus(specificDate: date) != nil{
+                return 1
+            } else {
+                return 0
+            }
         } else {
             return 0
         }
-        
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        let dateString: String = dateFormatter.string(from: date)
-        
-        if doneDates.contains(dateString) {
-            return [UIColor.green]
-        } else if absentDates.contains(dateString) {
-            return [UIColor.red]
+//        let dateString: String = dateFormatter.string(from: date)
+//
+//        if doneDates.contains(dateString) {
+//            return [UIColor.green]
+//        } else if absentDates.contains(dateString) {
+//            return [UIColor.red]
+//        } else {
+//            return nil
+//        }
+        if selectedChallenge.interval.start <= date && selectedChallenge.interval.end >= date {
+            if let dateStatus = selectedChallenge.checkDateStatus(specificDate: date) {
+                switch dateStatus {
+                case .authenticated:
+                    return [UIColor.green]
+                case .waiting:
+                    return [UIColor.lightGray]
+                case .failed:
+                    return [UIColor.red]
+                }
+            } else {
+                return nil
+            }
         } else {
             return nil
         }
     }
-
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {

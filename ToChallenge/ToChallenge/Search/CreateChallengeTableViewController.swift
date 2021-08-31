@@ -216,7 +216,7 @@ class CreateChallengeTableViewController: UITableViewController {
         case "독서":
             stringToImageName = "reading"
         case "기타":
-            stringToImageName = nil
+            stringToImageName = "etc"
         default:
             categoryTextField.text = nil
         }

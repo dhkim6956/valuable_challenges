@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+enum authenticationStatus: String, Codable {
+    case authenticated, waiting, failed
+}
+
 struct UserChallenge: Codable {
     let title: String                           //도전명
     let color: uiColorInRGB                     //도전색
@@ -81,6 +85,32 @@ struct UserChallenge: Codable {
             return "기타"
         }
     }
+    
+    //인증주기
+    func getPeriod() -> String {
+        switch authenticationPeriod {
+        case .everyYear:
+            return "매년"
+        case .everyMonth:
+            return "매월"
+        case .everyDay:
+            return "매일"
+        case .everyMonday:
+            return "매주 월요일"
+        case .everyTuesday:
+            return "매주 화요일"
+        case .everyWednesday:
+            return "매주 수요일"
+        case .everyThursday:
+            return "매주 목요일"
+        case .everyFriday:
+            return "매주 금요일"
+        case .everySaturday:
+            return "매주 토요일"
+        case .everySunday:
+            return "매주 일요일"
+        }
+    }
 
     //총 필요 인증 횟수 (프로그레스 뷰에서 사용)
     func getTotalAuthenticationCount() -> Int {
@@ -100,19 +130,23 @@ struct UserChallenge: Codable {
 
     //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (메인 화면표시용)
     func getIsHaveToDoToday() -> Bool {
-        if progression == .onGoing {
-            let calendar = Calendar.current
-            let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-            
-            for dueDate in dueDates {
-                let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
-                if todayInfo.year  == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
-                    return true
+        if authenticationPeriod == .everyMonth || authenticationPeriod == .everyYear {
+            return true
+        } else {
+            if progression == .onGoing {
+                let calendar = Calendar.current
+                let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
+                
+                for dueDate in dueDates {
+                    let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+                    if todayInfo.year  == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
+                        return true
+                    }
                 }
+                return false
             }
             return false
         }
-        return false
     }
     
     //도전 구분 색
@@ -120,6 +154,7 @@ struct UserChallenge: Codable {
         return UIColor(displayP3Red: color.redFloat, green: color.greenFloat, blue: color.blueFloat, alpha: 1.0)
     }
     
+    //도전 카테고리 이미지
     func getCategoryImage() -> UIImage? {
         var enumToImageName: String!
         
@@ -135,7 +170,7 @@ struct UserChallenge: Codable {
         case .reading:
             enumToImageName = "reading"
         case .etc:
-            enumToImageName = "reading"
+            enumToImageName = "etc"
         }
         
         return UIImage(named: "challenge_\(enumToImageName!)")
@@ -158,6 +193,23 @@ struct UserChallenge: Codable {
         return customFormatter
     }
     
+    func checkDateStatus(specificDate: Date) -> authenticationStatus? {
+        
+        let calendar = Calendar.current
+        let specificDateInfo = calendar.dateComponents([.year, .month, .day], from: specificDate)
+        
+        
+        for dueDate in dueDates {
+            let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
+            
+            if specificDateInfo.year == dueDateInfo.year && specificDateInfo.month == dueDateInfo.month && specificDateInfo.day == dueDateInfo.day {
+                return dueDate.dueDateStatus
+            }
+            
+        }
+        return nil
+    }
+    
     struct dueDatesStruct: Codable {
         let date: Date                                      //인증 필요 날짜
         var dueDateStatus: authenticationStatus = .waiting  //인증 여부
@@ -169,9 +221,7 @@ struct UserChallenge: Codable {
         case waitForStart, onGoing, succeed, failed
     }
 
-    enum authenticationStatus: String, Codable {
-        case authenticated, waiting, failed
-    }
+    
 
     enum challengeSort: String, Codable {
         case userMade, normal, survival
@@ -297,7 +347,7 @@ var UserChallenges: [UserChallenge] = {
     var challenges: [UserChallenge] = []
     
     challenges.append(UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0, green: 1, blue: 0.4314159155, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1))
-    challenges.append(UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기", setColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), setSort: .normal, setCategory: .reading, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture2))
+    challenges.append(UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기", setColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), setSort: .normal, setCategory: .reading, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyYear, setStartDate: dummyPresent, setFinishDate: dummyFuture2))
     challenges.append(UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), setSort: .normal, setCategory: .language, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture3))
     
     return challenges
