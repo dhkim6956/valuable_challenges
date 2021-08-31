@@ -308,7 +308,7 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Bwh-Sb-JmD" detailTextLabel="21n-Pd-Jzp" style="IBUITableViewCellStyleValue1" id="rB7-3l-IDH">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Bwh-Sb-JmD" detailTextLabel="21n-Pd-Jzp" style="IBUITableViewCellStyleValue1" id="rB7-3l-IDH">
                                                         <rect key="frame" x="0.0" y="24.5" width="394" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rB7-3l-IDH" id="SsX-jf-x2b">
@@ -381,6 +381,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NJ5-Ah-h9l"/>
+                    <connections>
+                        <outlet property="authenticationButton" destination="mJN-My-We4" id="XfG-NO-yqO"/>
+                        <outlet property="calendar" destination="Dtq-i7-tVc" id="BSL-7y-fTt"/>
+                        <outlet property="categoryLabel" destination="9f6-t7-hMs" id="6l2-hB-JnR"/>
+                        <outlet property="challengeProgressView" destination="1Ht-DK-hHB" id="hoY-4z-ReE"/>
+                        <outlet property="dateLabel" destination="Y6A-Ly-ixa" id="hLL-ZL-ZDm"/>
+                        <outlet property="giveUpButton" destination="b7u-VG-qNt" id="epb-Po-QJ6"/>
+                        <outlet property="progressLabel" destination="3YZ-tl-5QB" id="Hr2-m8-X3H"/>
+                        <outlet property="tableView" destination="iHx-1W-aST" id="E9a-Cv-nAR"/>
+                        <outlet property="titleLabel" destination="yRx-wo-89D" id="9xt-ve-o8s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZU2-gf-zOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

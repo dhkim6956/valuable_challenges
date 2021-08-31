@@ -6,24 +6,41 @@
 //
 
 import UIKit
+import FSCalendar
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    
+    
+    @IBOutlet var calendar: FSCalendar!
 
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var challengeProgressView: UIProgressView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var authenticationButton: UIButton!
+    @IBOutlet weak var giveUpButton: UIButton!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var selectedChallenge: UserChallenge? = nil
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        categoryLabel.text = selectedChallenge?.sort.rawValue
+        titleLabel.text = selectedChallenge?.title
+            
+        authenticationButton.layer.cornerRadius = 15.0
+        giveUpButton.layer.cornerRadius = 15.0
     }
     
 
-    /*
-    // MARK: - Navigation
+    
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
