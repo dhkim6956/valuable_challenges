@@ -25,11 +25,9 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     var selectedChallenge: UserChallenge? = nil
     
-    // var doneDates = [String]()
-    // var absentDates = [String]()
+     var doneDates = [String]()
+     var absentDates = [String]()
     
-    var doneDates = ["2021-08-24", "2021-08-27"]
-    var absentDates = ["2021-08-25", "2021-08-26"]
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -56,13 +54,14 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendar.appearance.titleWeekendColor = .red
         calendar.appearance.todayColor = .none
         calendar.appearance.titleTodayColor = .black
+        
+        doneDates = ["2021-08-24", "2021-08-27", "2021-08-25", "2021-08-26"]
+        absentDates = ["2021-08-23", "2021-08-28"]
 
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
-        doneDates = ["2021-08-24", "2021-08-27"]
-        absentDates = ["2021-08-25", "2021-08-26"]
         let dateString: String = dateFormatter.string(from: date)
         
         if doneDates.contains(dateString) {
@@ -76,8 +75,6 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        doneDates = ["2021-08-24", "2021-08-27"]
-        absentDates = ["2021-08-25", "2021-08-26"]
         let dateString: String = dateFormatter.string(from: date)
         
         if doneDates.contains(dateString) {
