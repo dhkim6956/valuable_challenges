@@ -31,7 +31,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     var absentDates = [String]()
     
     var categoryTitleArray = [String]()
-    var categoryValueArray = [Any]()
+    var categoryValueArray = [String]()
     
     
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -67,7 +67,9 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         absentDates = ["2021-08-23", "2021-08-28"]
         
         categoryTitleArray = ["카테고리", "반복"]
-        categoryValueArray = [selectedChallenge?.category.rawValue, selectedChallenge?.authenticationPeriod.rawValue]
+        let category = selectedChallenge!.category.rawValue
+        let period = selectedChallenge!.authenticationPeriod.rawValue
+        categoryValueArray = [category, period]
 //        print(selectedChallenge?.category.rawValue)
 //        print(selectedChallenge?.authenticationPeriod.rawValue)
 
@@ -113,7 +115,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         
         cell.textLabel?.text = categoryTitleArray[indexPath.row]
-        // cell.detailTextLabel?.text = categoryValueArray[indexPath.row]
+        cell.detailTextLabel?.text = categoryValueArray[indexPath.row]
         
         return cell
     }
