@@ -11,6 +11,7 @@ import FSCalendar
 class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     
+    
     @IBOutlet var calendar: FSCalendar!
 
     @IBOutlet weak var categoryLabel: UILabel!
@@ -21,12 +22,16 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     @IBOutlet weak var authenticationButton: UIButton!
     @IBOutlet weak var giveUpButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     
     var selectedChallenge: UserChallenge? = nil
     
-     var doneDates = [String]()
-     var absentDates = [String]()
+    var doneDates = [String]()
+    var absentDates = [String]()
+    
+    var categoryTitleArray = [String]()
+    var categoryValueArray = [Any]()
     
     
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -50,13 +55,21 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendar.dataSource = self
         calendar.delegate = self
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.appearance.titleWeekendColor = .red
+        // calendar.appearance.titleWeekendColor = .red
         calendar.appearance.todayColor = .none
         calendar.appearance.titleTodayColor = .black
         
         doneDates = ["2021-08-24", "2021-08-27", "2021-08-25", "2021-08-26"]
         absentDates = ["2021-08-23", "2021-08-28"]
+        
+        categoryTitleArray = ["카테고리", "반복"]
+        categoryValueArray = [selectedChallenge?.category.rawValue, selectedChallenge?.authenticationPeriod.rawValue]
+//        print(selectedChallenge?.category.rawValue)
+//        print(selectedChallenge?.authenticationPeriod.rawValue)
 
     }
     
@@ -86,8 +99,24 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         }
     }
 
+}
+
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     
-
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoryTitleArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        
+        cell.textLabel?.text = categoryTitleArray[indexPath.row]
+        // cell.detailTextLabel?.text = categoryValueArray[indexPath.row]
+        
+        return cell
+    }
+    
+    
 }
