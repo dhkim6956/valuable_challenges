@@ -169,26 +169,57 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             let tapCertificateRecognizer = UITapGestureRecognizer(target: self, action: #selector(certificateRecognizerTapped(sender:)))
             
             cell.selectCertificate.addGestureRecognizer(tapCertificateRecognizer)
+            cell.selectCertificate.isUserInteractionEnabled = true
             
             
             let tapCodingRecognizer = UITapGestureRecognizer(target: self, action: #selector(codingRecognizerTapped(sender:)))
             
-            cell.selectCertificate.addGestureRecognizer(tapCodingRecognizer)
+            cell.selectCoding.addGestureRecognizer(tapCodingRecognizer)
+            cell.selectCoding.isUserInteractionEnabled = true
             
             
             let tapHealthRecognizer = UITapGestureRecognizer(target: self, action: #selector(healthRecognizerTapped(sender:)))
             
-            cell.selectCertificate.addGestureRecognizer(tapHealthRecognizer)
+            cell.selectHealth.addGestureRecognizer(tapHealthRecognizer)
+            cell.selectHealth.isUserInteractionEnabled = true
             
             
             let tapLanguageRecognizer = UITapGestureRecognizer(target: self, action: #selector(languageRecognizerTapped(sender:)))
             
-            cell.selectCertificate.addGestureRecognizer(tapLanguageRecognizer)
+            cell.selectLanguage.addGestureRecognizer(tapLanguageRecognizer)
+            cell.selectLanguage.isUserInteractionEnabled = true
             
             
             let tapReadingRecognizer = UITapGestureRecognizer(target: self, action: #selector(readingRecognizerTapped(sender:)))
             
-            cell.selectCertificate.addGestureRecognizer(tapReadingRecognizer)
+            cell.selectReading.addGestureRecognizer(tapReadingRecognizer)
+            cell.selectReading.isUserInteractionEnabled = true
+            
+            cell.selectCertificate.layer.shadowOpacity = 0.3
+            cell.selectCertificate.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.selectCertificate.layer.shadowRadius = 3
+            cell.selectCertificate.layer.masksToBounds = false
+            
+            cell.selectCoding.layer.shadowOpacity = 0.3
+            cell.selectCoding.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.selectCoding.layer.shadowRadius = 3
+            cell.selectCoding.layer.masksToBounds = false
+            
+            cell.selectHealth.layer.shadowOpacity = 0.3
+            cell.selectHealth.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.selectHealth.layer.shadowRadius = 3
+            cell.selectHealth.layer.masksToBounds = false
+            
+            cell.selectLanguage.layer.shadowOpacity = 0.3
+            cell.selectLanguage.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.selectLanguage.layer.shadowRadius = 3
+            cell.selectLanguage.layer.masksToBounds = false
+            
+            cell.selectReading.layer.shadowOpacity = 0.3
+            cell.selectReading.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.selectReading.layer.shadowRadius = 3
+            cell.selectReading.layer.masksToBounds = false
+            
             
             return cell
         }
