@@ -258,12 +258,12 @@ struct UserChallenge: Codable {
         let formatter = DateFormatter()
         formatter.timeZone = .current
         formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        formatter.dateFormat = "yyyy/MM/dd h:mm:ss a"
 
         let startDateInfo = calendar.dateComponents([.year, .month, .day], from: setStartDate)
         let finishDateInfo = calendar.dateComponents([.year, .month, .day], from: setFinishDate)
-        let startDateString = "\(startDateInfo.year!)/\(startDateInfo.month!)/\(startDateInfo.day!) 12:00 AM"
-        let finishDateString = "\(finishDateInfo.year!)/\(finishDateInfo.month!)/\(finishDateInfo.day!) 11:59 PM"
+        let startDateString = "\(startDateInfo.year!)/\(startDateInfo.month!)/\(startDateInfo.day!) 12:00:00 AM"
+        let finishDateString = "\(finishDateInfo.year!)/\(finishDateInfo.month!)/\(finishDateInfo.day!) 11:59:59 PM"
 
         let startDate = formatter.date(from: startDateString)!
         let finishDate = formatter.date(from: finishDateString)!
@@ -338,9 +338,9 @@ struct UserChallenge: Codable {
 
 
 let dummyPresent = Date()
-let dummyFuture1 = Date(timeInterval: 86400*30, since: dummyPresent)
-let dummyFuture2 = Date(timeInterval: 86400*365, since: dummyPresent)
-let dummyFuture3 = Date(timeInterval: 86400*100, since: dummyPresent)
+let dummyFuture1 = Date(timeInterval: 86400*29, since: dummyPresent)
+let dummyFuture2 = Date(timeInterval: 86400*364, since: dummyPresent)
+let dummyFuture3 = Date(timeInterval: 86400*99, since: dummyPresent)
 
 
 var UserChallenges: [UserChallenge] = {

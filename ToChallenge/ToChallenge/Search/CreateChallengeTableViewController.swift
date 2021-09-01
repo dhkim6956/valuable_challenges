@@ -239,13 +239,13 @@ class CreateChallengeTableViewController: UITableViewController {
             startDateTextField.text = formatter.string(from: startDate!)
             guard let durationText = durationTextField.text else { return }
             if durationText != "" {
-                let timeIntervalDouble = Double(durationText)! * 86400
+                let timeIntervalDouble = (Double(durationText)! - 1) * 86400
                 finishDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
                 finishDateTextField.text = formatter.string(from: finishDate!)
             } else {
                 if let haveFinishDate = finishDate {
                     let getInterval = DateInterval(start: selectedDate, end: haveFinishDate)
-                    durationTextField.text = "\(Int(getInterval.duration / 86400))"
+                    durationTextField.text = "\(Int(getInterval.duration / 86400) + 1)"
                 }
             }
         } else if changedEndDate == true {
@@ -254,7 +254,7 @@ class CreateChallengeTableViewController: UITableViewController {
             finishDateTextField.text = formatter.string(from: finishDate!)
             guard let durationText = durationTextField.text else { return }
             if durationText != "" {
-                let timeIntervalDouble = Double(durationText)! * -86400
+                let timeIntervalDouble = (Double(durationText)! - 1) * -86400
                 let startDateBackup = startDate
                 startDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
                 if startDate! < today.start {
@@ -268,19 +268,19 @@ class CreateChallengeTableViewController: UITableViewController {
             } else {
                 if let haveStartDate = startDate {
                     let getInterval = DateInterval(start: haveStartDate, end: selectedDate)
-                    durationTextField.text = "\(Int(getInterval.duration / 86400))"
+                    durationTextField.text = "\(Int(getInterval.duration / 86400) + 1)"
                 }
             }
         } else {
             if let haveStartDate = startDate {
                 if let durationText = durationTextField.text {
-                    let timeIntervalDouble = Double(durationText)! * 86400
+                    let timeIntervalDouble = (Double(durationText)! - 1) * 86400
                     finishDate = Date(timeInterval: timeIntervalDouble, since: haveStartDate)
                     finishDateTextField.text = formatter.string(from: finishDate!)
                 }
             } else if let haveFinishDate = finishDate {
                 if let durationText = durationTextField.text {
-                    let timeIntervalDouble = Double(durationText)! * -86400
+                    let timeIntervalDouble = (Double(durationText)! - 1) * -86400
                     startDate = Date(timeInterval: timeIntervalDouble, since: haveFinishDate)
                     if startDate! < today.start {
                         startDate = nil
