@@ -12,8 +12,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var historyListTableView: UITableView!
     
-    var historyListModel: [String] = ["진행중인 도전", "완료한 도전", "실패한 도전"]
-    var selectedStatus: ChallengeStatus = .onGoing
+    var historyListModel: [String] = ["진행중인 도전", "완료한 도전", "실패한 도전", "시작 전 도전"]
+    var selectedStatus: UserChallenge.challengeProgression = .onGoing
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,23 +52,23 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         let index = historyListTableView.indexPathForSelectedRow!.row // 0, 1, 2
-        var selectedStatus: ChallengeStatus = .onGoing
+        var selectedStatus: UserChallenge.challengeProgression = .onGoing
 
         switch index {
         case 0: selectedStatus = .onGoing
-        case 1: selectedStatus = .finished
+        case 1: selectedStatus = .succeed
         case 2: selectedStatus = .failed
+        case 3: selectedStatus = .waitForStart
+            
         default:
             assertionFailure()
                }
 
                let vcDest = segue.destination as! HistoryChallengeList
 
-               vcDest.selectedStatus = selectedStatus
-
-               vcDest.challenges.arraylist = vcDest.challenges.arraylist.filter({ info in
-                   info.status == selectedStatus
-               })
+        vcDest.selectedStatus = selectedStatus
+        vcDest.challenges = vcDest.challenges.filter({ info in info.progression == selectedStatus
+        })
            }
 
         
