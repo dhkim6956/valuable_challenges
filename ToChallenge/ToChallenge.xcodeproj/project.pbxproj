@@ -17,6 +17,7 @@
 		397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397137CA26BD26A6002DE12B /* SearchListViewController.swift */; };
 		39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */; };
 		39D83D1226BD60A400D6575A /* challengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */; };
+		39EA42E026DFFEFF00C51076 /* DIYCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EA42DF26DFFEFF00C51076 /* DIYCalendarCell.swift */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
 		474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F42ED26ADA4E200AC29EE /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		397137CA26BD26A6002DE12B /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeTableViewController.swift; sourceTree = "<group>"; };
 		39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeTableViewCell.swift; sourceTree = "<group>"; };
+		39EA42DF26DFFEFF00C51076 /* DIYCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIYCalendarCell.swift; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		474F42EA26ADA4E200AC29EE /* ToChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +179,7 @@
 				4734127026BBE0450077197B /* CircularProgressView.swift */,
 				3906E6E326CC08B400C7DA84 /* commonFunctions.swift */,
 				391B04DF26D133D70001518C /* publicClass.swift */,
+				39EA42DF26DFFEFF00C51076 /* DIYCalendarCell.swift */,
 			);
 			path = etc;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				397137CB26BD26A6002DE12B /* SearchListViewController.swift in Sources */,
 				47B5BBA526D8BC4100E682A1 /* DetailViewController.swift in Sources */,
 				4788B62A26BA283100A554AB /* UsersChallengesModel.swift in Sources */,
+				39EA42E026DFFEFF00C51076 /* DIYCalendarCell.swift in Sources */,
 				4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */,
 				4734127126BBE0450077197B /* CircularProgressView.swift in Sources */,
 				39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */,
