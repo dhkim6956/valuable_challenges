@@ -29,6 +29,12 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        myPageTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -56,7 +62,7 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.finisedLevel?.text = "Lv 5"
             cell.presentPointLabel?.text = "82pts"
             cell.finishedPointLabel?.text = "500pts"
-//            cell.ongoingChallengeCount?.text = "\(UserChallenge.challengeProgression.onGoing.count)"
+            cell.ongoingChallengeCount?.text =  "\(UserChallenges.filter({ $0.progression == .onGoing }).count)"
 //            cell.finishedChallengeCount?.text = "\(challenges.arraylist.count)"
 //            cell.failedChallengeCount?.text = "\(challenges.arraylist.count)"
             cell.pointProgressView?.progress = (Float(Float(82) / Float(500)))
