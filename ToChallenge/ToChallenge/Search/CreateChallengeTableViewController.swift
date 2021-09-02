@@ -76,7 +76,7 @@ class CreateChallengeTableViewController: UITableViewController {
         
         startDatePicker.datePickerMode = .date
         startDatePicker.addTarget(self, action: #selector(startDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        startDatePicker.preferredDatePickerStyle = .compact
+        startDatePicker.preferredDatePickerStyle = .inline
         startDateTextField.inputView = startDatePicker
         
         finishDatePicker.datePickerMode = .date

@@ -721,11 +721,44 @@
             </objects>
             <point key="canvasLocation" x="1895.6521739130437" y="89.732142857142847"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6u1-42-Rn6">
+            <objects>
+                <viewController id="IuI-ic-Zkt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qun-cT-qrq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n40-kd-4CV">
+                                <rect key="frame" x="0.0" y="510" width="414" height="352"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="fds-xK-Tze">
+                                <rect key="frame" x="11.5" y="510" width="391" height="352"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </datePicker>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VV0-Cd-rq3"/>
+                        <color key="backgroundColor" white="0.50982274046731646" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VV0-Cd-rq3" firstAttribute="trailing" secondItem="n40-kd-4CV" secondAttribute="trailing" id="1gf-QG-fbl"/>
+                            <constraint firstItem="VV0-Cd-rq3" firstAttribute="bottom" secondItem="n40-kd-4CV" secondAttribute="bottom" id="4mA-xI-qsu"/>
+                            <constraint firstItem="fds-xK-Tze" firstAttribute="height" secondItem="n40-kd-4CV" secondAttribute="height" id="Lgy-Sa-Q17"/>
+                            <constraint firstItem="VV0-Cd-rq3" firstAttribute="bottom" secondItem="fds-xK-Tze" secondAttribute="bottom" id="OzY-uJ-hHF"/>
+                            <constraint firstItem="fds-xK-Tze" firstAttribute="centerX" secondItem="qun-cT-qrq" secondAttribute="centerX" id="PBs-84-KUq"/>
+                            <constraint firstItem="n40-kd-4CV" firstAttribute="leading" secondItem="VV0-Cd-rq3" secondAttribute="leading" id="mvD-5t-6tV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fND-Qg-FA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2862" y="842"/>
+        </scene>
         <!--도전 생성-->
         <scene sceneID="Mf2-zD-5WW">
             <objects>
                 <tableViewController id="K4A-j6-nrN" customClass="CreateChallengeTableViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="lG8-3A-TAu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="lG8-3A-TAu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1056,7 +1089,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeConfig" rowHeight="50" id="JnK-5v-b1y">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeConfig" rowHeight="50" id="JnK-5v-b1y">
                                         <rect key="frame" x="0.0" y="792.50000069358134" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JnK-5v-b1y" id="jye-S1-5oI">
@@ -1072,7 +1105,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s7L-NR-aj7" customClass="PickerUITextField" customModule="ToChallenge" customModuleProvider="target">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s7L-NR-aj7" customClass="PickerUITextField" customModule="ToChallenge" customModuleProvider="target">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -1099,6 +1132,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="IuI-ic-Zkt" kind="presentation" modalPresentationStyle="overFullScreen" id="YVP-A7-g7H"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeConfig" rowHeight="50" id="ywE-ss-H0x">
                                         <rect key="frame" x="0.0" y="842.50000069358134" width="414" height="50"/>
