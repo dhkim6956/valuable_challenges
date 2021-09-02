@@ -374,8 +374,9 @@ class CreateChallengeTableViewController: UITableViewController {
                                                 return .everySaturday
                                             }
                                         }(), setStartDate: bringStartDate, setFinishDate: bringFinishDate))
-                                        self.navigationController?.popToRootViewController(animated: true)
-                                        if let tabbarController = self.navigationController?.tabBarController {
+                                        self.navigationController?.popToRootViewController(animated: false)
+                                        
+                                        if let tabbarController = self.view.window?.rootViewController as? UITabBarController {
                                             tabbarController.selectedIndex = 0
                                         }
                                     } else {

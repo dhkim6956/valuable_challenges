@@ -726,15 +726,15 @@
             <objects>
                 <viewController id="IuI-ic-Zkt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qun-cT-qrq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n40-kd-4CV">
-                                <rect key="frame" x="0.0" y="510" width="414" height="352"/>
+                                <rect key="frame" x="0.0" y="456" width="414" height="352"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="fds-xK-Tze">
-                                <rect key="frame" x="11.5" y="510" width="391" height="352"/>
+                                <rect key="frame" x="11.5" y="456" width="391" height="352"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </datePicker>
                         </subviews>
@@ -1133,7 +1133,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="IuI-ic-Zkt" kind="presentation" modalPresentationStyle="overFullScreen" id="YVP-A7-g7H"/>
+                                            <segue destination="IuI-ic-Zkt" kind="presentation" id="YVP-A7-g7H"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeConfig" rowHeight="50" id="ywE-ss-H0x">
@@ -1261,7 +1261,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rzc-qE-8fx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1895.6521739130437" y="819.64285714285711"/>
+            <point key="canvasLocation" x="1535" y="860"/>
         </scene>
         <!--Search-->
         <scene sceneID="Cl9-zm-owA">
