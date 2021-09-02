@@ -10,7 +10,7 @@ import FSCalendar
 
 class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
-    
+    fileprivate let gregorian = Calendar(identifier: .gregorian)
     
     @IBOutlet var calendar: FSCalendar!
 
@@ -27,18 +27,10 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     var selectedChallenge: UserChallenge!
     
-//    var doneDates = [String]()
-//    var absentDates = [String]()
     
     var categoryTitleArray = [String]()
     var categoryValueArray = [String]()
     
-    
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
     
     
     
@@ -47,54 +39,54 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         super.viewDidLoad()
         
         challengeProgressView.transform = challengeProgressView.transform.scaledBy(x: 1, y: 2)
-        
-        challengeProgressView.setProgress(Float(selectedChallenge.getInProgressDate()/selectedChallenge.getEstimatedEndDate()), animated: true)
-        
-        
-        categoryLabel.text = selectedChallenge.getSort()  //<-
-        titleLabel.text = selectedChallenge.title
-        progressLabel.text = "\(selectedChallenge.getInProgressDate())/\(selectedChallenge.getEstimatedEndDate())일" //<-
-        
             
         authenticationButton.layer.cornerRadius = 15.0
         giveUpButton.layer.cornerRadius = 15.0
         
-        calendar.dataSource = self
-        calendar.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        // calendar.appearance.titleWeekendColor = .red
-        calendar.appearance.todayColor = .none
-        calendar.appearance.titleTodayColor = .black
+        calendar.dataSource = self
+        calendar.delegate = self
+        calendar.allowsMultipleSelection = true
         
-//        doneDates = ["2021-08-24", "2021-08-27", "2021-08-25", "2021-08-26"]
-//        absentDates = ["2021-08-23", "2021-08-28"]
+        calendar.calendarHeaderView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.1)
+        calendar.calendarWeekdayView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.1)
+        calendar.appearance.titleSelectionColor = UIColor.black
+        calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
+        calendar.today = nil
+        calendar.register(DIYCalendarCell.self, forCellReuseIdentifier: "cell")
+        
         
         categoryTitleArray = ["카테고리", "반복"]
-        let category = selectedChallenge.getCategory()  //<-
+        let category = selectedChallenge.getCategory()
         let period = selectedChallenge.getPeriod()
         categoryValueArray = [category, period]
         
-        chanceLabel.text = "남은 기회: \(selectedChallenge.remainTry)"  //<-
+        chanceLabel.text = "남은 기회: \(selectedChallenge.remainTry)"
         
-
+        
+        var checkDate = selectedChallenge.interval.start
+        while checkDate < selectedChallenge.interval.end {
+            self.calendar.select(checkDate, scrollToDate: false)
+            checkDate = self.gregorian.date(byAdding: .day, value: 1, to: checkDate)!
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        challengeProgressView.setProgress(Float(selectedChallenge.getDoneAuthenticationCount()/selectedChallenge.getTotalAuthenticationCount()), animated: true)
+        
+        
+        categoryLabel.text = selectedChallenge.getSort()
+        titleLabel.text = selectedChallenge.title
+        progressLabel.text = "\(selectedChallenge.getInProgressDate())/\(selectedChallenge.getEstimatedEndDate())일"
+        
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
-//        let dateString: String = dateFormatter.string(from: date)
-//
-//        if doneDates.contains(dateString) {
-//            return 1
-//        } else if absentDates.contains(dateString) {
-//            return 1
-//        } else {
-//            return 0
-//        }
-        
         if selectedChallenge.interval.start <= date && selectedChallenge.interval.end >= date {
             if selectedChallenge.checkDateStatus(specificDate: date) != nil{
                 return 1
@@ -107,15 +99,6 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-//        let dateString: String = dateFormatter.string(from: date)
-//
-//        if doneDates.contains(dateString) {
-//            return [UIColor.green]
-//        } else if absentDates.contains(dateString) {
-//            return [UIColor.red]
-//        } else {
-//            return nil
-//        }
         if selectedChallenge.interval.start <= date && selectedChallenge.interval.end >= date {
             if let dateStatus = selectedChallenge.checkDateStatus(specificDate: date) {
                 switch dateStatus {
@@ -134,6 +117,93 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         }
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventSelectionColorsFor date: Date) -> [UIColor]? {
+        if selectedChallenge.interval.start <= date && selectedChallenge.interval.end >= date {
+            if let dateStatus = selectedChallenge.checkDateStatus(specificDate: date) {
+                switch dateStatus {
+                case .authenticated:
+                    return [UIColor.green]
+                case .waiting:
+                    return [UIColor.lightGray]
+                case .failed:
+                    return [UIColor.red]
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
+        return cell
+    }
+    
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        self.configure(cell: cell, for: date, at: position)
+    }
+    
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        return false
+    }
+    
+    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        return false
+    }
+    
+    private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        
+        let diyCell = (cell as! DIYCalendarCell)
+        
+
+        
+        diyCell.todayCircle.isHidden = !self.gregorian.isDateInToday(date)
+        
+        var selectionType = SelectionType.none
+        
+        if calendar.selectedDates.contains(date) {
+            let previousDate = self.gregorian.date(byAdding: .day, value: -1, to: date)!
+            let nextDate = self.gregorian.date(byAdding: .day, value: 1, to: date)!
+            if calendar.selectedDates.contains(date) {
+                if calendar.selectedDates.contains(previousDate) && calendar.selectedDates.contains(nextDate) {
+                    selectionType = .middle
+                }
+                else if calendar.selectedDates.contains(previousDate) && calendar.selectedDates.contains(date) {
+                    selectionType = .rightBorder
+                }
+                else if calendar.selectedDates.contains(nextDate) {
+                    selectionType = .leftBorder
+                }
+                else {
+                    selectionType = .single
+                }
+            }
+            
+            if date < Date() {
+                diyCell.selectionLayer.fillColor = UIColor.systemGray3.cgColor
+            } else {
+                diyCell.selectionLayer.fillColor = UIColor.systemGray5.cgColor
+            }
+        }
+        else {
+            selectionType = .none
+        }
+        if selectionType == .none {
+            diyCell.selectionLayer.isHidden = true
+            return
+        }
+        diyCell.selectionLayer.isHidden = false
+        diyCell.selectionType = selectionType
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let authTableViewCotroller = segue.destination as? AuthTableViewController else { return }
+        
+        authTableViewCotroller.authChallenge = self.selectedChallenge
+    }
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -150,5 +220,4 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
 }

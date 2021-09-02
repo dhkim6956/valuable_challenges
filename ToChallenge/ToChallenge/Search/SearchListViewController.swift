@@ -275,7 +275,7 @@ extension SearchListViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         cell.challengeImage.image = UIImage(named: "challenge_\(selectedChallenges[indexPath.row].category)")
-        cell.challengeTitle.attributedText = insertSymbol(textString: selectedChallenges[indexPath.row].title, symbolName: "chevron.forward", symbolColor: .label)
+        cell.challengeTitle.attributedText = insertSymbol(textString: selectedChallenges[indexPath.row].title, symbolName: "chevron.forward", symbolColor: UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0))
         cell.challengeDescription.text = selectedChallenges[indexPath.row].description
         cell.challengeType.text = {
             var categoryInString: String = ""
