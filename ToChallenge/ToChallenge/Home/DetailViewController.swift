@@ -39,14 +39,6 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         super.viewDidLoad()
         
         challengeProgressView.transform = challengeProgressView.transform.scaledBy(x: 1, y: 2)
-        
-        challengeProgressView.setProgress(Float(selectedChallenge.getInProgressDate()/selectedChallenge.getEstimatedEndDate()), animated: true)
-        
-        
-        categoryLabel.text = selectedChallenge.getSort()
-        titleLabel.text = selectedChallenge.title
-        progressLabel.text = "\(selectedChallenge.getInProgressDate())/\(selectedChallenge.getEstimatedEndDate())일"
-        
             
         authenticationButton.layer.cornerRadius = 15.0
         giveUpButton.layer.cornerRadius = 15.0
@@ -80,6 +72,18 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
             self.calendar.select(checkDate, scrollToDate: false)
             checkDate = self.gregorian.date(byAdding: .day, value: 1, to: checkDate)!
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        challengeProgressView.setProgress(Float(selectedChallenge.getDoneAuthenticationCount()/selectedChallenge.getTotalAuthenticationCount()), animated: true)
+        
+        
+        categoryLabel.text = selectedChallenge.getSort()
+        titleLabel.text = selectedChallenge.title
+        progressLabel.text = "\(selectedChallenge.getInProgressDate())/\(selectedChallenge.getEstimatedEndDate())일"
+        
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

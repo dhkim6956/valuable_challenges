@@ -159,7 +159,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1a-QQ-uN0">
                                                             <rect key="frame" x="10" y="10" width="394" height="90"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y1-H6-MUy">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y1-H6-MUy">
                                                                     <rect key="frame" x="10" y="10" width="374" height="70"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -434,7 +434,7 @@
             </objects>
             <point key="canvasLocation" x="1722" y="58"/>
         </scene>
-        <!--Auth Table View Controller-->
+        <!--도전 인증-->
         <scene sceneID="mBq-7U-o3a">
             <objects>
                 <tableViewController id="kHw-Hx-gTI" customClass="AuthTableViewController" customModule="ToChallenge" customModuleProvider="target" sceneMemberID="viewController">
@@ -646,18 +646,20 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi0-Vi-M9r">
                                                             <rect key="frame" x="0.0" y="50" width="394" height="180"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gec-53-UsG">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-mF-wTG">
                                                                     <rect key="frame" x="10" y="10" width="374" height="160"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <color key="textColor" systemColor="labelColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                </textField>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                </textView>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="Gec-53-UsG" secondAttribute="trailing" constant="10" id="FTF-Lm-Dg6"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Gec-53-UsG" secondAttribute="bottom" constant="10" id="MZO-io-Xqc"/>
-                                                                <constraint firstItem="Gec-53-UsG" firstAttribute="top" secondItem="Gi0-Vi-M9r" secondAttribute="top" constant="10" id="TUh-nP-e5T"/>
-                                                                <constraint firstItem="Gec-53-UsG" firstAttribute="leading" secondItem="Gi0-Vi-M9r" secondAttribute="leading" constant="10" id="bIm-sF-Ahc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="3Bm-mF-wTG" secondAttribute="bottom" constant="10" id="5yQ-C3-BYG"/>
+                                                                <constraint firstItem="3Bm-mF-wTG" firstAttribute="top" secondItem="Gi0-Vi-M9r" secondAttribute="top" constant="10" id="aTt-qT-UyQ"/>
+                                                                <constraint firstItem="3Bm-mF-wTG" firstAttribute="leading" secondItem="Gi0-Vi-M9r" secondAttribute="leading" constant="10" id="gK3-bK-7JZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="3Bm-mF-wTG" secondAttribute="trailing" constant="10" id="pmv-GW-TLe"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -693,15 +695,23 @@
                             <outlet property="delegate" destination="kHw-Hx-gTI" id="MHc-Oj-wD9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ueN-re-Gdc"/>
+                    <navigationItem key="navigationItem" title="도전 인증" id="ueN-re-Gdc">
+                        <barButtonItem key="rightBarButtonItem" title="인증하기" id="oxc-Hm-Pir">
+                            <connections>
+                                <action selector="authButtonTapped:" destination="kHw-Hx-gTI" id="hw2-mz-cqw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authImage" destination="RHg-tH-HeK" id="pHO-aW-9oU"/>
                         <outlet property="authMethodLabel" destination="zXX-v7-whT" id="X8g-WX-Obo"/>
+                        <outlet property="authReview" destination="3Bm-mF-wTG" id="Z0A-i8-clH"/>
                         <outlet property="cameraIcon" destination="11K-TJ-8D0" id="LC9-3u-5Qg"/>
                         <outlet property="imageLabel" destination="USV-n9-bfu" id="dfD-lo-q7O"/>
                         <outlet property="progress" destination="mXq-Vm-Gj3" id="soe-bB-aau"/>
                         <outlet property="progressLabel" destination="4Fb-u0-JJO" id="XEe-SN-WrM"/>
                         <outlet property="remainTryLabel" destination="ZHm-bl-ZUW" id="HOV-nj-l9m"/>
+                        <outlet property="reviewLayout" destination="Gi0-Vi-M9r" id="uCG-en-nFa"/>
                         <outlet property="sortLabel" destination="Pdx-wm-hmW" id="hCZ-Eq-gee"/>
                         <outlet property="titleLabel" destination="9AW-Cm-qBt" id="ChR-in-ldX"/>
                         <outletCollection property="layers" destination="hnF-we-Rbf" collectionClass="NSMutableArray" id="GX9-qF-j1n"/>
@@ -737,6 +747,9 @@
         <image name="addnewphoto" width="640" height="640"/>
         <image name="charactor1" width="50.666667938232422" height="50.666667938232422"/>
         <image name="house.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

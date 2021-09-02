@@ -36,8 +36,8 @@ class CreateChallengeTableViewController: UITableViewController {
     
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var authenticationMethodTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextView!
+    @IBOutlet weak var authenticationMethodTextField: UITextView!
     
     
     @IBOutlet weak var categoryTextField: PickerUITextField!
@@ -100,14 +100,25 @@ class CreateChallengeTableViewController: UITableViewController {
         durationTextField.addTarget(self, action: #selector(durationValueChanged(sender:)), for: UIControl.Event.editingDidEnd)
         
         
+        
+        descriptionTextField.delegate = self
+        descriptionTextField.textColor = UIColor.lightGray
+        descriptionTextField.tag = 1
+        authenticationMethodTextField.delegate = self
+        authenticationMethodTextField.textColor = UIColor.lightGray
+        authenticationMethodTextField.tag = 2
+        
+        
         if let selectedChallengeInfo = selectedChallenge {
             titleTextField.text = selectedChallengeInfo.title
             titleTextField.isUserInteractionEnabled = false
             
             descriptionTextField.text = selectedChallengeInfo.description
+            descriptionTextField.textColor = UIColor.label
             descriptionTextField.isUserInteractionEnabled = false
             
             authenticationMethodTextField.text = selectedChallengeInfo.authenticationMethod
+            authenticationMethodTextField.textColor = UIColor.label
             authenticationMethodTextField.isUserInteractionEnabled = false
             
             categoryTextField.text = {
@@ -435,3 +446,24 @@ extension CreateChallengeTableViewController: UIPickerViewDataSource, UIPickerVi
     }
 }
 
+extension CreateChallengeTableViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+                    textView.text = nil
+                    textView.textColor = UIColor.label
+                }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            if textView.tag == 1 {
+                textView.text = "설명을 입력하세요"
+                textView.textColor = UIColor.lightGray
+            } else if textView.tag == 2 {
+                textView.text = "인증 방법을 입력하세요"
+                
+            }
+            textView.textColor = UIColor.lightGray
+        }
+    }
+}

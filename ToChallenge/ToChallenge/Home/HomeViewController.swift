@@ -102,7 +102,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             let messageCell = mainTableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
             
-            messageCell.messageLabel.text = "오늘까지 인증이 필요한 도전이 없습니다."
+            messageCell.messageLabel.attributedText = insertSymbol(textString: "오늘까지 인증이 필요한 도전이 없습니다.\n도전 생성하기", symbolName: "chevron.forward", symbolColor: UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0))
             messageCell.messageLayer.layer.cornerRadius = 10
             
             messageCell.messageLayer.layer.shadowOpacity = 0.3
@@ -118,16 +118,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         
-//        if haveVisibleChallege {
-//            selectedChallenge = ongoingChallenges[indexPath.row]
-//            
-//            
-//            performSegue(withIdentifier: "ProgressDetail", sender: nil)
-//        } else {
-//            if let tabbarController = self.navigationController?.tabBarController {
-//                tabbarController.selectedIndex = 1
-//            }
-//        }
+        if haveVisibleChallege {
+            selectedChallenge = ongoingChallenges[indexPath.row]
+            
+            performSegue(withIdentifier: "ProgressDetail", sender: nil)
+        } else {
+            if let tabbarController = self.navigationController?.tabBarController {
+                tabbarController.selectedIndex = 1
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

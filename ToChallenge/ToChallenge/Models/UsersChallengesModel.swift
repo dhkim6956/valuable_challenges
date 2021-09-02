@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+var documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
 enum authenticationStatus: String, Codable {
     case authenticated, waiting, failed
 }
@@ -28,7 +30,7 @@ struct UserChallenge: Codable {
     var dueDates: [dueDatesStruct]              //인증기한
     var remainTry: Int                          //남은 도전 실패 횟수
     
-    var originalIndex: Int!                     //유저 챌린지 목록 배열 번호
+    var originalIndex: Int                     //유저 챌린지 고유 번호
     
 
     
@@ -210,10 +212,54 @@ struct UserChallenge: Codable {
         return nil
     }
     
+    func checkTodaysDueDateIndex() -> Int {
+        
+        var getIndex = -1
+        
+        
+        for (index,dueDate) in dueDates.enumerated() {
+            
+            if index == 0 {
+                switch authenticationPeriod {
+                case .everyYear:
+                    if dueDate.date >= today.end {
+                        getIndex = index
+                    }
+                case .everyMonth:
+                    if dueDate.date >= today.end {
+                        getIndex = index
+                    }
+                default:
+                    if dueDate.date == today.end {
+                        getIndex = index
+                    }
+                }
+            } else {
+                let priorDueDate = dueDates[index - 1].date
+                switch authenticationPeriod {
+                case .everyYear:
+                    if priorDueDate < today.end && dueDate.date >= today.end {
+                        getIndex = index
+                    }
+                case .everyMonth:
+                    if priorDueDate < today.end && dueDate.date >= today.end {
+                        getIndex = index
+                    }
+                default:
+                    if dueDate.date == today.end {
+                        getIndex = index
+                    }
+                }
+            }
+            
+        }
+        return getIndex
+    }
+    
     struct dueDatesStruct: Codable {
         let date: Date                                      //인증 필요 날짜
         var dueDateStatus: authenticationStatus = .waiting  //인증 여부
-        var authenticationImage: String = ""                //인증 사진
+        var authenticationImage: String = ""                   //인증 사진
         var authenticationReview: String = ""               //인증 후기
     }
 
@@ -332,6 +378,18 @@ struct UserChallenge: Codable {
         } else {
             progression = .onGoing
         }
+        
+        originalIndex = userData.newChallengeIndex
+        
+        let folderPath = documentsPath.appendingPathComponent("\(userData.newChallengeIndex)")
+        if !FileManager.default.fileExists(atPath: folderPath.path) {
+            do { try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                NSLog("Couldn't create document directory")
+            }
+        }
+        
+        userData.newChallengeIndex += 1
     }
 }
 
@@ -406,14 +464,17 @@ class UserChallengeManager {
     }
     
     func saveUserData() {
+        userData.userChallenges = UserChallenges
+        
+        
         let encoder = JSONEncoder()
         
-        guard let result = try? encoder.encode(UserChallenges) else { return }
+        guard let result = try? encoder.encode(userData) else { return }
         
         let homepath = NSHomeDirectory()
         var url = URL(fileURLWithPath: homepath)
         
-        url.appendPathComponent("Documents/UserChallenges.json")
+        url.appendPathComponent("Documents/UserData.json")
         
         _ = try! result.write(to: url)
     }
@@ -422,12 +483,14 @@ class UserChallengeManager {
         let homepath = NSHomeDirectory()
         var url = URL(fileURLWithPath: homepath)
         
-        url.appendPathComponent("Documents/UserChallenges.json")
+        url.appendPathComponent("Documents/UserData.json")
         
         guard let data = try? Data(contentsOf: url) else { return }
-        let result = try! JSONDecoder().decode([UserChallenge].self, from: data)
+        let result = try! JSONDecoder().decode(UserData.self, from: data)
         
-        UserChallenges = result
+        userData = result
+        
+        UserChallenges = userData.userChallenges
     }
 }
 
@@ -455,10 +518,10 @@ struct todayDateInfo {
         let formatter = DateFormatter()
         formatter.timeZone = .current
         formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        formatter.dateFormat = "yyyy/MM/dd h:mm:ss a"
         
         let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 12:00 AM"
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 12:00:00 AM"
         return formatter.date(from: todayString)!
     }()
     
@@ -468,10 +531,10 @@ struct todayDateInfo {
         let formatter = DateFormatter()
         formatter.timeZone = .current
         formatter.locale = .current
-        formatter.dateFormat = "yyyy/MM/dd h:mm a"
+        formatter.dateFormat = "yyyy/MM/dd h:mm:ss a"
         
         let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59 PM"
+        let todayString = "\(todayInfo.year!)/\(todayInfo.month!)/\(todayInfo.day!) 11:59:59 PM"
         return formatter.date(from: todayString)!
     }()
 }
@@ -483,4 +546,10 @@ struct UserData: Codable {
     var level = 0
     var points = 0
     var newChallengeIndex = 0
+    
+    var userChallenges: [UserChallenge] = []
+    
 }
+
+var userData = UserData.init()
+
