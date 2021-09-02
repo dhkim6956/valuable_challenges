@@ -63,7 +63,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendar.calendarWeekdayView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.1)
         calendar.appearance.titleSelectionColor = UIColor.black
         calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
-        calendar.today = nil // Hide the today circle
+        calendar.today = nil
         calendar.register(DIYCalendarCell.self, forCellReuseIdentifier: "cell")
         
         
@@ -194,6 +194,12 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         diyCell.selectionType = selectionType
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let authTableViewCotroller = segue.destination as? AuthTableViewController else { return }
+        
+        authTableViewCotroller.authChallenge = self.selectedChallenge
+    }
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {

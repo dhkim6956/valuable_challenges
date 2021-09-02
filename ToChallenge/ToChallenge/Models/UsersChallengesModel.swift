@@ -36,12 +36,12 @@ struct UserChallenge: Codable {
     func getInProgressDate() -> Int {
         let progressInterval = DateInterval(start: interval.start, end: today.end)
         
-        return Int(progressInterval.duration / 86400)
+        return Int(progressInterval.duration / 86400) + 1
     }
     
     //종료일 - 시작일
     func getEstimatedEndDate() -> Int {
-        return Int(interval.duration / 86400)
+        return Int(interval.duration / 86400) + 1
     }
 
     //시작일
@@ -346,16 +346,14 @@ let dummyFuture3 = Date(timeInterval: 86400*99, since: dummyPresent)
 var UserChallenges: [UserChallenge] = {
     var challenges: [UserChallenge] = []
     
-    challenges.append(UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0, green: 1, blue: 0.4314159155, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1))
-    challenges.append(UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기", setColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), setSort: .normal, setCategory: .reading, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyYear, setStartDate: dummyPresent, setFinishDate: dummyFuture2))
-    challenges.append(UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), setSort: .normal, setCategory: .language, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture3))
+//    challenges.append(UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0, green: 1, blue: 0.4314159155, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1))
+//    challenges.append(UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기", setColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), setSort: .normal, setCategory: .reading, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyYear, setStartDate: dummyPresent, setFinishDate: dummyFuture2))
+//    challenges.append(UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), setSort: .normal, setCategory: .language, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture3))
     
     return challenges
 }()
 
 class UserChallengeManager {
-    
-    
     //
     func updateTodayChallengeStatus() {
         for (index,eachChallenge) in UserChallenges.enumerated() {
@@ -479,3 +477,10 @@ struct todayDateInfo {
 }
 
 let today = todayDateInfo.init()
+
+
+struct UserData: Codable {
+    var level = 0
+    var points = 0
+    var newChallengeIndex = 0
+}

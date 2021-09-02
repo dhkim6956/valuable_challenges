@@ -18,6 +18,7 @@
 		39AF3AD126C4C9C600010DAA /* CreateChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */; };
 		39D83D1226BD60A400D6575A /* challengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */; };
 		39EA42E026DFFEFF00C51076 /* DIYCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EA42DF26DFFEFF00C51076 /* DIYCalendarCell.swift */; };
+		39EA42E226E00B5C00C51076 /* AuthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EA42E126E00B5C00C51076 /* AuthTableViewController.swift */; };
 		4734127126BBE0450077197B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127026BBE0450077197B /* CircularProgressView.swift */; };
 		4734127326BBEEE00077197B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734127226BBEEE00077197B /* MainTableViewCell.swift */; };
 		474F42EE26ADA4E200AC29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F42ED26ADA4E200AC29EE /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		39AF3AD026C4C9C600010DAA /* CreateChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeTableViewController.swift; sourceTree = "<group>"; };
 		39D83D1126BD60A400D6575A /* challengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challengeTableViewCell.swift; sourceTree = "<group>"; };
 		39EA42DF26DFFEFF00C51076 /* DIYCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIYCalendarCell.swift; sourceTree = "<group>"; };
+		39EA42E126E00B5C00C51076 /* AuthTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTableViewController.swift; sourceTree = "<group>"; };
 		4734127026BBE0450077197B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		4734127226BBEEE00077197B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		474F42EA26ADA4E200AC29EE /* ToChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				474F42F126ADA4E200AC29EE /* HomeViewController.swift */,
 				12E808B526BC274400176A73 /* Home.storyboard */,
 				47B5BBA426D8BC4100E682A1 /* DetailViewController.swift */,
+				39EA42E126E00B5C00C51076 /* AuthTableViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				47889A6C26BCD082005903C4 /* AchievementsViewController.swift in Sources */,
 				A5A90ACF26DA75EE0019ED12 /* ChallengeRecordCell2.swift in Sources */,
 				474F42F026ADA4E200AC29EE /* SceneDelegate.swift in Sources */,
+				39EA42E226E00B5C00C51076 /* AuthTableViewController.swift in Sources */,
 				396296B326DBCA98009F34E2 /* categoryTableViewCell.swift in Sources */,
 				3923174B26CEB0E2001219E7 /* DefaultChallengesModel.swift in Sources */,
 				391B04E026D133D70001518C /* publicClass.swift in Sources */,
