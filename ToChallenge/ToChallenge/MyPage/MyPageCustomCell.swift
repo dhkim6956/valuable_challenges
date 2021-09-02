@@ -15,7 +15,7 @@ class MyPageCustomCell: UITableViewCell {
     @IBOutlet weak var finisedLevel: UILabel!
     @IBOutlet weak var presentPointLabel: UILabel!
     @IBOutlet weak var finishedPointLabel: UILabel!
-    @IBOutlet weak var ongoinChallengeCount: UILabel!
+    @IBOutlet weak var ongoingChallengeCount: UILabel!
     @IBOutlet weak var finishedChallengeCount: UILabel!
     @IBOutlet weak var failedChallengeCount: UILabel!
     @IBOutlet weak var pointProgressView: UIProgressView!

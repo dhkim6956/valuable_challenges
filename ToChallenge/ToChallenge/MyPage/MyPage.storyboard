@@ -169,7 +169,7 @@
                                             <outlet property="finisedLevel" destination="oMf-Lr-1jV" id="kkk-WQ-9qc"/>
                                             <outlet property="finishedChallengeCount" destination="5sJ-6p-SuU" id="StS-Ja-ois"/>
                                             <outlet property="finishedPointLabel" destination="v5g-ne-wev" id="uCT-pj-UV6"/>
-                                            <outlet property="ongoinChallengeCount" destination="yBf-FW-J9w" id="ryj-sn-b89"/>
+                                            <outlet property="ongoingChallengeCount" destination="yBf-FW-J9w" id="m8A-zR-9pR"/>
                                             <outlet property="pointProgressView" destination="6NE-eb-bu5" id="JRU-Aa-stZ"/>
                                             <outlet property="presentPointLabel" destination="pNh-bB-lMB" id="gPi-cE-GQp"/>
                                             <outlet property="startLevel" destination="WZP-Qm-MNJ" id="pVo-Aq-VqP"/>

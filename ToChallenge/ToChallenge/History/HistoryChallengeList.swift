@@ -46,7 +46,7 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
                 cell.slashLabel?.text = .some("/")
                 
             //소수점에 0이 붙음
-            cell.percentLabel?.text = "\(floor((Float(Float(challenges[indexPath.item].getInProgressDate()) / (Float(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))%"
+            cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
             
                 
             cell.layer.cornerRadius = 20
@@ -121,7 +121,7 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].dueDates)일"
             cell.ongoingLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
             cell.slashLabel?.text = .some("/")
-            cell.percentLabel?.text =  "\(floor((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))%"
+            cell.percentLabel?.text =  "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
             cell.startDateLabel?.text = challenges[indexPath.item].getStartDate(yyyyMMdd: "yyyy.MM.dd")
             cell.finishDateLabel?.text = challenges[indexPath.item].getFinishDate(yyyyMMdd: "yyyy.MM.dd")
             
