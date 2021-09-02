@@ -74,11 +74,16 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let temp =  Float(selectedChallenge.getDoneAuthenticationCount()) / Float(selectedChallenge.getTotalAuthenticationCount())
+        
+        challengeProgressView.setProgress(temp, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        challengeProgressView.setProgress(Float(selectedChallenge.getDoneAuthenticationCount()/selectedChallenge.getTotalAuthenticationCount()), animated: true)
-        
         
         categoryLabel.text = selectedChallenge.getSort()
         titleLabel.text = selectedChallenge.title
