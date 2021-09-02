@@ -536,9 +536,7 @@
                             <constraint firstItem="VKK-Y1-jjQ" firstAttribute="top" secondItem="j28-N7-ulS" secondAttribute="top" id="1tU-qb-4XR"/>
                             <constraint firstItem="VKK-Y1-jjQ" firstAttribute="leading" secondItem="j28-N7-ulS" secondAttribute="leading" id="PJ0-4N-85V"/>
                             <constraint firstItem="j28-N7-ulS" firstAttribute="trailing" secondItem="VKK-Y1-jjQ" secondAttribute="trailing" id="kPs-y8-jvr"/>
-                            <constraint firstItem="VKK-Y1-jjQ" firstAttribute="centerX" secondItem="MpJ-ND-ocF" secondAttribute="centerX" id="mNv-7g-sd0"/>
                             <constraint firstItem="j28-N7-ulS" firstAttribute="bottom" secondItem="VKK-Y1-jjQ" secondAttribute="bottom" id="nmT-16-XAo"/>
-                            <constraint firstItem="VKK-Y1-jjQ" firstAttribute="centerY" secondItem="MpJ-ND-ocF" secondAttribute="centerY" id="si7-Dn-azn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="도전기록" id="Tut-bu-9MY">
