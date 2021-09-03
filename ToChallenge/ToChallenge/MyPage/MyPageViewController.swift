@@ -63,8 +63,8 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.presentPointLabel?.text = "82pts"
             cell.finishedPointLabel?.text = "500pts"
             cell.ongoingChallengeCount?.text =  "\(UserChallenges.filter({ $0.progression == .onGoing }).count)"
-//            cell.finishedChallengeCount?.text = "\(challenges.arraylist.count)"
-//            cell.failedChallengeCount?.text = "\(challenges.arraylist.count)"
+            cell.finishedChallengeCount?.text = "\(UserChallenges.filter({ $0.progression == .succeed }).count)"
+            cell.failedChallengeCount?.text = "\(UserChallenges.filter({ $0.progression == .failed }).count)"
             cell.pointProgressView?.progress = (Float(Float(82) / Float(500)))
             
             cell.backgroundColor = #colorLiteral(red: 0.9720780253, green: 0.9662989974, blue: 0.9765200019, alpha: 1)

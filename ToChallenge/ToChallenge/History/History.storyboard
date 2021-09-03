@@ -181,17 +181,17 @@
                                                         <constraint firstItem="Phh-o3-yvi" firstAttribute="top" secondItem="O2T-a8-1sw" secondAttribute="top" constant="10" id="yYE-co-osj"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="288" translatesAutoresizingMaskIntoConstraints="NO" id="SeV-Gk-na0">
-                                                    <rect key="frame" x="9" y="104" width="371" height="20.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="288" translatesAutoresizingMaskIntoConstraints="NO" id="SeV-Gk-na0">
+                                                    <rect key="frame" x="10" y="104" width="370" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6O-TF-UWt">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6O-TF-UWt">
                                                             <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3k-Bs-frt">
-                                                            <rect key="frame" x="329.5" y="0.0" width="41.5" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" layoutMarginsFollowReadableWidth="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3k-Bs-frt">
+                                                            <rect key="frame" x="329.5" y="0.0" width="40.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -211,9 +211,10 @@
                                                 <constraint firstItem="Neu-tK-OiQ" firstAttribute="top" secondItem="Ogf-7o-oQT" secondAttribute="bottom" constant="5" id="FaL-bJ-hg9"/>
                                                 <constraint firstAttribute="trailing" secondItem="O2T-a8-1sw" secondAttribute="trailing" constant="8" id="HrW-RD-bEH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ogf-7o-oQT" secondAttribute="trailing" constant="10" id="IVi-Zh-3hF"/>
+                                                <constraint firstAttribute="trailing" secondItem="SeV-Gk-na0" secondAttribute="trailing" constant="10" id="Pnu-a2-tOz"/>
                                                 <constraint firstItem="Ogf-7o-oQT" firstAttribute="leading" secondItem="LEh-fK-xfc" secondAttribute="leading" constant="10" id="Z8U-at-LrJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="O2T-a8-1sw" secondAttribute="bottom" constant="10" id="djK-Ia-KgR"/>
-                                                <constraint firstAttribute="trailing" secondItem="SeV-Gk-na0" secondAttribute="trailing" constant="10" id="iiH-UQ-Jwi"/>
+                                                <constraint firstItem="SeV-Gk-na0" firstAttribute="leading" secondItem="LEh-fK-xfc" secondAttribute="leading" constant="10" id="jRn-sg-EBN"/>
                                                 <constraint firstItem="SeV-Gk-na0" firstAttribute="top" secondItem="Neu-tK-OiQ" secondAttribute="bottom" constant="15" id="t5h-hH-gxk"/>
                                                 <constraint firstItem="GbF-8d-3Lr" firstAttribute="top" secondItem="LEh-fK-xfc" secondAttribute="top" constant="12" id="uEy-kz-ULS"/>
                                                 <constraint firstAttribute="trailing" secondItem="GbF-8d-3Lr" secondAttribute="trailing" constant="12" id="wU5-Cd-oIa"/>
@@ -274,6 +275,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hDv-oF-eli"/>
                     <connections>
+                        <outlet property="historyChallengeList" destination="HLh-xV-eL4" id="GHm-RB-tEM"/>
                         <segue destination="EHx-8e-Yhc" kind="show" identifier="GoChallengeRecordList" id="ReW-Nw-DDE"/>
                     </connections>
                 </viewController>

@@ -10,16 +10,40 @@ import UIKit
 
 class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var historyChallengeList: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+     
     }
     
     var selectedStatus: UserChallenge.challengeProgression = .onGoing
     var challenges: [UserChallenge] = []
     
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        challenges = UserChallenges.filter{ $0.progression == .onGoing }
+        
+        if challenges.count > 0 {
+         
+        historyChallengeList.reloadData()
+            
+        }
+    }
+    
+    
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        historyChallengeList.reloadData()
+//    }
+    
+    
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        return 1
@@ -40,10 +64,12 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         case .onGoing:
             cell.titleLabel?.text = challenges[indexPath.item].title
             cell.categoryLabel?.text = "\(challenges[indexPath.item].category)"
-            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].dueDates)일"
-            cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].dueDates)일"
+            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
+            cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
             cell.ongoingLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
                 cell.slashLabel?.text = .some("/")
+            cell.startDateLabel?.text = "\(challenges[indexPath.item].getStartDate(yyyyMMdd: "yyyy.MM.dd"))"
+            cell.finishDateLabel?.text = "\(challenges[indexPath.item].getFinishDate(yyyyMMdd: "yyyy.MM.dd"))"
                 
             //소수점에 0이 붙음
             cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
@@ -79,8 +105,8 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         case .succeed:
             cell.titleLabel?.text = challenges[indexPath.item].title
             cell.categoryLabel?.text = "\(challenges[indexPath.item].category)"
-            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].dueDates)일"
-            cell.finishedPeriodLabelProgress?.text = "\(challenges[indexPath.item].dueDates)일"
+            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
+            cell.finishedPeriodLabelProgress?.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
             cell.ongoingLabel?.text = .none
             cell.slashLabel?.text = .none
             cell.percentLabel?.text = "100%"
@@ -107,7 +133,7 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
                 
             //프로그레스 바
-                cell.progressView.progress = 1
+                cell.progressView.progress = Float(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))
                 cell.progressView.progressViewStyle = .default
                 cell.progressView.progressTintColor = #colorLiteral(red: 0.01527210232, green: 0.1787953973, blue: 0.9026312828, alpha: 1)
                 cell.progressView.trackTintColor = .lightGray
@@ -117,8 +143,8 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         case .failed:
             cell.titleLabel?.text = challenges[indexPath.item].title
             cell.categoryLabel?.text = "\(challenges[indexPath.item].category)"
-            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].dueDates)일"
-            cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].dueDates)일"
+            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
+            cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
             cell.ongoingLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
             cell.slashLabel?.text = .some("/")
             cell.percentLabel?.text =  "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"

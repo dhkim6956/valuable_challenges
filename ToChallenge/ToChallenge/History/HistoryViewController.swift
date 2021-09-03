@@ -19,9 +19,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
     
         historyListTableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-
     
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        historyListTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

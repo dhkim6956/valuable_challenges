@@ -40,34 +40,39 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
     
     var detailSelectedStatus: UserChallenge.challengeProgression = .onGoing
     
-    var challenges: [UserChallenge]!
+    var challenges: [UserChallenge] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         challengeRecordList.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
     
-        challenges = challenges.enumerated().map({
-            if $0 % 2 == 0 {
-                var fixed = $1
-                
-               // fixed.proofImage = UIImage(named: "proofImage01") - 오류
-                
-                return fixed
-            }
-            return $1
-        })
+//        challenges = challenges.enumerated().map({
+//            if $0 % 2 == 0 {
+//                let fixed = $1
+//
+//               // fixed.proofImage = UIImage(named: "proofImage01") - 오류
+//
+//                return fixed
+//            }
+//            return $1
+//        })
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        challenges = UserChallenges.filter{ $0.progression == .onGoing }
+
+       if challenges.count > 0 {
+        
+       challengeRecordList.reloadData()
+           
+       }
+
+    }
     
-//    var certificationRecord: [CertificationRecord] = [
-//        CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 1, startDate: "2021.08.01", finishDate: "2021.08.30", description: "첫날! 열심히 해보자!", status: .onGoing),
-//        CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 2, startDate: "2021.08.01", finishDate: "2021.08.30", description: "둘째날 할만하다!", status: .onGoing),
-//        CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 3, startDate: "2021.08.01", finishDate: "2021.08.30", description: "셋째날 할만하다!", status: .onGoing),
-//        CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 4, startDate: "2021.08.01", finishDate: "2021.08.30", description: "점점 흥미가 생긴다", status: .onGoing),
-//]
-//
-    
+     
  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch section {
@@ -97,9 +102,9 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
             cell.challengeStatusLabel?.text = "진행 중"
             cell.titleLabel?.text = challenges[indexPath.item].title
             cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일 \(challenges[indexPath.item].dueDates)일 중 \(challenges[indexPath.item].getInProgressDate())일간 해내셨습니다."
-            cell.finishPeriodLabel?.text = "\(challenges[indexPath.item].dueDates)일"
+            cell.finishPeriodLabel?.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
             cell.ongoingPeriodLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
-            cell.percentLabel?.text = "\(floor((Float(Float(challenges[indexPath.item].getInProgressDate()) / (Float(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))%"
+            cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
             cell.slashLabel?.text = .some("/")
 
             //cell UI
@@ -172,7 +177,7 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
                 cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(challenges[indexPath.item].dueDates)일 중 \(challenges[indexPath.item].getInProgressDate())일간 해내셨습니다."
                 cell.finishPeriodLabel?.text = "\(challenges[indexPath.item].dueDates)일"
                 cell.ongoingPeriodLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
-                cell.percentLabel?.text = "\(floor((Float(Float(challenges[indexPath.item].getInProgressDate()) / (Float(challenges[indexPath.item].getDoneAuthenticationCount())))) * 100))%"
+                cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
                 cell.slashLabel?.text = .some("/")
 
                 //cell UI
