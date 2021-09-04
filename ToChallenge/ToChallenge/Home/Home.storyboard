@@ -312,7 +312,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="kHw-Hx-gTI" kind="show" id="0jK-cw-7an"/>
+                                                            <action selector="authButtonTapped:" destination="Mp3-YN-mpi" eventType="touchUpInside" id="ZE3-m1-zwg"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -334,6 +334,9 @@
                                                         <state key="normal" title="도전 포기하기">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="giveUpButtonTapped:" destination="Mp3-YN-mpi" eventType="touchUpInside" id="B3w-7a-fSl"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -468,6 +471,7 @@
                         <outletCollection property="viewCollection" destination="EnT-ON-NKu" collectionClass="NSMutableArray" id="Ug8-J6-Wz1"/>
                         <outletCollection property="viewCollection" destination="Dtq-i7-tVc" collectionClass="NSMutableArray" id="vJ1-hq-7Qw"/>
                         <outletCollection property="viewCollection" destination="mE3-9u-QsT" collectionClass="NSMutableArray" id="K3g-MG-lcn"/>
+                        <segue destination="kHw-Hx-gTI" kind="show" identifier="goToAuthPage" id="ZOS-di-sRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZU2-gf-zOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

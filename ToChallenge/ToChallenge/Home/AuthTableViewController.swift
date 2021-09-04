@@ -56,6 +56,7 @@ class AuthTableViewController: UITableViewController {
         remainTryLabel.text = "남은 기회: \(authChallenge.remainTry)"
         authMethodLabel.text = authChallenge.authenticationMethod
         
+        progress.progressTintColor = authChallenge.getColor()
         progress.setProgress(authChallenge.getDoneAuthenticationCount()/authChallenge.getTotalAuthenticationCount(), animated: true)
         
         authReview.delegate = self
@@ -96,37 +97,11 @@ class AuthTableViewController: UITableViewController {
         if let image = authImage.image {
             guard let imageName = imageLabel.text else { return }
             if authReview.text != "" {
-                let authChallengeIndex = authChallenge.originalIndex
                 
-                for (arrayIndex,userChallenge) in UserChallenges.enumerated() {
-                    if userChallenge.originalIndex == authChallengeIndex {
-                        
-                        let dueDateIndex = UserChallenges[arrayIndex].checkTodaysDueDateIndex()
-                        
-                        UserChallenges[arrayIndex].dueDates[dueDateIndex].authenticationReview = authReview.text
-                        UserChallenges[arrayIndex].dueDates[dueDateIndex].authenticationImage = imageName
-                        UserChallenges[arrayIndex].dueDates[dueDateIndex].dueDateStatus = .authenticated
-                        
-                        let indexFolder = userChallenge.originalIndex
-                        
-                        
-                        
-                        let url = documentsPath.appendingPathComponent("\(indexFolder)/\(imageName).jpg")
-                        if let data = image.jpegData(compressionQuality: 1.0) {
-                            do { try data.write(to: url)
-                            } catch {
-                                print("Unable to Write Image Data to Disk")
-                            }
-                        }
-                        print("save successful")
-                        
-                        
-                        userData.points += 1
-                        manageUserData.saveUserData()
-                        
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                }
+                manageUserData.authWith(image: image, withImageName: imageName, review: authReview.text, inChallenge: authChallenge)
+                
+                
+                self.navigationController?.popToRootViewController(animated: true)
             } else {
                 print("일지를 작성해주세요")
             }

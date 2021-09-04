@@ -203,6 +203,10 @@
                             <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-Dc-yeI">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="O31-pe-55O" appends="YES" id="TTg-qc-XsU"/>
+                                </connections>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCg-Vd-yp2">
                                 <rect key="frame" x="102" y="406" width="210" height="84.5"/>
@@ -277,6 +281,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="O31-pe-55O">
+                    <connections>
+                        <action selector="inputNameViewBackgroundTapped:" destination="Y6W-OH-hqX" id="2yL-ef-HXM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="124.6376811594203" y="86.383928571428569"/>
         </scene>

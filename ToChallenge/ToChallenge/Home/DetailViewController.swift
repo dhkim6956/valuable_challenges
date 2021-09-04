@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import Toast_Swift
 
 class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
@@ -37,7 +38,6 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +56,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         
         
         challengeProgressView.transform = challengeProgressView.transform.scaledBy(x: 1, y: 2)
+        challengeProgressView.progressTintColor = selectedChallenge.getColor()
         
         
         tableView.dataSource = self
@@ -215,6 +216,46 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         }
         diyCell.selectionLayer.isHidden = false
         diyCell.selectionType = selectionType
+    }
+    
+    @IBAction func giveUpButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "도전 포기", message: "정말 도전을 포기하시겠습니까\n이 작업은 되돌릴 수 없습니다", preferredStyle: .actionSheet)
+        
+        let selectedConfirm = {(action: UIAlertAction) -> Void in
+            let originalIndex = self.selectedChallenge.originalIndex
+            
+            for (arrayIndex,eachChallenge) in UserChallenges.enumerated() {
+                if eachChallenge.originalIndex == originalIndex {
+                    
+                    UserChallenges[arrayIndex].progression = .failed
+                    manageUserData.saveUserData()
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        }
+        
+        let confirmAction = UIAlertAction(title: "포기하기", style: .destructive, handler: selectedConfirm)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: false, completion: nil)
+    }
+    
+    
+    
+    
+    
+    @IBAction func authButtonTapped(_ sender: Any) {
+        if selectedChallenge.todayStatus == .authenticated {
+            self.view.makeToast("이미 현재 기간의 도전 인증을 완료하였습니다.")
+        } else {
+            performSegue(withIdentifier: "goToAuthPage", sender: self)
+        }
+        
+        
     }
     
     

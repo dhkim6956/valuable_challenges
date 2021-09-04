@@ -66,15 +66,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         default:
             assertionFailure()
-               }
+        }
 
-               let vcDest = segue.destination as! HistoryChallengeList
+        let vcDest = segue.destination as! HistoryChallengeList
 
         vcDest.selectedStatus = selectedStatus
-        vcDest.challenges = vcDest.challenges.filter({ info in info.progression == selectedStatus
-        })
-           }
-
-        
-    
+    }
 }

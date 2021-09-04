@@ -20,5 +20,6 @@ class ChallengeRecordCell1: UICollectionViewCell {
     @IBOutlet weak var finishPeriodLabel: UILabel!
     @IBOutlet weak var challengeView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var layout: UIView!
     
 }

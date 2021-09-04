@@ -33,9 +33,15 @@ struct UserChallenge: Codable {
     
     //오늘 - 시작일
     func getInProgressDate() -> Int {
-        let progressInterval = DateInterval(start: interval.start, end: today.end)
         
-        return Int(progressInterval.duration / 86400) + 1
+        if interval.start < today.end {
+            let progressInterval = DateInterval(start: interval.start, end: today.end)
+            
+            return Int(progressInterval.duration / 86400) + 1
+        } else {
+            return 0
+        }
+        
     }
     
     //종료일 - 시작일
@@ -108,6 +114,19 @@ struct UserChallenge: Codable {
             return "매주 토요일"
         case .everySunday:
             return "매주 일요일"
+        }
+    }
+    
+    func getProgression() -> String {
+        switch progression {
+        case .onGoing:
+            return "진행중"
+        case .waitForStart:
+            return "시작예정"
+        case .succeed:
+            return "완료"
+        case .failed:
+            return "실패"
         }
     }
 
@@ -186,7 +205,7 @@ struct UserChallenge: Codable {
     
     //도전 히스토리 이미지
     func getAuthenticationImage(dueDateIndex: Int) -> UIImage {
-        let url = documentsPath.appendingPathComponent("\(originalIndex)/\(dueDates[dueDateIndex].authenticationImage)")
+        let url = documentsPath.appendingPathComponent("\(originalIndex)/\(dueDates[dueDateIndex].authenticationImage).jpg")
         if let image = UIImage(contentsOfFile: url.path) {
             
             return image
@@ -194,6 +213,8 @@ struct UserChallenge: Codable {
             return UIImage(named: "blankImage")!
         }
     }
+    
+    
     
     //특정일의 인증여부
     func checkDateStatus(specificDate: Date) -> authenticationStatus? {
@@ -316,7 +337,10 @@ struct UserChallenge: Codable {
 
         let startDate = formatter.date(from: startDateString)!
         let finishDate = formatter.date(from: finishDateString)!
-        interval = DateInterval(start: startDate, end: finishDate)
+        
+        let calculateInterval = DateInterval(start: startDate, end: finishDate)
+        
+        interval = calculateInterval
 
         var dateForCalc = Date(timeInterval: 86399, since: startDate)
         dueDates = []
@@ -375,7 +399,12 @@ struct UserChallenge: Codable {
             dueDates.append(dueDatesStruct(date: finishDate))
         }
         todayStatus = .waiting
-        remainTry = 3
+        if Int(calculateInterval.duration / 86400) + 1 <= 7 {
+            remainTry = 1
+        } else {
+            remainTry = 3
+        }
+        
         if Date() < startDate {
             progression = .waitForStart
         } else {
@@ -403,12 +432,77 @@ var UserChallenges: [UserChallenge] = []
 
 class UserDataManager {
     
+    
+    
+    
+    //도전 인증
+    func authWith(image: UIImage, withImageName: String, review: String, inChallenge: UserChallenge) {
+        let authChallengeIndex = inChallenge.originalIndex
+        
+        var findArrayIndex: Int?
+        var findDueDateIndex: Int?
+        
+        for (arrayIndex,userChallenge) in UserChallenges.enumerated() {
+            if userChallenge.originalIndex == authChallengeIndex {
+                
+                findArrayIndex = arrayIndex
+                
+                let dueDateIndex = UserChallenges[arrayIndex].checkTodaysDueDateIndex()
+                
+                findDueDateIndex = dueDateIndex
+                
+                
+                UserChallenges[arrayIndex].dueDates[dueDateIndex].authenticationReview = review
+                UserChallenges[arrayIndex].dueDates[dueDateIndex].authenticationImage = withImageName
+                UserChallenges[arrayIndex].dueDates[dueDateIndex].dueDateStatus = .authenticated
+                
+                UserChallenges[arrayIndex].todayStatus = .authenticated
+            }
+        }
+        let indexFolder = authChallengeIndex
+        
+        let url = documentsPath.appendingPathComponent("\(indexFolder)/\(withImageName).jpg")
+        if let data = image.jpegData(compressionQuality: 1.0) {
+            do { try data.write(to: url)
+            } catch {
+                print("Unable to Write Image Data to Disk")
+            }
+        }
+        userData.points += 1
+        
+        if let didFindArrayIndex = findArrayIndex {
+            if let didFindDueDateIndex = findDueDateIndex {
+                if UserChallenges[didFindArrayIndex].dueDates.count == didFindDueDateIndex + 1 {
+                    UserChallenges[didFindArrayIndex].progression = .succeed
+                }
+            }
+        }
+        manageUserData.saveUserData()
+    }
+    
+    //기한을 경과한 도전 실패처리
     func updateDueDateStatus() {
         for (challengeIndex, eachChallenge) in UserChallenges.enumerated() {
+            var failedCount = 0
             for (dueDateIndex, dueDate) in eachChallenge.dueDates.enumerated() {
-                
                 if dueDate.date < today.start && dueDate.dueDateStatus == .waiting {
                     UserChallenges[challengeIndex].dueDates[dueDateIndex].dueDateStatus = .failed
+                    failedCount += 1
+                }
+            }
+            
+            let getInterval = eachChallenge.interval
+            
+            if Int(getInterval.duration / 86400) + 1 <= 7 {
+                if failedCount >= 1 {
+                    UserChallenges[challengeIndex].progression = .failed
+                }
+            } else {
+                let maxCount = 3
+                if failedCount >= maxCount {
+                    UserChallenges[challengeIndex].progression = .failed
+                } else {
+                    UserChallenges[challengeIndex].remainTry = maxCount - failedCount
                 }
             }
         }

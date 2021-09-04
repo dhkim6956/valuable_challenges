@@ -15,4 +15,5 @@ class ChallengeRecordCell2: UICollectionViewCell {
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var recordView: UIView!
     @IBOutlet weak var recordLabel: UILabel!
+    @IBOutlet weak var layout: UIView!
 }

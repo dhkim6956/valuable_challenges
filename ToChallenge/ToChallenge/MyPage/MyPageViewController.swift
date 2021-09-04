@@ -153,5 +153,9 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             inputNameViewBackground.isHidden = true
         }
     }
+    @IBAction func inputNameViewBackgroundTapped(_ sender: Any) {
+        inputNameView.isHidden = true
+        inputNameViewBackground.isHidden = true
+    }
     
 }
