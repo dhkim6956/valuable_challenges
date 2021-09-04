@@ -123,6 +123,8 @@ class AuthTableViewController: UITableViewController {
                         
                         userData.points += 1
                         manageUserData.saveUserData()
+                        
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             } else {

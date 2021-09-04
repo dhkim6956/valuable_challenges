@@ -51,8 +51,10 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
     @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var periodTextField: PickerUITextField!
     
-    @IBOutlet weak var startDateTextField: UITextField!
-    @IBOutlet weak var finishDateTextField: UITextField!
+    
+    @IBOutlet weak var startDateTextLabel: UILabel!
+    @IBOutlet weak var finishDateTextLabel: UILabel!
+    
     
     @IBOutlet weak var colorPickerView: UIColorWell!
     
@@ -331,12 +333,12 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
         if changedStartDate == true {
             guard let selectedDate = datePicker else { return }
             startDate = selectedDate
-            startDateTextField.text = formatter.string(from: startDate!)
+            startDateTextLabel.text = formatter.string(from: startDate!)
             guard let durationText = durationTextField.text else { return }
             if durationText != "" {
                 let timeIntervalDouble = (Double(durationText)! - 1) * 86400
                 finishDate = Date(timeInterval: timeIntervalDouble, since: selectedDate)
-                finishDateTextField.text = formatter.string(from: finishDate!)
+                finishDateTextLabel.text = formatter.string(from: finishDate!)
             } else {
                 if let haveFinishDate = finishDate {
                     let getInterval = DateInterval(start: selectedDate, end: haveFinishDate)
@@ -346,7 +348,7 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
         } else if changedEndDate == true {
             guard let selectedDate = datePicker else { return }
             finishDate = selectedDate
-            finishDateTextField.text = formatter.string(from: finishDate!)
+            finishDateTextLabel.text = formatter.string(from: finishDate!)
             guard let durationText = durationTextField.text else { return }
             if durationText != "" {
                 let timeIntervalDouble = (Double(durationText)! - 1) * -86400
@@ -355,10 +357,10 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
                 if startDate! < today.start {
                     startDate = startDateBackup
                     finishDate = nil
-                    finishDateTextField.text = ""
+                    finishDateTextLabel.text = ""
                     self.view.makeToast("종료일이 진행기간보다 짧게 지정되었습니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                 } else {
-                    startDateTextField.text = formatter.string(from: startDate!)
+                    startDateTextLabel.text = formatter.string(from: startDate!)
                 }
             } else {
                 if let haveStartDate = startDate {
@@ -371,7 +373,7 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
                 if let durationText = durationTextField.text {
                     let timeIntervalDouble = (Double(durationText)! - 1) * 86400
                     finishDate = Date(timeInterval: timeIntervalDouble, since: haveStartDate)
-                    finishDateTextField.text = formatter.string(from: finishDate!)
+                    finishDateTextLabel.text = formatter.string(from: finishDate!)
                 }
             } else if let haveFinishDate = finishDate {
                 if let durationText = durationTextField.text {
@@ -382,7 +384,7 @@ class CreateChallengeTableViewController: UITableViewController, ProtocolData {
                         durationTextField.text = ""
                         self.view.makeToast("진행기간이 종료일보다 길게 지정되었습니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
                     } else {
-                        startDateTextField.text = formatter.string(from: startDate!)
+                        startDateTextLabel.text = formatter.string(from: startDate!)
                     }
                 }
             }

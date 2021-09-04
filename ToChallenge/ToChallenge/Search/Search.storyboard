@@ -937,7 +937,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="카테고리를 선택하세요" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7s-AV-7Ii" customClass="PickerUITextField" customModule="ToChallenge" customModuleProvider="target">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
@@ -1147,7 +1147,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0q-7e-a1A">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
@@ -1189,25 +1189,23 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s7L-NR-aj7">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kv-w7-DIp">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                            </accessibility>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="s7L-NR-aj7" firstAttribute="width" secondItem="XS2-13-bdh" secondAttribute="width" multiplier="2:1" id="62n-3z-fEv"/>
                                                         <constraint firstAttribute="bottom" secondItem="XS2-13-bdh" secondAttribute="bottom" constant="10" id="IAN-kd-O5V"/>
-                                                        <constraint firstItem="s7L-NR-aj7" firstAttribute="top" secondItem="yUD-h0-bR6" secondAttribute="top" constant="10" id="Tpg-8W-6j8"/>
-                                                        <constraint firstAttribute="trailing" secondItem="s7L-NR-aj7" secondAttribute="trailing" constant="5" id="XWm-by-2D7"/>
+                                                        <constraint firstItem="0kv-w7-DIp" firstAttribute="top" secondItem="yUD-h0-bR6" secondAttribute="top" constant="10" id="Njl-6w-P1S"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0kv-w7-DIp" secondAttribute="bottom" constant="10" id="TSs-vY-vr6"/>
                                                         <constraint firstItem="XS2-13-bdh" firstAttribute="leading" secondItem="yUD-h0-bR6" secondAttribute="leading" constant="5" id="YQz-iv-A9r"/>
-                                                        <constraint firstAttribute="bottom" secondItem="s7L-NR-aj7" secondAttribute="bottom" constant="10" id="gbt-NY-7B9"/>
                                                         <constraint firstItem="XS2-13-bdh" firstAttribute="top" secondItem="yUD-h0-bR6" secondAttribute="top" constant="10" id="h5y-2n-eZJ"/>
-                                                        <constraint firstItem="s7L-NR-aj7" firstAttribute="leading" secondItem="XS2-13-bdh" secondAttribute="trailing" constant="10" id="i43-89-bET"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0kv-w7-DIp" secondAttribute="trailing" constant="5" id="hqo-7s-WOT"/>
+                                                        <constraint firstItem="0kv-w7-DIp" firstAttribute="leading" secondItem="XS2-13-bdh" secondAttribute="trailing" constant="10" id="qjY-lW-U55"/>
+                                                        <constraint firstItem="0kv-w7-DIp" firstAttribute="width" secondItem="XS2-13-bdh" secondAttribute="width" multiplier="2:1" id="sst-Vq-8tJ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1236,25 +1234,23 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y02-Mt-DDM">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnD-gG-wUn">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                            </accessibility>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="ZDS-sj-Tyf" firstAttribute="leading" secondItem="JlE-5p-7To" secondAttribute="leading" constant="5" id="CpA-3F-kaY"/>
-                                                        <constraint firstItem="y02-Mt-DDM" firstAttribute="leading" secondItem="ZDS-sj-Tyf" secondAttribute="trailing" constant="10" id="EHz-ft-NGR"/>
+                                                        <constraint firstItem="EnD-gG-wUn" firstAttribute="top" secondItem="JlE-5p-7To" secondAttribute="top" constant="10" id="EpM-8x-0Oh"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZDS-sj-Tyf" secondAttribute="bottom" constant="10" id="Ihg-0x-UoY"/>
-                                                        <constraint firstItem="y02-Mt-DDM" firstAttribute="top" secondItem="JlE-5p-7To" secondAttribute="top" constant="10" id="KUC-2h-Ffu"/>
+                                                        <constraint firstItem="EnD-gG-wUn" firstAttribute="width" secondItem="ZDS-sj-Tyf" secondAttribute="width" multiplier="2:1" id="IzX-kH-W11"/>
                                                         <constraint firstItem="ZDS-sj-Tyf" firstAttribute="top" secondItem="JlE-5p-7To" secondAttribute="top" constant="10" id="PQS-yn-HFM"/>
-                                                        <constraint firstAttribute="bottom" secondItem="y02-Mt-DDM" secondAttribute="bottom" constant="10" id="jpm-Sg-fTv"/>
-                                                        <constraint firstAttribute="trailing" secondItem="y02-Mt-DDM" secondAttribute="trailing" constant="5" id="vcT-Cc-va5"/>
-                                                        <constraint firstItem="y02-Mt-DDM" firstAttribute="width" secondItem="ZDS-sj-Tyf" secondAttribute="width" multiplier="2:1" id="yDj-PP-n7U"/>
+                                                        <constraint firstAttribute="bottom" secondItem="EnD-gG-wUn" secondAttribute="bottom" constant="10" id="hSf-Dt-RKv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="EnD-gG-wUn" secondAttribute="trailing" constant="5" id="kTo-ek-Wid"/>
+                                                        <constraint firstItem="EnD-gG-wUn" firstAttribute="leading" secondItem="ZDS-sj-Tyf" secondAttribute="trailing" constant="10" id="oNs-gz-exa"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1285,7 +1281,7 @@
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzB-Se-a2F">
                                                             <rect key="frame" x="139.5" y="10" width="249.5" height="30"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
@@ -1333,9 +1329,9 @@
                         <outlet property="colorPickerView" destination="Azs-Jb-bH4" id="nUA-oR-dsh"/>
                         <outlet property="descriptionTextField" destination="31d-X7-lyG" id="Qaa-oS-rx0"/>
                         <outlet property="durationTextField" destination="B0q-7e-a1A" id="5JP-AL-YLG"/>
-                        <outlet property="finishDateTextField" destination="y02-Mt-DDM" id="17h-uW-Jxx"/>
+                        <outlet property="finishDateTextLabel" destination="EnD-gG-wUn" id="FeR-uV-vdE"/>
                         <outlet property="periodTextField" destination="mzB-Se-a2F" id="709-PP-I6A"/>
-                        <outlet property="startDateTextField" destination="s7L-NR-aj7" id="aZv-if-5I2"/>
+                        <outlet property="startDateTextLabel" destination="0kv-w7-DIp" id="qyp-7y-wdt"/>
                         <outlet property="titleFrame" destination="4d3-Cd-6Sr" id="Wad-jm-5EW"/>
                         <outlet property="titleTextField" destination="UZ4-qp-AEw" id="jeq-dO-7dK"/>
                         <outletCollection property="upperSide" destination="B11-sT-r6K" collectionClass="NSMutableArray" id="ALD-qS-se8"/>

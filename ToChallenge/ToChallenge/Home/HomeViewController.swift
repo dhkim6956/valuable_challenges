@@ -41,16 +41,19 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         manageUserData.loadUserData()
+        manageUserData.updateDueDateStatus()
+        manageUserData.updateTodayChallengeStatus()
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         ongoingChallenges = UserChallenges.filter{$0.getIsHaveToDoToday()}
         if ongoingChallenges.count > 0 {
             haveVisibleChallege = true
+        } else {
+            haveVisibleChallege = false
         }
         mainTableView.reloadData()
     }

@@ -10,9 +10,6 @@ import UIKit
 
 var documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
-enum authenticationStatus: String, Codable {
-    case authenticated, waiting, failed
-}
 
 struct UserChallenge: Codable {
     let title: String                           //도전명
@@ -132,21 +129,13 @@ struct UserChallenge: Codable {
 
     //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (메인 화면표시용)
     func getIsHaveToDoToday() -> Bool {
-        if authenticationPeriod == .everyMonth || authenticationPeriod == .everyYear {
-            return true
-        } else {
-            if progression == .onGoing {
-                let calendar = Calendar.current
-                let todayInfo = calendar.dateComponents([.year, .month, .day], from: Date())
-                
-                for dueDate in dueDates {
-                    let dueDateInfo = calendar.dateComponents([.year, .month, .day], from: dueDate.date)
-                    if todayInfo.year  == dueDateInfo.year && todayInfo.month == dueDateInfo.month && todayInfo.day == dueDateInfo.day {
-                        return true
-                    }
-                }
+        if progression == .onGoing {
+            if todayStatus == .failed {
                 return false
+            } else {
+                return true
             }
+        } else {
             return false
         }
     }
@@ -195,8 +184,19 @@ struct UserChallenge: Codable {
         return customFormatter
     }
     
+    //도전 히스토리 이미지
+    func getAuthenticationImage(dueDateIndex: Int) -> UIImage {
+        let url = documentsPath.appendingPathComponent("\(originalIndex)/\(dueDates[dueDateIndex].authenticationImage)")
+        if let image = UIImage(contentsOfFile: url.path) {
+            
+            return image
+        } else {
+            return UIImage(named: "blankImage")!
+        }
+    }
+    
+    //특정일의 인증여부
     func checkDateStatus(specificDate: Date) -> authenticationStatus? {
-        
         let calendar = Calendar.current
         let specificDateInfo = calendar.dateComponents([.year, .month, .day], from: specificDate)
         
@@ -212,6 +212,7 @@ struct UserChallenge: Codable {
         return nil
     }
     
+    //오늘 인증 가능한 인증기한
     func checkTodaysDueDateIndex() -> Int {
         
         var getIndex = -1
@@ -267,7 +268,9 @@ struct UserChallenge: Codable {
         case waitForStart, onGoing, succeed, failed
     }
 
-    
+    enum authenticationStatus: String, Codable {
+        case authenticated, waiting, failed
+    }
 
     enum challengeSort: String, Codable {
         case userMade, normal, survival
@@ -395,24 +398,23 @@ struct UserChallenge: Codable {
 
 
 
-let dummyPresent = Date()
-let dummyFuture1 = Date(timeInterval: 86400*29, since: dummyPresent)
-let dummyFuture2 = Date(timeInterval: 86400*364, since: dummyPresent)
-let dummyFuture3 = Date(timeInterval: 86400*99, since: dummyPresent)
 
-
-var UserChallenges: [UserChallenge] = {
-    var challenges: [UserChallenge] = []
-    
-//    challenges.append(UserChallenge(setTitle: "Front-end 정복해보자", setColor: #colorLiteral(red: 0, green: 1, blue: 0.4314159155, alpha: 1), setSort: .normal, setCategory: .coding, setDescription: "30일 동안 html, css, javascript에 대한 개념을 잡을 수 있는 과정", setAuthenticationMethod: "Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture1))
-//    challenges.append(UserChallenge(setTitle: "다양한 장르의 책을 한달에 1권씩 1년동안 읽기", setColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), setSort: .normal, setCategory: .reading, setDescription: "문체부 추천도서 / 교과 연계도서를 읽고 인증하는 과정", setAuthenticationMethod: "월 1회 독후감을 작성하거나 책의 핵심 내용을 요약하여 인증하는 과정", setAuthenticationPeriod: .everyYear, setStartDate: dummyPresent, setFinishDate: dummyFuture2))
-//    challenges.append(UserChallenge(setTitle: "매일 영어 일기 쓰기", setColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), setSort: .normal, setCategory: .language, setDescription: "영어 writing 실력을 늘리기 위해 100일간 영어 일기(최소 한줄)를 쓰기를 도전해보자", setAuthenticationMethod: "매일 영어 일기를 쓰고 쓴 내용을 사진으로 찍어 인증하기", setAuthenticationPeriod: .everyDay, setStartDate: dummyPresent, setFinishDate: dummyFuture3))
-    
-    return challenges
-}()
+var UserChallenges: [UserChallenge] = []
 
 class UserDataManager {
-    //
+    
+    func updateDueDateStatus() {
+        for (challengeIndex, eachChallenge) in UserChallenges.enumerated() {
+            for (dueDateIndex, dueDate) in eachChallenge.dueDates.enumerated() {
+                
+                if dueDate.date < today.start && dueDate.dueDateStatus == .waiting {
+                    UserChallenges[challengeIndex].dueDates[dueDateIndex].dueDateStatus = .failed
+                }
+            }
+        }
+    }
+    
+    //오늘 도전 인증필요 여부 업데이트
     func updateTodayChallengeStatus() {
         for (index,eachChallenge) in UserChallenges.enumerated() {
             switch eachChallenge.authenticationPeriod {
@@ -463,8 +465,12 @@ class UserDataManager {
         }
     }
     
+    //유저 정보 저장
     func saveUserData() {
         userData.userChallenges = UserChallenges
+        for (challengeIndex, eachChallenge) in DefaultChallenges.enumerated() {
+            userData.addedChallenges[challengeIndex] = eachChallenge.challengeAdded
+        }
         
         
         let encoder = JSONEncoder()
@@ -479,6 +485,7 @@ class UserDataManager {
         _ = try! result.write(to: url)
     }
     
+    //유저 정보 불러오기
     func loadUserData() {
         let homepath = NSHomeDirectory()
         var url = URL(fileURLWithPath: homepath)
@@ -489,10 +496,36 @@ class UserDataManager {
             let result = try! JSONDecoder().decode(UserData.self, from: data)
             
             userData = result
-            
             UserChallenges = userData.userChallenges
+            
+            for (challengeIndex, challengeAdded) in userData.addedChallenges.enumerated() {
+                DefaultChallenges[challengeIndex].challengeAdded = challengeAdded
+            }
         } else {
             print("UserData.json not found")
+        }
+    }
+    
+    //앱 초기화
+    func restoreDefaults() {
+        let fileManager = FileManager.default
+//        for folderIndex in 0... {
+//            let forderDirectory = documentsPath.appendingPathComponent("\(folderIndex)")
+//            guard let filePaths = try? fileManager.contentsOfDirectory(at: forderDirectory, includingPropertiesForKeys: nil, options: []) else { return }
+//            for filePath in filePaths {
+//                try? fileManager.removeItem(at: filePath)
+//            }
+//        }
+        
+        guard let filePaths = try? fileManager.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil, options: []) else { return }
+        for filePath in filePaths {
+            try? fileManager.removeItem(at: filePath)
+        }
+        
+        userData = UserData.init()
+        UserChallenges = []
+        for (index,_) in DefaultChallenges.enumerated() {
+            DefaultChallenges[index].challengeAdded = false
         }
     }
 }
@@ -546,12 +579,15 @@ let today = todayDateInfo.init()
 
 
 struct UserData: Codable {
+    var userName = "지왕"
+    
     var level = 0
     var points = 0
     var newChallengeIndex = 0
     
     var userChallenges: [UserChallenge] = []
     
+    var addedChallenges = [Bool](repeating: false, count: DefaultChallenges.count)
 }
 
 var userData = UserData.init()

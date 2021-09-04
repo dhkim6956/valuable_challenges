@@ -12,20 +12,35 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet weak var myPageTableView: UITableView!
     
-    let sectionMenuArray = ["내 프로필", "로그인 정보", "나의 도전", "앱 정보"]
-    let firstMenuArray = ["연결 ID"]
-    let secondMenuArray = ["관심 분야 설정", "포인트 교환"]
-    let thirdMenuArray = ["개인 정보 정책", "이용 약관"]
+    @IBOutlet weak var inputNameViewBackground: UIView!
+    @IBOutlet weak var inputNameView: UIView!
+    @IBOutlet weak var userNameTextField: UITextField!
+    
+    @IBOutlet weak var changeNameButton: UIButton!
+    
+    
+    
+    let sectionMenuArray = ["내 프로필", "유저 정보", "앱 정보"]
+    let firstMenuArray = ["이름 변경"]
+    let secondMenuArray = ["앱 초기화"]
     let challenges = Challenges()
+    
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        inputNameView.layer.cornerRadius = 10
+        changeNameButton.layer.cornerRadius = 10
+        changeNameButton.backgroundColor = UIColor.systemBlue
+        
         myPageTableView.backgroundColor = #colorLiteral(red: 0.9720780253, green: 0.9662989974, blue: 0.9765200019, alpha: 1)
         myPageTableView.dataSource = self
         myPageTableView.delegate = self
+        
+        
         
     }
     
@@ -43,8 +58,6 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             return firstMenuArray.count
         case 2:
             return secondMenuArray.count
-        case 3:
-            return thirdMenuArray.count
         default:
             return 0
         }
@@ -58,6 +71,9 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageCustomCell", for: indexPath) as! MyPageCustomCell
             
             cell.characterImage = .none
+            
+            cell.userName.text = userData.userName
+            
             cell.startLevel?.text = "Lv 4"
             cell.finisedLevel?.text = "Lv 5"
             cell.presentPointLabel?.text = "82pts"
@@ -81,22 +97,13 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             return cell
             
-        } else if indexPath.section == 2 {
+        } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: "MyPageCell")
             cell.textLabel?.text = secondMenuArray[indexPath.row]
             
             return cell
             
-        } else {
-            
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "MyPageCell")
-            
-            cell.textLabel?.text = thirdMenuArray[indexPath.row]
-            
-            return cell
-            
         }
-    
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,12 +116,42 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            manageUserData.saveUserData()
-        } else if indexPath.row == 1 {
-            manageUserData.loadUserData()
+        
+        myPageTableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                inputNameView.isHidden = false
+                inputNameViewBackground.isHidden = false
+            }
         }
         
         
+        
+        if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                manageUserData.restoreDefaults()
+                
+                if let tabbarController = self.view.window?.rootViewController as? UITabBarController {
+                    tabbarController.selectedIndex = 0
+                }
+            }
+        }
     }
+    
+    
+    @IBAction func changeNameButtonTapped(_ sender: Any) {
+        guard let nameString = userNameTextField.text else { return }
+        if nameString == "" {
+            self.view.makeToast("공백은 사용하실 수 없습니다")
+        } else {
+            userData.userName = nameString
+            
+            userNameTextField.text = nameString
+            
+            inputNameView.isHidden = true
+            inputNameViewBackground.isHidden = true
+        }
+    }
+    
 }
