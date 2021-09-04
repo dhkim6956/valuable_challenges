@@ -37,6 +37,8 @@ class DetailChallengeList : UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBOutlet weak var detailChallengeView: UICollectionView!
+    
+    
     var detailSelectedStatus: ChallengeStatus = .onGoing
     
     

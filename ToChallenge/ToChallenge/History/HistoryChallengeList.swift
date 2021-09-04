@@ -24,7 +24,7 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        challenges = UserChallenges.filter{ $0.progression == .onGoing }
+        challenges = UserChallenges.filter{ $0.progression == selectedStatus }
         
         if challenges.count > 0 {
          
@@ -32,15 +32,6 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
             
         }
     }
-    
-    
-    
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        historyChallengeList.reloadData()
-//    }
     
     
     
@@ -64,8 +55,8 @@ class HistoryChallengeList: UIViewController, UICollectionViewDelegate, UICollec
         case .onGoing:
             cell.titleLabel?.text = challenges[indexPath.item].title
             cell.categoryLabel?.text = "\(challenges[indexPath.item].category)"
-            cell.finishedPeriodLabel.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
-            cell.finishedPeriodLabelProgress.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
+            cell.finishedPeriodLabel?.text =  "\(String(format: "%.0f", (challenges[indexPath.item].getTotalAuthenticationCount())))일"
+            cell.finishedPeriodLabelProgress.text = "\(String(format: "%.0f", (challenges[indexPath.item].getTotalAuthenticationCount())))일"
             cell.ongoingLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
                 cell.slashLabel?.text = .some("/")
             cell.startDateLabel?.text = "\(challenges[indexPath.item].getStartDate(yyyyMMdd: "yyyy.MM.dd"))"

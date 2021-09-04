@@ -10,18 +10,19 @@ import UIKit
 
 class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    
     @IBOutlet weak var challengeRecordList: UICollectionView!
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-        var newCert = CertificationRecord(title: "Front-End 정복", category: "Coding", challengeCount: 30, nowCount: 1, startDate: "2021.08.01", finishDate: "2021.08.30", description: "첫날! 열심히 해보자!", status: .onGoing)
+        var newCert = CertificationRecord(title: "해커스 토익 보카", category: "language", challengeCount: 30, nowCount: 1, startDate: "2021.09.05", finishDate: "2021.10.04", description: "첫날! 열심히 해보자!", status: .onGoing, todayDate: "2021.09.05")
         
         newCert.proofImage = info[.editedImage] as? UIImage
         
         
        // UserChallenge(from: newCert  as! Decoder) - 오류
-      // certificationRecord.append(newCert) - 원래
+        certificationRecord.append(newCert)
         challengeRecordList.reloadData()
         
     }
@@ -38,39 +39,44 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    var detailSelectedStatus: UserChallenge.challengeProgression = .onGoing
-    
-    var challenges: [UserChallenge] = []
+    var detailSelectedStatus: ChallengeStatus = .onGoing
     
     override func viewDidLoad() {
         super.viewDidLoad()
         challengeRecordList.backgroundColor = #colorLiteral(red: 0.9708310962, green: 0.9650595784, blue: 0.9752674699, alpha: 1)
     
-//        challenges = challenges.enumerated().map({
-//            if $0 % 2 == 0 {
-//                let fixed = $1
-//
-//               // fixed.proofImage = UIImage(named: "proofImage01") - 오류
-//
-//                return fixed
-//            }
-//            return $1
-//        })
+        certificationRecord = certificationRecord.enumerated().map({
+            if $0 % 2 == 0 {
+               var fixed = $1
+
+                fixed.proofImage = UIImage(named: "proofImage01")
+
+                return fixed
+            }
+            return $1
+        })
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        challenges = UserChallenges.filter{ $0.progression == .onGoing }
-
-       if challenges.count > 0 {
-        
-       challengeRecordList.reloadData()
+//        challenges = UserChallenges.filter{ $0.progression == .onGoing }
+//
+//       if challenges.count > 0 {
+//
+//       challengeRecordList.reloadData()
            
        }
 
-    }
+
+var certificationRecord: [CertificationRecord] = [
+    CertificationRecord(title: "해커스 토익 보카", category: "language", challengeCount: 30, nowCount: 1, startDate: "2021.09.05", finishDate: "2021.10.04", description: "첫날! 열심히 해보자!", status: .onGoing, todayDate: "2021.09.05"),
+    CertificationRecord(title: "해커스 토익 보카", category: "Coding", challengeCount: 30, nowCount: 2, startDate: "2021.09.05", finishDate: "2021.10.04", description: "둘째날 할만하다!", status: .onGoing, todayDate: "2021.09.06"),
+    CertificationRecord(title: "해커스 토익 보카", category: "Coding", challengeCount: 30, nowCount: 3, startDate: "2021.09.05", finishDate: "2021.10.04", description: "셋째날.. 오늘만 넘기자", status: .onGoing, todayDate: "2021.09.07"),
+    CertificationRecord(title: "해커스 토익 보카", category: "Coding", challengeCount: 30, nowCount: 4, startDate: "2021.09.05", finishDate: "2021.10.04", description: "아는 단어가 점점 많아진다..", status: .onGoing, todayDate: "2021.09.08"),
+]
+
     
      
  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -79,7 +85,7 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
         case 0:
             return 1
         case 1:
-            return challenges.count
+            return certificationRecord.count
         default:
             return 0
         }
@@ -100,12 +106,13 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
         if indexPath.section == 0 {
             cell.todayDateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
             cell.challengeStatusLabel?.text = "진행 중"
-            cell.titleLabel?.text = challenges[indexPath.item].title
-            cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일 \(challenges[indexPath.item].dueDates)일 중 \(challenges[indexPath.item].getInProgressDate())일간 해내셨습니다."
-            cell.finishPeriodLabel?.text = "\(challenges[indexPath.item].getTotalAuthenticationCount())일"
-            cell.ongoingPeriodLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
-            cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
+            cell.titleLabel?.text = certificationRecord[indexPath.item].title
+            cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일 \(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
+            cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
+            cell.ongoingPeriodLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일"
+            cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(certificationRecord[indexPath.item].nowCount) / (Double(certificationRecord[indexPath.item].challengeCount)))) * 100))))%"
             cell.slashLabel?.text = .some("/")
+            cell.progressLabel?.text = .some("진행도")
 
             //cell UI
             cell.layer.cornerRadius = 20
@@ -123,7 +130,7 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
             cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
             
             //progressbar UI
-            cell.progressBar.progress = Float(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getDoneAuthenticationCount())))
+            cell.progressBar.progress = Float(Double(certificationRecord[indexPath.item].nowCount) / (Double(certificationRecord[indexPath.item].challengeCount)))
             cell.progressBar.progressViewStyle = .default
             cell.progressBar.progressTintColor = #colorLiteral(red: 0, green: 0.959014833, blue: 0.1501406729, alpha: 1)
             cell.progressBar.trackTintColor = .lightGray
@@ -136,11 +143,10 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
         } else if indexPath.section == 1 {
     
             
-            cell1.dateLabel?.text = "\("yyyy-MM-dd".stringFromDate())" // - 인증하는 날짜로 고쳐야함.
-//            cell1.certificationImage = .none
-            cell1.titleLabel?.text = challenges[indexPath.item].title
-            cell1.todayLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일차"
-            cell1.recordLabel?.text = "오늘은 ~~을 했다."
+            cell1.dateLabel?.text = certificationRecord[indexPath.item].todayDate
+            cell1.titleLabel?.text = certificationRecord[indexPath.item].title
+            cell1.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
+            cell1.recordLabel?.text = certificationRecord[indexPath.item].description
             
         
             
@@ -167,17 +173,17 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
             
         }
             
-            case .succeed:
+            case .finished:
             
             if indexPath.section == 0 {
                 
-                cell.titleLabel?.text = challenges[indexPath.item].title
+                cell.titleLabel?.text = certificationRecord[indexPath.item].title
                 cell.todayDateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
                 cell.challengeStatusLabel?.text = "완료"
-                cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(challenges[indexPath.item].dueDates)일 중 \(challenges[indexPath.item].getInProgressDate())일간 해내셨습니다."
-                cell.finishPeriodLabel?.text = "\(challenges[indexPath.item].dueDates)일"
-                cell.ongoingPeriodLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일"
-                cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getTotalAuthenticationCount())))) * 100))))%"
+                cell.descriptionLabel?.text = "지왕님은 Dream Coding 무료 동영상 강의를 듣고 해당 강의에서 작성한 코드를 캡쳐하여 인증하는 과정을 목표일.\(certificationRecord[indexPath.item].challengeCount)일 중 \(certificationRecord[indexPath.item].nowCount)일간 해내셨습니다."
+                cell.finishPeriodLabel?.text = "\(certificationRecord[indexPath.item].challengeCount)일"
+                cell.ongoingPeriodLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일"
+                cell.percentLabel?.text = "\((String(format: "%.0f", ((Double(Double(certificationRecord[indexPath.item].nowCount) / (Double(certificationRecord[indexPath.item].challengeCount)))) * 100))))%"
                 cell.slashLabel?.text = .some("/")
 
                 //cell UI
@@ -196,7 +202,7 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
                 cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
                 
                 //progressbar UI
-                cell.progressBar.progress = Float(Double(challenges[indexPath.item].getInProgressDate()) / (Double(challenges[indexPath.item].getDoneAuthenticationCount())))
+                cell.progressBar.progress = Float(Double(certificationRecord[indexPath.item].nowCount) / (Double(certificationRecord[indexPath.item].challengeCount)))
                 cell.progressBar.progressViewStyle = .default
                 cell.progressBar.progressTintColor = #colorLiteral(red: 0, green: 0.959014833, blue: 0.1501406729, alpha: 1)
                 cell.progressBar.trackTintColor = .lightGray
@@ -211,9 +217,9 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
                 cell1.dateLabel?.text = "\("yyyy-MM-dd".stringFromDate())"
                 cell1.titleLabel?.text = "\("HH:mm:ss".stringFromDate())"
                 cell1.certificationImage = .none
-                cell1.titleLabel?.text = challenges[indexPath.item].title
-                cell1.todayLabel?.text = "\(challenges[indexPath.item].getInProgressDate())일차"
-                cell1.recordLabel?.text = "오늘은 ~~을 했다."
+                cell1.titleLabel?.text = certificationRecord[indexPath.item].title
+                cell1.todayLabel?.text = "\(certificationRecord[indexPath.item].nowCount)일차"
+                cell1.recordLabel?.text = certificationRecord[indexPath.item].description
                 
                 //cell UI
                 cell1.layer.cornerRadius = 20
@@ -236,8 +242,6 @@ class ChallengeRecordList : UIViewController, UICollectionViewDelegate, UICollec
             }
 
     case .failed:
-        return UICollectionViewCell()
-    case .waitForStart:
         return UICollectionViewCell()
     }
             

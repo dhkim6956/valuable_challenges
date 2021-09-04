@@ -194,7 +194,6 @@
 			children = (
 				47889A5F26BCCCB1005903C4 /* History.storyboard */,
 				A5A90ACA26DA759C0019ED12 /* ChallengeRecordList.swift */,
-				A5A90ACC26DA75DB0019ED12 /* ChallengeRecordCell1.swift */,
 				A5A90ACE26DA75EE0019ED12 /* ChallengeRecordCell2.swift */,
 				47889A6126BCCD8B005903C4 /* HistoryViewController.swift */,
 				A5EE214026BFFA4A004B464E /* HistoryChallengeList.swift */,
@@ -233,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				47889A6E26BCD119005903C4 /* MyPage.storyboard */,
+				A5A90ACC26DA75DB0019ED12 /* ChallengeRecordCell1.swift */,
 				47889A7026BCD12F005903C4 /* MyPageViewController.swift */,
 				A580585326C02D1100797255 /* MyPageCustomCell.swift */,
 			);

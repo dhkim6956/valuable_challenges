@@ -36,6 +36,7 @@ struct CertificationRecord {
     var finishDate: String
     var description: String
     var status: ChallengeStatus
+    var todayDate: String
     var proofImage: UIImage? = UIImage(named: "Image")
 }
 
