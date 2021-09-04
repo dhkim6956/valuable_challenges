@@ -25,6 +25,9 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var tableView: UITableView!
     
     
+    @IBOutlet var viewCollection: [UIView]!
+    
+    
     var selectedChallenge: UserChallenge!
     
     
@@ -38,10 +41,21 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        challengeProgressView.transform = challengeProgressView.transform.scaledBy(x: 1, y: 2)
+        for view in viewCollection {
+            view.layer.cornerRadius = 10
             
-        authenticationButton.layer.cornerRadius = 15.0
-        giveUpButton.layer.cornerRadius = 15.0
+            view.layer.shadowOpacity = 0.3
+            view.layer.shadowOffset = CGSize(width: 3, height: 3)
+            view.layer.shadowRadius = 3
+            view.layer.masksToBounds = false
+        }
+        
+        authenticationButton.layer.cornerRadius = 10
+        giveUpButton.layer.cornerRadius = 10
+        tableView.layer.cornerRadius = 10
+        
+        
+        challengeProgressView.transform = challengeProgressView.transform.scaledBy(x: 1, y: 2)
         
         
         tableView.dataSource = self
@@ -77,7 +91,7 @@ class DetailViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let temp =  Float(selectedChallenge.getDoneAuthenticationCount()) / Float(selectedChallenge.getTotalAuthenticationCount())
+        let temp =  selectedChallenge.getDoneAuthenticationCount() / selectedChallenge.getTotalAuthenticationCount()
         
         challengeProgressView.setProgress(temp, animated: true)
     }

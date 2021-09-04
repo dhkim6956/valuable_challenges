@@ -8,7 +8,7 @@
 import UIKit
 import Toast_Swift
 
-class CreateChallengeTableViewController: UITableViewController {
+class CreateChallengeTableViewController: UITableViewController, ProtocolData {
     
     let category = ["자격증", "코딩", "운동", "외국어", "독서", "기타"]
     let period = ["매년", "매월", "매일", "일요일마다", "월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다", "토요일마다"]
@@ -18,6 +18,9 @@ class CreateChallengeTableViewController: UITableViewController {
     
     var categoryPickerView = UIPickerView()
     var periodPickerView = UIPickerView()
+    
+    
+    var selectedDateIsStartDate = true
     
     var startDate: Date?
     var finishDate: Date?
@@ -33,6 +36,10 @@ class CreateChallengeTableViewController: UITableViewController {
     @IBOutlet var lowerSide: [UIView]!
     
     
+    @IBOutlet var shadowAndSeparator: [UIView]!
+    
+    
+    
     
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -44,8 +51,8 @@ class CreateChallengeTableViewController: UITableViewController {
     @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var periodTextField: PickerUITextField!
     
-    @IBOutlet weak var startDateTextField: PickerUITextField!
-    @IBOutlet weak var finishDateTextField: PickerUITextField!
+    @IBOutlet weak var startDateTextField: UITextField!
+    @IBOutlet weak var finishDateTextField: UITextField!
     
     @IBOutlet weak var colorPickerView: UIColorWell!
     
@@ -58,15 +65,51 @@ class CreateChallengeTableViewController: UITableViewController {
         }
         
         titleFrame.layer.cornerRadius = 10
+        
+        titleFrame.layer.shadowOpacity = 0.3
+        titleFrame.layer.shadowOffset = CGSize(width: 3, height: 3)
+        titleFrame.layer.shadowRadius = 3
+        titleFrame.layer.masksToBounds = false
+        
         for upper in upperSide {
             upper.layer.cornerRadius = 10
             upper.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+            
+            
+            upper.layer.shadowOpacity = 0.3
+            upper.layer.shadowPath = UIBezierPath(rect: CGRect(x: 3, y: 9, width: upper.frame.width, height: upper.frame.height)).cgPath
+            upper.layer.shadowRadius = 3
+            upper.layer.masksToBounds = false
+            
+            let border = CALayer()
+            border.frame = CGRect.init(x: 0, y: upper.frame.height - 1, width: upper.frame.width, height: 1)
+            border.backgroundColor = UIColor.systemGray5.cgColor;
+            upper.layer.addSublayer(border)
         }
         
         for lower in lowerSide {
             lower.layer.cornerRadius = 10
             lower.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
+            
+            
+            lower.layer.shadowOpacity = 0.3
+            lower.layer.shadowPath = UIBezierPath(rect: CGRect(x: 3, y: 0, width: lower.frame.width, height: lower.frame.height + 6)).cgPath
+            lower.layer.shadowRadius = 3
+            lower.layer.masksToBounds = false
         }
+        
+        for layer in shadowAndSeparator {
+            layer.layer.shadowOpacity = 0.3
+            layer.layer.shadowPath = UIBezierPath(rect: CGRect(x: 3, y: 0, width: layer.frame.width, height: layer.frame.height + 6)).cgPath
+            layer.layer.shadowRadius = 3
+            layer.layer.masksToBounds = false
+            
+            let border = CALayer()
+            border.frame = CGRect.init(x: 0, y: layer.frame.height - 1, width: layer.frame.width, height: 1)
+            border.backgroundColor = UIColor.systemGray5.cgColor;
+            layer.layer.addSublayer(border)
+        }
+        
         
         colorPickerView.supportsAlpha = false
         colorPickerView.selectedColor = getRandomColor()
@@ -74,15 +117,15 @@ class CreateChallengeTableViewController: UITableViewController {
         colorPickerView.addTarget(self, action: #selector(colorPickerValueChanged), for: .valueChanged)
         
         
-        startDatePicker.datePickerMode = .date
-        startDatePicker.addTarget(self, action: #selector(startDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        startDatePicker.preferredDatePickerStyle = .inline
-        startDateTextField.inputView = startDatePicker
-        
-        finishDatePicker.datePickerMode = .date
-        finishDatePicker.addTarget(self, action: #selector(finishDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        finishDatePicker.preferredDatePickerStyle = .compact
-        finishDateTextField.inputView = finishDatePicker
+//        startDatePicker.datePickerMode = .date
+//        startDatePicker.addTarget(self, action: #selector(startDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+//        startDatePicker.preferredDatePickerStyle = .inline
+//        startDateTextField.inputView = startDatePicker
+//
+//        finishDatePicker.datePickerMode = .date
+//        finishDatePicker.addTarget(self, action: #selector(finishDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+//        finishDatePicker.preferredDatePickerStyle = .compact
+//        finishDateTextField.inputView = finishDatePicker
         
         
         categoryTextField.inputView = categoryPickerView
@@ -181,28 +224,69 @@ class CreateChallengeTableViewController: UITableViewController {
         print(colorPickerView.selectedColor!)
     }
     
-    @objc func startDatePickerValueChanged(sender: UIDatePicker) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            if indexPath.row == 1 {
+                selectedDateIsStartDate = true
+                performSegue(withIdentifier: "selectDate", sender: nil)
+            } else if indexPath.row == 2 {
+                selectedDateIsStartDate = false
+                performSegue(withIdentifier: "selectDate", sender: nil)
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let datePickerViewController = segue.destination as? DatePickerViewController else { return }
+        
+        datePickerViewController.delegate = self
+        
+        datePickerViewController.selectedDateIsStartDate = self.selectedDateIsStartDate
+    }
+    
+    func protocolData(dataSent: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
-        self.view.endEditing(true)
-        if today.start <= sender.date {
-            correctDate(changedStartDate: true, changedEndDate: false, changedDuration: false, datePicker: sender.date)
-        } else {
-            self.view.makeToast("시작일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
-        }
         
-    }
-    @objc func finishDatePickerValueChanged(sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        self.view.endEditing(true)
-        if today.start <= sender.date {
-            correctDate(changedStartDate: false, changedEndDate: true, changedDuration: false, datePicker: sender.date)
-        } else {
-            self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+        switch selectedDateIsStartDate {
+        case true:
+            if today.start <= dataSent {
+                correctDate(changedStartDate: true, changedEndDate: false, changedDuration: false, datePicker: dataSent)
+            } else {
+                self.view.makeToast("시작일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+            }
+        case false:
+            if today.start <= dataSent {
+                correctDate(changedStartDate: false, changedEndDate: true, changedDuration: false, datePicker: dataSent)
+            } else {
+                self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+            }
         }
-        
     }
+    
+//    @objc func startDatePickerValueChanged(sender: UIDatePicker) {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy년 MM월 dd일"
+//        self.view.endEditing(true)
+//        if today.start <= sender.date {
+//            correctDate(changedStartDate: true, changedEndDate: false, changedDuration: false, datePicker: sender.date)
+//        } else {
+//            self.view.makeToast("시작일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+//        }
+//    }
+//    
+//    @objc func finishDatePickerValueChanged(sender: UIDatePicker) {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy년 MM월 dd일"
+//        self.view.endEditing(true)
+//        if today.start <= sender.date {
+//            correctDate(changedStartDate: false, changedEndDate: true, changedDuration: false, datePicker: sender.date)
+//        } else {
+//            self.view.makeToast("종료일은 오늘 혹은 오늘 이후여야 합니다", duration: 3, position: .top, title: "날짜 오류", image: UIImage(named: "charactor1"), style: .init(), completion: nil)
+//        }
+//
+//    }
     
     @objc func durationValueChanged(sender: UITextField) {
         correctDate(changedStartDate: false, changedEndDate: false, changedDuration: true, datePicker: nil)
@@ -374,6 +458,9 @@ class CreateChallengeTableViewController: UITableViewController {
                                                 return .everySaturday
                                             }
                                         }(), setStartDate: bringStartDate, setFinishDate: bringFinishDate))
+                                        
+                                        manageUserData.saveUserData()
+                                        
                                         self.navigationController?.popToRootViewController(animated: false)
                                         
                                         if let tabbarController = self.view.window?.rootViewController as? UITabBarController {

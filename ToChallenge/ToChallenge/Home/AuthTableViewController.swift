@@ -52,11 +52,11 @@ class AuthTableViewController: UITableViewController {
         
         sortLabel.text = authChallenge.getSort()
         titleLabel.text = authChallenge.title
-        progressLabel.text = "\(authChallenge.getDoneAuthenticationCount())/\(authChallenge.getTotalAuthenticationCount())회"
+        progressLabel.text = "\(Int(authChallenge.getDoneAuthenticationCount()))/\(Int(authChallenge.getTotalAuthenticationCount()))회"
         remainTryLabel.text = "남은 기회: \(authChallenge.remainTry)"
         authMethodLabel.text = authChallenge.authenticationMethod
         
-        progress.setProgress(Float(authChallenge.getDoneAuthenticationCount()/authChallenge.getTotalAuthenticationCount()), animated: true)
+        progress.setProgress(authChallenge.getDoneAuthenticationCount()/authChallenge.getTotalAuthenticationCount(), animated: true)
         
         authReview.delegate = self
         authReview.textColor = UIColor.lightGray
@@ -120,6 +120,9 @@ class AuthTableViewController: UITableViewController {
                         }
                         print("save successful")
                         
+                        
+                        userData.points += 1
+                        manageUserData.saveUserData()
                     }
                 }
             } else {

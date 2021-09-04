@@ -115,19 +115,19 @@ struct UserChallenge: Codable {
     }
 
     //총 필요 인증 횟수 (프로그레스 뷰에서 사용)
-    func getTotalAuthenticationCount() -> Int {
-        dueDates.count
+    func getTotalAuthenticationCount() -> Float {
+        return Float(dueDates.count)
     }
 
     //총 인증 횟수 (프로그레스 뷰에서 사용)
-    func getDoneAuthenticationCount() -> Int {
+    func getDoneAuthenticationCount() -> Float {
         var doneAuthenticationCount = 0
         for dueDate in dueDates {
             if dueDate.dueDateStatus == .authenticated {
                 doneAuthenticationCount += 1
             }
         }
-        return doneAuthenticationCount
+        return Float(doneAuthenticationCount)
     }
 
     //오늘까지 해야하는 목표 or 매월, 매년 해야하는 목표 (메인 화면표시용)
@@ -411,7 +411,7 @@ var UserChallenges: [UserChallenge] = {
     return challenges
 }()
 
-class UserChallengeManager {
+class UserDataManager {
     //
     func updateTodayChallengeStatus() {
         for (index,eachChallenge) in UserChallenges.enumerated() {
@@ -485,16 +485,19 @@ class UserChallengeManager {
         
         url.appendPathComponent("Documents/UserData.json")
         
-        guard let data = try? Data(contentsOf: url) else { return }
-        let result = try! JSONDecoder().decode(UserData.self, from: data)
-        
-        userData = result
-        
-        UserChallenges = userData.userChallenges
+        if let data = try? Data(contentsOf: url) {
+            let result = try! JSONDecoder().decode(UserData.self, from: data)
+            
+            userData = result
+            
+            UserChallenges = userData.userChallenges
+        } else {
+            print("UserData.json not found")
+        }
     }
 }
 
-let manageUserChallenge = UserChallengeManager.init()
+let manageUserData = UserDataManager.init()
 
 
 

@@ -106,4 +106,15 @@ class MyPageTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionMenuArray[section]
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            manageUserData.saveUserData()
+        } else if indexPath.row == 1 {
+            manageUserData.loadUserData()
+        }
+        
+        
+    }
 }

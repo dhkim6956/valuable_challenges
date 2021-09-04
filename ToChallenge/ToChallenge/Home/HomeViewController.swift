@@ -40,6 +40,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        manageUserData.loadUserData()
+        
         mainTableView.delegate = self
         mainTableView.dataSource = self
     }
